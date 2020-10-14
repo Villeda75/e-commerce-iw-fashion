@@ -1,0 +1,135 @@
+ <h1 mat-dialog-title style="text-align:right"><button  mat-dialog-close mat-mini-fab color="warn" >
+          <mat-icon>close</mat-icon>
+        </button></h1>
+<div mat-dialog-content>
+
+<mat-tab-group align="center">
+<!--template para loggin-->
+  <mat-tab label="Ingresar"> 
+<br>
+<br>
+<br>
+   
+ 
+
+<p>
+ <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input matInput placeholder="ejemplo@gmail.com" [(ngModel)]="correo">
+    <mat-icon matSuffix>mail_outline</mat-icon>
+
+  </mat-form-field>
+</p>
+<p>
+<mat-form-field appearance="fill">
+    <mat-label>Contraseña</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+</p>
+  <button class="btn btn-outline-primary" mat-dialog-close align="center"  (click)="IngresarNormal(correo,password)">Login</button>
+   <button (click)="LogginGoogle()"style="margin-left:10px" mat-dialog-close align="center" class="btn btn-outline-danger" mat-dialog-close align="center" ><img with="25px" height="25px" src="https://lh3.googleusercontent.com/proxy/QAyCKBIdIdBAQU11Z8KHZ5mDUZff1YIWlMtD-cZJW8qTEk7ojkBW9XNjyikZB4k77GzlB8XkpOQVsw_oqOH9EC_GEBzlxTWImq_7A4xWLVeS3YRT9io" />Sing up with google</button>
+   
+
+ <!--Fin template loggin-->
+
+ <!--Template crear cuenta-->
+   </mat-tab>
+   <mat-tab label="Crear cuenta" align="center"> 
+   <br>
+   <br>
+  <div *ngIf="!showTemplate">
+  
+  <p>
+  <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input matInput placeholder="ejemplo@gmail.com" [(ngModel)]="newCorreo">
+    <mat-icon matSuffix>mail_outline</mat-icon>
+   
+  </mat-form-field>
+ </p>
+  <p>
+  <mat-form-field appearance="fill">
+    <mat-label>Contraseña</mat-label>
+    <input (keyup)="ComprobarPassword()" matInput [type]="hide1 ? 'password' : 'text'" [(ngModel)]="newPassword">
+    <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+ </p>
+ <p>
+<mat-form-field appearance="fill">
+    <mat-label>Confirmar contraseña</mat-label>
+    <input (keyup)="ComprobarPassword()" matInput [type]="hide2 ? 'password' : 'text'" [(ngModel)]="newPassword2">
+    <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    
+  </mat-form-field>
+  
+</p>
+<div *ngIf="!AreEqual" class="alert alert-dismissible alert-danger">
+  <strong>Las contraseñas no coinciden</strong> revisar nuevamente.
+</div>
+  <button [disabled]="!AreEqual" class="btn btn-outline-success" align="center" (click)="CreateAccount(newCorreo,newPassword)">Registrarse</button>
+
+
+  </div>
+
+ 
+  <div class="formGroup" *ngIf="autenticacion.usuario as user">
+ 
+          <p class="text-center">Hemos enviado un correo de verificación  <strong>{{user.email}}</strong>.</p>
+          <p class="text-center">Por favor revisar su cuenta de correo y dar click en el enlace para verificar su correo.</p>
+         
+        </div>
+
+  
+   </mat-tab>
+   <!--Fin template -->
+
+   <!--Template Para recuperar contraseña-->
+<mat-tab label="Recuperar contraseña" align="center">
+<br>
+<br>
+<br>
+<br>
+<h1>A continuacion se enviará un enlace </h1>
+<h2>al correo ingresado para recuperar la contraseña</h2>
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Ingresar el correo</mat-label>
+    <input matInput placeholder="ejemplo@gmail.com" [(ngModel)]="ResetEmail">
+    <mat-icon matSuffix>mail_outline</mat-icon>
+   
+  </mat-form-field>
+ </p>
+ <button class="btn btn-outline-secondary" (click)="RecuperarPassword(ResetEmail)">Enviar</button>
+ 
+
+ </mat-tab>
+ <!--Fin template-->
+   
+
+</mat-tab-group>
+
+
+<div mat-dialog-actions align="center">
+ <!-- <button mat-button mat-dialog-close>Cerrar</button>
+   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>-->
+</div>
+
+ 
+
+
+
+
+
+
+
+
+
+  
+  

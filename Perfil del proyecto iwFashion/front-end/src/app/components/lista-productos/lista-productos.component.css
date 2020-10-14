@@ -1,0 +1,33 @@
+
+mat-card
+{
+  background: #2c3e50;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+/*h2{
+  font-family: 'Fredericka the Great', cursive;
+  font-size:30px;
+}*/
+h1,h2
+{
+  font-family: 'Cinzel Decorative';
+  font-size:30px;
+}
+
+h4
+{
+  font-family: 'Lora', serif;
+}
+
+h1,h2,h4
+{
+  text-align:center;
+  color:white;
+ 
+}
+
+mat-form-field {
+  width: 100%;
+}

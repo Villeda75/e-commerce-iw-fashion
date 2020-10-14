@@ -1,0 +1,16 @@
+
+  .example-card {
+    width:auto;
+    height:auto;
+    max-width: 260px;
+    max-height: 80px;
+    margin-top: 20px;
+    margin-left: 15px;
+  }
+
+  
+  
+  .example-tooltip-red {
+    background-color: #b71c1c;
+    font-size:10px;
+  }
