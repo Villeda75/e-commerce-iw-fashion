@@ -3,17 +3,19 @@ import { Router } from  "@angular/router";
 import { auth } from  'firebase/app';
 import { AngularFireAuth } from  "@angular/fire/auth";
 import { User } from  'firebase';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  URI='https://jsonplaceholder.typicode.com/photos';
   usuario: User;
   NombreUsuario:string;
   FotoPerfil:string;
   correo:string;
-  constructor(public  afAuth:  AngularFireAuth, public  router:  Router, public ngZone: NgZone) {
+  constructor(public  afAuth:  AngularFireAuth, public  router:  Router, public ngZone: NgZone,private http: HttpClient) {
     this.afAuth.authState.subscribe(user => {
       if (user){
         this.usuario = user;
@@ -142,6 +144,10 @@ ForgotPassword(passwordResetEmail) {
 }
 
 
+DatosPrueba()
+{
+  return this.http.get(this.URI);
+}
 }
 
 

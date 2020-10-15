@@ -9,6 +9,7 @@
         <div class="row">
           <div class="col-lg-12">
             <ul id="portfolio-flters">
+            <!--
               <li>
               <mat-form-field appearance="fill">
               <mat-label style="font-size: 16px">Talla</mat-label>
@@ -30,10 +31,52 @@
               </mat-select>
               </mat-form-field>
               <p>You selected: {{selected1}}</p></li>
+              -->
             </ul>
           </div>
         </div>
 
+<div class="row portfolio-container">
+
+
+
+ 
+
+  <div *ngFor="let item of datos | paginate: {  itemsPerPage: 12,currentPage: page,totalItems: total}" class="col-lg-4 col-md-6 portfolio-item filter-app">
+      <mat-card class="example-card">
+  <mat-card-header >
+    <mat-card-title  ><h2>{{item.title}}</h2></mat-card-title>
+    <mat-card-subtitle ><h1 >$35.00</h1></mat-card-subtitle>
+  </mat-card-header>
+ <div class="portfolio-wrap">
+              <img src="{{item.thumbnailUrl}}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 1</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="icofont-eye"></i></a>
+                  <a [routerLink]="'/detalle'" title="More Details"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+  <mat-card-footer >
+    <h4 >
+     Breve descripcion del articulo...a continuacion se muestra un pequeño mensaje 
+    </h4>
+  </mat-card-footer>
+  
+</mat-card>
+</div>
+
+</div>
+
+ 
+ <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="page = $event"></pagination-controls>
+ 
+   
+<!--Inicio seccio  productos-->
+
+<!--
         <div class="row portfolio-container">
 
       <div class="col-lg-4 col-md-6 portfolio-item filter-app">
@@ -60,19 +103,7 @@
   </mat-card-footer>
   
 </mat-card>
-        <!-- 
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 1</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="icofont-eye"></i></a>
-                  <a [routerLink]="'/detalle'" title="More Details"><i class="icofont-external-link"></i></a>
-                </div>
-              </div>
-            </div>
-            --> 
+      
           </div>
           
 
@@ -187,8 +218,25 @@
               </div>
             </div>
           </div>
-
         </div>
+        -->
+        <!--Fin de seccion de productos-->
 
       </div>
     </section><!-- End Our Portfolio Section -->
+
+
+
+  <!-- 
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 1</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="icofont-eye"></i></a>
+                  <a [routerLink]="'/detalle'" title="More Details"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+            --> 

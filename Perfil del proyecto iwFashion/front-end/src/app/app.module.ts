@@ -19,6 +19,12 @@ import {environment} from '../environments/environment';
 import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
+//Modulo para interactuar con el server
+import { HttpClientModule } from '@angular/common/http';
+
+//Modulo para paginacion
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +33,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     FooterComponent,
     LoginFormComponent,
     ListaProductosComponent,
-    DetalleProductoComponent,
+    DetalleProductoComponent
+    
    
   ],
   imports: [
@@ -40,7 +47,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     IvyCarouselModule,
-    CarouselModule
+    CarouselModule,
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

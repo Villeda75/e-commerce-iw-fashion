@@ -31,3 +31,8 @@ h1,h2,h4
 mat-form-field {
   width: 100%;
 }
+.centrado{
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+}
