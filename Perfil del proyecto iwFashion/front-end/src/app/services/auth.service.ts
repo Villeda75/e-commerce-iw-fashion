@@ -43,12 +43,17 @@ export class AuthService {
   }
   */
 
-  async  loginWithGoogle(){
-    await  this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
-    this.NombreUsuario=this.usuario.displayName;
-    this.FotoPerfil=this.usuario.photoURL;
-    this.correo=this.usuario.email;
-    location.reload();
+ async  loginWithGoogle(){
+  await  this.afAuth.signInWithPopup(new auth.GoogleAuthProvider()).then(res=>{
+    this.ngZone.run(() => {
+      this.NombreUsuario=this.usuario.displayName;
+      this.FotoPerfil=this.usuario.photoURL;
+      this.correo=this.usuario.email;
+      alert('Inicio de sesión exitoso!');
+      window.location.reload();
+      //this.router.navigate(['/clientes']);
+    });
+  });
     
 }
 async logout(){

@@ -23,12 +23,17 @@ export class HeaderComponent implements OnInit {
  simboloToolTip:string='';
  MensajeToolTip:string='';
   constructor(private dialog: MatDialog,private autenticacion:AuthService,private router:Router) { 
+    if(this.autenticacion.isLoggedIn)
+    {
+
     this.usuarioLoggeado=JSON.parse(localStorage.getItem('user'));
     this.emailVerified=this.usuarioLoggeado.emailVerified;
   }
+  }
 
-  ngOnInit(): void {
-    this.VerificarLoggin();
+  ngOnInit(): void {this.VerificarLoggin();
+    if(this.Islogged)
+    {
     if(this.usuarioLoggeado.displayName)
     {
     
@@ -50,6 +55,7 @@ export class HeaderComponent implements OnInit {
        this.simboloToolTip='?';
        this.MensajeToolTip='El email no ha sido verificado';
      }
+    }
     
   }
 
