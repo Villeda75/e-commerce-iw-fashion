@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 //Importar todos los controladores a utilizar
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,11 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/login/google', [AuthController::class, 'loginWithGoogle']);
 
+//products
+Route::get('/products', [ProductController::class, 'products']);
+
 //Rutas protegidas, tiene que estar logeado para acceder mediante el token 
 Route::middleware('auth:api')->group(function() {
-    Route::get('/roles', [RolController::class, 'index']); //obtener roles en JSON
+    Route::get('/rols', [RolController::class, 'index']); //obtener roles en JSON
     Route::get('/logout', [AuthController::class, 'logout']); //cerrar sesión
 });
