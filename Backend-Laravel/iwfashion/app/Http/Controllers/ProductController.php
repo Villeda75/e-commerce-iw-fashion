@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; //importamos para hacer consultas a la bd
+use App\Models\Product; //importamos el modelo
 
 class ProductController extends Controller
 {
@@ -25,6 +26,39 @@ class ProductController extends Controller
             INNER JOIN sub_categories   USING (id_sub_category)');
 
         return response()->json(['results' => $products], 200);
+     }
+
+     //Muestra un producto por id
+     function productById($id){
+
+        $id_product = (int)$id; //Convertir de string a int el $id
+
+        if ($id_product > 0) { 
+
+            $productById = DB::select(
+                'select
+                    id_product, slug, stock, visible, sizes.size, genders.gender, brands.brand, product_types.product_type, product_types.description,
+                    product_types.sales_price, product_types.discount_price, sub_categories.sub_category,
+                    img_colors.url_img  FROM products 
+                INNER JOIN sizes            USING (id_size)
+                INNER JOIN genders          USING (id_gender)
+                INNER JOIN brands           USING (id_brand)
+                INNER JOIN img_colors       USING (id_img_color)
+                INNER JOIN types_by_colors  USING (id_types_by_color)
+                INNER JOIN product_types    USING (id_product_type)
+                INNER JOIN colors           USING (id_color)
+                INNER JOIN sub_categories   USING (id_sub_category)
+                WHERE id_product = '.$id_product);
+    
+            if ($productById != null) {
+                return response()->json(['results' => $productById], 200);
+            } else {
+                return response()->json(['Error' => 'Product Not Found'], 404);
+            }
+
+        } else {
+            return response()->json(['Error' => 'Id_product Invalid (< 0)'], 404);
+        }
      }
 
      //Muestra todos los productos de hombres
@@ -281,5 +315,31 @@ class ProductController extends Controller
 
         return response()->json(['results' => $kidsAccesoriesProducts], 200);
      }
+
+     //----------------------------  CRUD PARA PRODUCTOS -------------------------------
+     
+    //Función para crear un nuevo registro de producto
+    function store(Request $request) {
+        $request->validate([ 'brand' => 'required' ]);
+        Brand::create([ 'brand' => $request->brand ]);
+        return response()->json(['success' => 'Brand created successfully!'], 200);
+     }
+
+    //Función para editar una marca por ID
+     function edit(Brand $brand) {
+        return response()->json(['results' => compact('brand') ], 200);
+    }
+
+    //Función para actualizar una marca por ID
+     function update($id_brand, Request $request) {
+        $affected = DB::table('brands')->where('id_brand', $id_brand)->update(['brand' => $request->brand]);
+        return response()->json(['success' => 'Brand updated successfully!'], 200);
+    }
+
+    //Función para eliminar una marca por ID
+    public function destroy($id_brand) {
+        DB::table('brands')->where('id_brand', $id_brand)->delete();
+        return response()->json(['success','Brand deleted successfully!'], 200);
+    }
      
 }
