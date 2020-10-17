@@ -8,7 +8,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Portfolio Details</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">Inicio</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li>Portfolio Details</li>
           </ol>
@@ -16,14 +16,14 @@
 
       </div>
     </section><!-- Breadcrumbs Section -->
-
-    <!-- ======= Portfolio Details Section ======= -->
-    <section class="portfolio-details">
+  
+ <section class="portfolio-details">
       <div class="container">
 
   <div class="portfolio-details-container">
 
-  <owl-carousel-o [options]="SlideOptions" width="500px" height="700px" autoplay="true">
+<div class="cotainer-carousel">
+  <owl-carousel-o [options]="SlideOptions" autoplay="true">
     <ng-template carouselSlide>
         <div class="slide">
             <img src="https://www.ambientum.com/wp-content/uploads/2019/10/montanas-atardecer.jpg">
@@ -40,9 +40,12 @@
         </div>
     </ng-template>
 </owl-carousel-o>   
+</div>
 
-
-   <div class="portfolio-info">
+  
+ 
+        </div>
+         <div class="portfolio-info">
             <h3>Detalle productos</h3>
             <ul>
               <li><strong>Precio</strong>: $0.00</li>
@@ -51,8 +54,6 @@
               <li><strong>Agregar al carritoL</strong>: <a href="#">ir</a></li>
             </ul>
           </div>
- 
-        </div>
 
         <div class="portfolio-description">
           <h2>This is an example of portfolio detail</h2>
@@ -61,8 +62,9 @@
           </p>
         </div>
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </section>
+
+
 
   </main><!-- End #main -->
-
 

@@ -575,11 +575,11 @@ section {
 }
 
 .about .container {
-  box-shadow: 0 5px 25px 0 rgba(214, 215, 216, 0.6);
+  box-shadow: 10px 5px 25px 0 rgba(214, 215, 216, 0.6);
 }
 
 .about .video-box img {
-  padding: 15px 0;
+  padding: 15px 20px 0;
 }
 
 .about .section-title p {
@@ -588,8 +588,13 @@ section {
   color: #666;
 }
 
-.about .about-content {
+.about{
   padding: 40px;
+  
+}
+.about-content 
+{
+  padding-left: 20px;
 }
 
 .about .icon-box + .icon-box {
@@ -1340,7 +1345,7 @@ section {
 }
 
 #footer .footer-top {
-  background: #6a9da7;
+  background: #768fa6;
   border-top: 1px solid #768fa6;
   border-bottom: 1px solid #67839c;
   padding: 60px 0 30px 0;

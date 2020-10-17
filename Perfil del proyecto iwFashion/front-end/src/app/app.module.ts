@@ -8,8 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {MaterialModule} from '../material.module';
-import {FormsModule} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { ListaProductosComponent } from './components/lista-productos/lista-productos.component';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -23,7 +22,12 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HttpClientModule } from '@angular/common/http';
 
 //Modulo para paginacion
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination';
+import { CrudComponent } from './components/crud/crud.component'; // <-- import the module
+
+//Formularios
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
     FooterComponent,
     LoginFormComponent,
     ListaProductosComponent,
-    DetalleProductoComponent
+    DetalleProductoComponent,
+    CrudComponent
     
    
   ],

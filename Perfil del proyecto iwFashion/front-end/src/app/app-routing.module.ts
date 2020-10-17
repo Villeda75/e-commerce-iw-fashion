@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ListaProductosComponent } from './components/lista-productos/lista-productos.component';
 import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
+import { CrudComponent } from './components/crud/crud.component';
 
 
 const routes: Routes = [
@@ -18,18 +19,70 @@ const routes: Routes = [
     //ESTA LINEA MUESTRA EN PANTALLA EL COMPONENTE EL MUY OBJETO HTML
     component:HomeComponent
   },
+
+  //RUTAS Para mostrar productos de mujeres
   {
-    //RUTA DONDE VA ANGULAR
-    path: 'hombres/ropa',
-    //ESTA LINEA MUESTRA EN PANTALLA EL COMPONENTE EL MUY OBJETO HTML
+    path: 'mujeres',
     component:ListaProductosComponent
   },
   {
-    //RUTA DONDE VA ANGULAR
+    path: 'mujeres/ropa',
+    component:ListaProductosComponent
+  },
+  {
+    path: 'mujeres/zapatos',
+    component:ListaProductosComponent
+  },
+  {
+    path: 'mujeres/accesorios',
+    component:ListaProductosComponent
+  },
+
+ //RUTAS Para mostrar productos de hombre
+ {
+  path: 'hombres',
+  component:ListaProductosComponent
+},
+{
+  path: 'hombres/ropa',
+  component:ListaProductosComponent
+},
+{
+  path: 'hombres/zapatos',
+  component:ListaProductosComponent
+},
+{
+  path: 'hombres/accesorios',
+  component:ListaProductosComponent
+},
+//RUTAS Para mostrar productos de niños
+{
+  path: 'niños',
+  component:ListaProductosComponent
+},
+{
+  path: 'niños/ropa',
+  component:ListaProductosComponent
+},
+{
+  path: 'niños/zapatos',
+  component:ListaProductosComponent
+},
+{
+  path: 'niños/accesorios',
+  component:ListaProductosComponent
+},
+
+
+  {
+    //RUTA Para ir a detalle producto
     path: 'detalle',
-    //ESTA LINEA MUESTRA EN PANTALLA EL COMPONENTE EL MUY OBJETO HTML
     component:DetalleProductoComponent
   },
+  {   path: 'administrar',
+    //ESTA LINEA MUESTRA EN PANTALLA EL COMPONENTE EL MUY OBJETO HTML
+    component:CrudComponent
+  }
 ];
 
 @NgModule({

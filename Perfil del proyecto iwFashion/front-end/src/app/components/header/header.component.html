@@ -25,29 +25,30 @@
       <nav class="nav-menu float-right d-none d-lg-block">
         <ul>
           <li class="active"><a [routerLink]="'home'">Inicio</a></li>
-          <li class="drop-down"><a href="">Hombres</a>
+          <li class="drop-down"><a [routerLink]="'hombres'">Hombres</a>
             <ul>
               <li><a [routerLink]="'hombres/ropa'">Ropa</a></li>
-              <li><a href="#">Zapatos</a></li>
-              <li><a href="#">Accesorios</a></li>
+              <li><a [routerLink]="'hombres/zapatos'">Zapatos</a></li>
+              <li><a [routerLink]="'hombres/accesorios'">Accesorios</a></li>
             </ul>
           </li>
-          <li class="drop-down"><a href="">Mujeres</a>
+          <li class="drop-down"><a [routerLink]="'mujeres'">Mujeres</a>
             <ul>
-              <li><a href="#">Ropa</a></li>
-              <li><a href="#">Zapatos</a></li>
-              <li><a href="#">Accesorios</a></li>
+              <li><a [routerLink]="'mujeres/ropa'">Ropa</a></li>
+              <li><a [routerLink]="'mujeres/zapatos'">Zapatos</a></li>
+              <li><a [routerLink]="'mujeres/accesorios'">Accesorios</a></li>
             </ul>
           </li>
-          <li class="drop-down"><a href="">Niños</a>
+          <li class="drop-down"><a [routerLink]="'niños'">Niños</a>
             <ul>
-              <li><a href="#">Ropa</a></li>
-              <li><a href="#">Zapatos</a></li>
-              <li><a href="#">Accesorios</a></li>
+              <li><a [routerLink]="'niños/ropa'">Ropa</a></li>
+              <li><a [routerLink]="'niños/zapatos'">Zapatos</a></li>
+              <li><a [routerLink]="'niños/accesorios'">Accesorios</a></li>
             </ul>
           </li>
               <li *ngIf="!Islogged"><a (click)="OpenLogin()" >Login</a></li>
           <li><a href="#contact">Contactanos</a></li>
+           <li><a [routerLink]="'administrar'">Administrar</a></li>
             <li>
 
  <mat-card class="example-card" *ngIf="Islogged" matBadge="{{simboloToolTip}}" matBadgeColor="warn"  matTooltip="{{MensajeToolTip}}" matTooltipClass="example-tooltip-red" matTooltipPosition="above">

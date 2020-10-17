@@ -42,26 +42,27 @@
 
  
 
-  <div *ngFor="let item of datos | paginate: {  itemsPerPage: 12,currentPage: page,totalItems: total}" class="col-lg-4 col-md-6 portfolio-item filter-app">
+  <div *ngFor="let item of productos | paginate: {  itemsPerPage: 12,currentPage: page,totalItems: total}" class="col-lg-4 col-md-6 portfolio-item filter-app">
       <mat-card class="example-card">
   <mat-card-header >
-    <mat-card-title  ><h2>{{item.title}}</h2></mat-card-title>
-    <mat-card-subtitle ><h1 >$35.00</h1></mat-card-subtitle>
+    <mat-card-title  ><h2>{{item.slug}}</h2></mat-card-title>
+    <mat-card-subtitle ><h1 style="color:red">Antes: $<del>{{item.sales_price}}</del></h1>
+    <strong><h1 >Ahora: ${{item.discount_price}}</h1> </strong></mat-card-subtitle>
   </mat-card-header>
  <div class="portfolio-wrap">
-              <img src="{{item.thumbnailUrl}}" class="img-fluid" alt="">
+              <img src="{{item.url_img}}" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 1</h4>
                 <p>App</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="icofont-eye"></i></a>
+                  <a href="{{item.url_img}}" data-gall="portfolioGallery" class="venobox" title="{{item.product_type}}"><i class="icofont-eye"></i></a>
                   <a [routerLink]="'/detalle'" title="More Details"><i class="icofont-external-link"></i></a>
                 </div>
               </div>
             </div>
   <mat-card-footer >
     <h4 >
-     Breve descripcion del articulo...a continuacion se muestra un pequeño mensaje 
+    {{item.description }}
     </h4>
   </mat-card-footer>
   
