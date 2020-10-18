@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpRequest } from '@angular/common/http';
 import { Brand } from '../models/brand';
 
 @Injectable({
@@ -8,8 +8,14 @@ import { Brand } from '../models/brand';
 export class DatabaseService {
 
 
-  URI='https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api';
+  URI="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api";
+
   constructor(private http:HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
 
   GetAllProductos(genero?:string,categoria?:string)
@@ -28,6 +34,10 @@ export class DatabaseService {
   }
  }
 
+GetProductById(id:number)
+{
+  return this.http.get(`${this.URI}/products/${id}`);
+}
 
  //CRUD Tabla Marcas
 
@@ -37,13 +47,16 @@ export class DatabaseService {
  }
  InsertBrand(newBrand:Brand)
  {
-   console.log(newBrand);
   
-   return this.http.post(`${this.URI}/brands`,newBrand);
+  console.log(JSON.stringify(newBrand));
+  const headers = { 'Content-Type': 'aplication/json' };
+  return this.http.post(`${this.URI}/brands`,JSON.stringify({ "brand": newBrand.brand}), { headers });
+   
  }
+
 UpdateBrand(_Brand:Brand)
  {
-  return this.http.put(`${this.URI}/brands/${_Brand.id_brand}`, _Brand);
+  return this.http.post(`${this.URI}/brands-update/${_Brand.id_brand}`,JSON.stringify(_Brand));
  }
  DeleteBrand(id:number)
  {

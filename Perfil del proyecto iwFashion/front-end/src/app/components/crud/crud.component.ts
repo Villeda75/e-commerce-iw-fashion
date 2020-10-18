@@ -11,6 +11,7 @@ import {DatabaseService} from '../../services/database.service';
 export class CrudComponent implements OnInit {
   public FormularioBrands: FormGroup;
   arrayBrands:Brand[];
+  isSelected:boolean=false;
   brandActual:Brand={id_brand:0,brand:''};
   constructor(private formBuilder: FormBuilder,private database:DatabaseService) { 
 
@@ -52,13 +53,17 @@ export class CrudComponent implements OnInit {
       this.ActualizarDatos();
   }
 
-  ActualizarMarca(_Brand:Brand)
+  ActualizarMarca()
   {
-    this.database.UpdateBrand(_Brand).subscribe(res=>
+    this.addOrEdit();
+    if(confirm('¿Esta seguro de actualizar la marca '+this.brandActual.brand))
+    {
+    this.database.UpdateBrand(this.brandActual).subscribe(res=>
       {
         console.log(res);
       });
       this.ActualizarDatos();
+    }
   }
 
   EliminarMarca(id:number)

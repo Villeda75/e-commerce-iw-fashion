@@ -18,7 +18,7 @@
             </div>
             
             <button class="btn btn-success" (click)="AgregarMarca()">Agregar</button>
- <button class="btn btn-warning">Modificar</button>
+ <button class="btn btn-warning" (click)=" ActualizarMarca()">Modificar</button>
           </div>
           <div class="btn-group btn-group-justified">
  
@@ -38,12 +38,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of arrayBrands" class="table-info">
+    <tr *ngFor="let item of arrayBrands"  class="table-info">
       <th scope="row">{{item.id_brand}}</th>
       <td>{{item.brand}}</td>
       <td>
-      <button mat-fab color="primary" (click)="openForEdit(item)" aria-label="Example icon button with a delete icon">
-          <mat-icon>edit</mat-icon>
+      <button mat-fab color="primary" (click)="openForEdit(item); isSelected=true" [class.active]="item == brandActual" aria-label="Example icon button with a delete icon">
+          <mat-icon >edit</mat-icon>
         </button>
       </td>
       <td>
