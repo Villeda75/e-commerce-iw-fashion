@@ -31,6 +31,14 @@ export class DatabaseService {
   }
  }
 
+ GetProductById(id:number)
+ {
+
+   //http://veterinarialissette-vc170991-aa170621.000webhostapp.com/api/products/5
+   return this.http.get(`${this.URI}/products/${id}`);
+
+ }
+
 
  //CRUD Tabla Marcas
 
@@ -38,8 +46,8 @@ export class DatabaseService {
   return this.http.get(`https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api/brands`);
  }
 
- InsertBrand(newBrand:any) {
-  return this.http.post(`${this.url}newBrand.php`, JSON.stringify( {brand: newBrand} ) );
+ InsertBrand(newBrand:Brand) {
+  return this.http.post(`${this.url}newBrand.php`, JSON.stringify(newBrand));
 }
 
 //editar con php normal
@@ -47,14 +55,5 @@ UpdateBrand(_Brand:Brand) {
   return this.http.post(`${this.url}editBrand.php`, JSON.stringify(_Brand));
  }
 
- //borrar con api laravel
- DeleteBrand(id:number) {
-  return this.http.post(`${this.URI}/brands/${id}`, id);
- }
-
- //borrar con php normal
- DeleteBrand2(id:number) {
-  return this.http.get(`${this.url}deleteBrand.php?codigo=${id}`);
- }
 
 }

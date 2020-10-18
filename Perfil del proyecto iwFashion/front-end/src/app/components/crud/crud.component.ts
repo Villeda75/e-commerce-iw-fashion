@@ -10,6 +10,7 @@ import {DatabaseService} from '../../services/database.service';
 })
 export class CrudComponent implements OnInit {
   public FormularioBrands: FormGroup;
+  public FormularioCustomD: FormGroup;
   arrayBrands:Brand[];
   isSelected:boolean=false;
   brandActual:Brand={id_brand:0,brand:''};
@@ -25,6 +26,15 @@ export class CrudComponent implements OnInit {
   private buildFormBrands() {
     this.FormularioBrands = this.formBuilder.group({
       brand: ['', Validators.required]
+    });
+  }
+
+  private buildFormCustomD() {
+    this.FormularioBrands = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      imagen:['',],
+      
     });
   }
 
@@ -46,7 +56,7 @@ export class CrudComponent implements OnInit {
   { this.addOrEdit();
     //esto srive para borrar el campo id ya que no es necesario a la hora de agregar nuevo registro
     delete this.brandActual.id_brand;
-    this.database.InsertBrand(this.brandActual.brand).subscribe(res=>
+    this.database.InsertBrand(this.brandActual).subscribe(res=>
       {
         if (res['resultado'] == 'success') {
           alert(res['mensaje']);
@@ -73,20 +83,16 @@ export class CrudComponent implements OnInit {
     {
     this.database.UpdateBrand(this.brandActual).subscribe(res=>
       {
-        console.log(res);
+        if (res['resultado'] == 'success') {
+          alert(res['mensaje']);
+          this.ActualizarDatos(); 
+          }
       });
-      this.ActualizarDatos();
+      
     }
   }
 
-  EliminarMarca(id:number)
-  {
-    this.database.DeleteBrand(id).subscribe(res=>
-      {
-        console.log(res);
-      });
-      this.ActualizarDatos();
-  }
+ 
 
   ActualizarDatos()
   {

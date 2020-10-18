@@ -21,7 +21,7 @@ const routes: Routes = [
   },
 
   //Producto detalle por ID
-  {path:'producto/:id',component:DetalleProductoComponent},
+  {path:'productos/:id',component:DetalleProductoComponent},
 
   //RUTAS Para mostrar productos de mujeres
   {

@@ -26,19 +26,15 @@
   <owl-carousel-o [options]="SlideOptions" autoplay="true">
     <ng-template carouselSlide>
         <div class="slide">
-            <img src="{{prodcutoActual.url_img}}">
+            <img src="{{productoActual.url_img}}">
         </div>
     </ng-template>
    
   
-</owl-carousel-o>   
+</owl-carousel-o>  
 </div>
-
-  
- 
-        </div>
          <div class="portfolio-info">
-            <h3>Detalle productos</h3>
+            <h3>Detalle producto</h3>
             <ul>
               <li><strong>Precio Antes: </strong>: <del>{{productoActual.sales_price}}</del></li>
               <li><strong>Precio Ahora: </strong>: {{productoActual.discount_price}}</li>
@@ -50,13 +46,17 @@
                  <li><strong>Stock</strong>: {{productoActual.stock}}</li>
               <li><strong>Agregar al carritoL</strong>: <a href="#">ir</a></li>
             </ul>
-          </div>
+          </div> 
+</div>
+
+  
+ 
+        
 
         <div class="portfolio-description">
-          <h2>{{prodcutoActual.slug}}</h2>
-          <p>
-           {{{prodcutoActual.description}}
-          </p>
+          <h2>{{productoActual.slug}}</h2>
+          <h3>
+           {{productoActual.description}}</h3>
         </div>
       </div>
     </section>

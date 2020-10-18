@@ -9,7 +9,7 @@ import {DatabaseService} from '../../services/database.service';
   styleUrls: ['./detalle-producto.component.css']
 })
 export class DetalleProductoComponent implements OnInit {
-  prodcutoActual:any;
+  productoActual:any;
   SlideOptions = { items: 1, dots: true, nav: true, loop: true,
     mouseDrag: true,
     touchDrag: false,
@@ -22,10 +22,11 @@ export class DetalleProductoComponent implements OnInit {
       const params = this.activatedRoute.snapshot.params;
       if (params.id) {
 
-        this.prodcutoActual = this.database.GetProductById(params.id).subscribe((res:any)=>
+      this.database.GetProductById(params.id).subscribe((res:any)=>
           {
-            this.prodcutoActual=res.result;
-          })
+            this.productoActual=res.results[0];
+            console.log(this.productoActual);
+          });
       }
       else {
         //alert('no encontrado');
