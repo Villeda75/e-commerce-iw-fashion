@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders,HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Brand } from '../models/brand';
 
 @Injectable({
@@ -8,14 +8,11 @@ import { Brand } from '../models/brand';
 export class DatabaseService {
 
 
-  URI="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api";
+  URI='https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api'; //Laravel
+
+  url = 'https://veterinarialissette-vc170991-aa170621.000webhostapp.com/crud/'; //PHP 
 
   constructor(private http:HttpClient) { }
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
 
 
   GetAllProductos(genero?:string,categoria?:string)
@@ -34,33 +31,30 @@ export class DatabaseService {
   }
  }
 
-GetProductById(id:number)
-{
-  return this.http.get(`${this.URI}/products/${id}`);
-}
 
  //CRUD Tabla Marcas
 
- GetBrands()
- {
-  return this.http.get(`${this.URI}/brands`);
- }
- InsertBrand(newBrand:Brand)
- {
-  
-  console.log(JSON.stringify(newBrand));
-  const headers = { 'Content-Type': 'aplication/json' };
-  return this.http.post(`${this.URI}/brands`,JSON.stringify({ "brand": newBrand.brand}), { headers });
-   
+ GetBrands() {
+  return this.http.get(`https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api/brands`);
  }
 
-UpdateBrand(_Brand:Brand)
- {
-  return this.http.post(`${this.URI}/brands-update/${_Brand.id_brand}`,JSON.stringify(_Brand));
+ InsertBrand(newBrand:any) {
+  return this.http.post(`${this.url}newBrand.php`, JSON.stringify( {brand: newBrand} ) );
+}
+
+//editar con php normal
+UpdateBrand(_Brand:Brand) {
+  return this.http.post(`${this.url}editBrand.php`, JSON.stringify(_Brand));
  }
- DeleteBrand(id:number)
- {
-   return this.http.delete(`${this.URI}/brands/${id}`);
+
+ //borrar con api laravel
+ DeleteBrand(id:number) {
+  return this.http.post(`${this.URI}/brands/${id}`, id);
+ }
+
+ //borrar con php normal
+ DeleteBrand2(id:number) {
+  return this.http.get(`${this.url}deleteBrand.php?codigo=${id}`);
  }
 
 }
