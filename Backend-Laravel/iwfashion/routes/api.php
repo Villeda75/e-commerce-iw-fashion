@@ -55,8 +55,8 @@ Route::get('/accesories/kids', [ProductController::class, 'kidsAccesoriesProduct
 //Brands CRUD
 Route::get('/brands', [BrandController::class, 'Brands']); //All
 Route::post('/brands', [BrandController::class, 'store']); //Create
-Route::put('/brands/{id}', [BrandController::class, 'update']); //Update
-Route::delete('/brands/{id}', [BrandController::class, 'destroy']); //Delete
+Route::post('/brands-update/{id}', [BrandController::class, 'update']); //Update
+Route::post('/brands-delete/{id}', [BrandController::class, 'destroy']); //Delete
 
 //Rutas protegidas, tiene que estar logeado para acceder mediante el token 
 Route::middleware('auth:api')->group(function() {
