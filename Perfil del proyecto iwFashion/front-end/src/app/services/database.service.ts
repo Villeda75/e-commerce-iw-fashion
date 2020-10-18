@@ -8,7 +8,10 @@ import { Brand } from '../models/brand';
 export class DatabaseService {
 
 
-  URI='https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api';
+  URI='https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api'; //Laravel
+
+  url = 'https://veterinarialissette-vc170991-aa170621.000webhostapp.com/crud/'; //PHP 
+
   constructor(private http:HttpClient) { }
 
 
@@ -31,23 +34,27 @@ export class DatabaseService {
 
  //CRUD Tabla Marcas
 
- GetBrands()
- {
-  return this.http.get(`${this.URI}/brands`);
+ GetBrands() {
+  return this.http.get(`https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api/brands`);
  }
- InsertBrand(newBrand:Brand)
- {
-   console.log(newBrand);
-  
-   return this.http.post(`${this.URI}/brands`,newBrand);
+
+ InsertBrand(newBrand:any) {
+  return this.http.post(`${this.url}newBrand.php`, JSON.stringify( {brand: newBrand} ) );
+}
+
+//editar con php normal
+UpdateBrand(_Brand:Brand) {
+  return this.http.post(`${this.url}editBrand.php`, JSON.stringify(_Brand));
  }
-UpdateBrand(_Brand:Brand)
- {
-  return this.http.put(`${this.URI}/brands/${_Brand.id_brand}`, _Brand);
+
+ //borrar con api laravel
+ DeleteBrand(id:number) {
+  return this.http.post(`${this.URI}/brands/${id}`, id);
  }
- DeleteBrand(id:number)
- {
-   return this.http.delete(`${this.URI}/brands/${id}`);
+
+ //borrar con php normal
+ DeleteBrand2(id:number) {
+  return this.http.get(`${this.url}deleteBrand.php?codigo=${id}`);
  }
 
 }

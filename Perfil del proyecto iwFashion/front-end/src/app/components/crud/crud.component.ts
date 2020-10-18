@@ -45,11 +45,24 @@ export class CrudComponent implements OnInit {
   { this.addOrEdit();
     //esto srive para borrar el campo id ya que no es necesario a la hora de agregar nuevo registro
     delete this.brandActual.id_brand;
-    this.database.InsertBrand(this.brandActual).subscribe(res=>
+    this.database.InsertBrand(this.brandActual.brand).subscribe(res=>
       {
-        console.log(res);
+        if (res['resultado'] == 'success') {
+          alert(res['mensaje']);
+          this.ActualizarDatos(); 
+        }
       });
-      this.ActualizarDatos();
+      
+
+      /*
+      .subscribe(datos => {
+    if (datos['resultado'] == 'success') {
+      alert(datos['mensaje']);
+      this.GetBrands();
+    }
+    }
+      */
+
   }
 
   ActualizarMarca(_Brand:Brand)
