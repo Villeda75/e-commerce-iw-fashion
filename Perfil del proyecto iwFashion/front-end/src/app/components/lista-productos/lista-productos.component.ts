@@ -16,7 +16,7 @@ export class ListaProductosComponent implements OnInit {
   page: number = 1;
   total:number;
 
-  constructor(private database:DatabaseService,private RouterActual:ActivatedRoute) {
+  constructor(private database:DatabaseService,private RouterActual:ActivatedRoute,private router:Router) {
     
     this.RouterActual.snapshot.url.map(res=>{
       this.urlPartes.push(res.path);
@@ -67,6 +67,11 @@ this.RedireccionarURL();
       this.productos=res.results;
       this.total=this.productos.length;
     });
+  }
+
+  NavigateProducto(id:number)
+  {
+    this.router.navigate(['/productos/' + id]);
   }
 
 }

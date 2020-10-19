@@ -20,6 +20,9 @@ const routes: Routes = [
     component:HomeComponent
   },
 
+  //Producto detalle por ID
+  {path:'productos/:id',component:DetalleProductoComponent},
+
   //RUTAS Para mostrar productos de mujeres
   {
     path: 'mujeres',

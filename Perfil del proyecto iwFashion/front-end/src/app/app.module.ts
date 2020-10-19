@@ -29,6 +29,10 @@ import { CrudComponent } from './components/crud/crud.component'; // <-- import 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
+//image 2 ulpoad
+
+import {ImageUploadModule} from 'angular2-image-upload';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +58,8 @@ import { FormsModule } from '@angular/forms';
     IvyCarouselModule,
     CarouselModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ImageUploadModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
