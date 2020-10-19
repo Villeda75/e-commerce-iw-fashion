@@ -1,72 +1,72 @@
 <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-none d-lg-block">
-    <div class="container clearfix">
-      <div class="contact-info float-left">
-        <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
-        <i class="icofont-phone"></i> +1 5589 55488 55
-      </div>
-      <div class="social-links float-right">
-        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-        <a href="#" class="skype"><i class="icofont-skype"></i></a>
-        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
-      </div>
+<section id="topbar" class="d-none d-lg-block">
+  <div class="container clearfix">
+    <div class="contact-info float-left">
+      <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
+      <i class="icofont-phone"></i> +1 5589 55488 55
     </div>
-  </section>
-    <div class="container">
+    <div class="social-links float-right">
+      <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+      <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+      <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+      <a href="#" class="skype"><i class="icofont-skype"></i></a>
+      <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
+    </div>
+  </div>
+</section>
+  <div class="container">
+    
+    <div class="logo float-left">
+      <h1 class="text-light"><a href="index.html"><img src="/assets/img/logo.png" style="width:70px; height:70px" ><span class="m-2 text-dark" style="font-size: 18px;">IW Of Fashion</span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    </div>
 
-      <div class="logo float-left">
-        <h1 class="text-light"><a href="index.html"><span><img src="/assets/img/logo.png" style="width:90px; height:90px" >IWFashion </span></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
+    <nav class="nav-menu float-right d-none d-lg-block">
+      <ul>
+        <li class="active"><a [routerLink]="'home'">Inicio</a></li>
+        <li class="drop-down"><a [routerLink]="'hombres'">Hombres</a>
+          <ul>
+            <li><a [routerLink]="'hombres/ropa'">Ropa</a></li>
+            <li><a [routerLink]="'hombres/zapatos'">Zapatos</a></li>
+            <li><a [routerLink]="'hombres/accesorios'">Accesorios</a></li>
+          </ul>
+        </li>
+        <li class="drop-down"><a [routerLink]="'mujeres'">Mujeres</a>
+          <ul>
+            <li><a [routerLink]="'mujeres/ropa'">Ropa</a></li>
+            <li><a [routerLink]="'mujeres/zapatos'">Zapatos</a></li>
+            <li><a [routerLink]="'mujeres/accesorios'">Accesorios</a></li>
+          </ul>
+        </li>
+        <li class="drop-down"><a [routerLink]="'niños'">Niños</a>
+          <ul>
+            <li><a [routerLink]="'niños/ropa'">Ropa</a></li>
+            <li><a [routerLink]="'niños/zapatos'">Zapatos</a></li>
+            <li><a [routerLink]="'niños/accesorios'">Accesorios</a></li>
+          </ul>
+        </li>
+            <li *ngIf="!Islogged"><a (click)="OpenLogin()" >Login</a></li>
+        <li><a href="#contact">Contactanos</a></li>
+         <li><a [routerLink]="'administrar'">Administrar</a></li>
+          <li>
 
-      <nav class="nav-menu float-right d-none d-lg-block">
-        <ul>
-          <li class="active"><a [routerLink]="'home'">Inicio</a></li>
-          <li class="drop-down"><a [routerLink]="'hombres'">Hombres</a>
-            <ul>
-              <li><a [routerLink]="'hombres/ropa'">Ropa</a></li>
-              <li><a [routerLink]="'hombres/zapatos'">Zapatos</a></li>
-              <li><a [routerLink]="'hombres/accesorios'">Accesorios</a></li>
-            </ul>
-          </li>
-          <li class="drop-down"><a [routerLink]="'mujeres'">Mujeres</a>
-            <ul>
-              <li><a [routerLink]="'mujeres/ropa'">Ropa</a></li>
-              <li><a [routerLink]="'mujeres/zapatos'">Zapatos</a></li>
-              <li><a [routerLink]="'mujeres/accesorios'">Accesorios</a></li>
-            </ul>
-          </li>
-          <li class="drop-down"><a [routerLink]="'niños'">Niños</a>
-            <ul>
-              <li><a [routerLink]="'niños/ropa'">Ropa</a></li>
-              <li><a [routerLink]="'niños/zapatos'">Zapatos</a></li>
-              <li><a [routerLink]="'niños/accesorios'">Accesorios</a></li>
-            </ul>
-          </li>
-              <li *ngIf="!Islogged"><a (click)="OpenLogin()" >Login</a></li>
-          <li><a href="#contact">Contactanos</a></li>
-           <li><a [routerLink]="'administrar'">Administrar</a></li>
-            <li>
-
- <mat-card class="example-card" *ngIf="Islogged" matBadge="{{simboloToolTip}}" matBadgeColor="warn"  matTooltip="{{MensajeToolTip}}" matTooltipClass="example-tooltip-red" matTooltipPosition="above">
-        
-        
-            <mat-card-header>
-    <div *ngIf="usuarioLoggeado.photoURL" mat-card-avatar style=" background-image: url({{foto}});
-    background-size: cover;"></div>
-    <mat-card-title sytle="text-align:center"> {{NombreUsuario}} </mat-card-title>
-    <mat-card-subtitle><p><li><button class="btn btn-outline-info" style="width:130px;height:30px;text-align:center;" *ngIf="Islogged" (click)="CerrarSesion()">Cerrar sesion</button></li>
+<mat-card class="example-card" *ngIf="Islogged" matBadge="{{simboloToolTip}}" matBadgeColor="warn"  matTooltip="{{MensajeToolTip}}" matTooltipClass="example-tooltip-red" matTooltipPosition="above">
+      
+      
+          <mat-card-header>
+  <div *ngIf="usuarioLoggeado.photoURL" mat-card-avatar style=" background-image: url({{foto}});
+  background-size: cover;"></div>
+  <mat-card-title sytle="text-align:center"> {{NombreUsuario}} </mat-card-title>
+  <mat-card-subtitle><p><li><button class="btn btn-outline-info" style="width:130px;height:30px;text-align:center;" *ngIf="Islogged" (click)="CerrarSesion()">Cerrar sesion</button></li>
 </p></mat-card-subtitle>
-          </mat-card-header>
+        </mat-card-header>
 </mat-card>
-            
-            </li>
-        </ul>
-      </nav><!-- .nav-menu -->
+          
+          </li>
+      </ul>
+    </nav><!-- .nav-menu -->
 
-    </div>
+  </div>
   
 
