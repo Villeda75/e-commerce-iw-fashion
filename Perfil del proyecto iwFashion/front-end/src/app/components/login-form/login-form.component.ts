@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import { FormGroup, FormBuilder } from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import { User } from  'firebase';
+import { AlertasService } from '../../alertas.service';
 
 
 @Component({
@@ -31,7 +32,12 @@ export class LoginFormComponent implements OnInit {
   //
   ResetEmail:string='';
 
-  constructor(private dialogRef: MatDialogRef<LoginFormComponent>, @Inject(MAT_DIALOG_DATA) data, public autenticacion:AuthService) { 
+  constructor(
+    private dialogRef: MatDialogRef<LoginFormComponent>, 
+    @Inject(MAT_DIALOG_DATA) data,
+    public autenticacion:AuthService,
+    private alerta: AlertasService
+    ) { 
     console.log(this.autenticacion.usuario);
   }
 
@@ -48,11 +54,12 @@ export class LoginFormComponent implements OnInit {
   {
   this.autenticacion.SignUp(correo,password).then(res=>
     {
-      alert('Todo correcto');
+      //alert('Todo correcto');
       this.showTemplate=true;
     })
     .catch(err=>{
-      alert('Ha ocurrido un error');
+     // alert('Ha ocurrido un error');
+      this.alerta.showErrorAlert('Ha ocurrido un error, intente de nuevo.');
       this.showTemplate=false;
       console.error(err);
           });
@@ -81,7 +88,8 @@ export class LoginFormComponent implements OnInit {
      
     })
     .catch(err=>{
-      alert('Ha ocurrido un error revisar credenciales');
+      //alert('Ha ocurrido un error revisar credenciales');
+      this.alerta.showErrorAlert('Las credenciales no coinciden.');
       console.error(err);
         })
   }
