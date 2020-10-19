@@ -48,7 +48,7 @@
           </li>
               <li *ngIf="!Islogged"><a (click)="OpenLogin()" >Login</a></li>
           <li><a href="#contact">Contactanos</a></li>
-           <li><a [routerLink]="'administrar'">Administrar</a></li>
+           <li><a  *ngIf="Islogged"[routerLink]="'administrar'">Administrar</a></li>
             <li>
 
  <mat-card class="example-card" *ngIf="Islogged" matBadge="{{simboloToolTip}}" matBadgeColor="warn"  matTooltip="{{MensajeToolTip}}" matTooltipClass="example-tooltip-red" matTooltipPosition="above">
