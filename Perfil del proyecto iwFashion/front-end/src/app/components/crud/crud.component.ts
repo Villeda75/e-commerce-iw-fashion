@@ -65,13 +65,16 @@ export class CrudComponent implements OnInit {
 
   }
 
-  ActualizarMarca(_Brand:Brand)
+  ActualizarMarca()
   {
-    this.database.UpdateBrand(_Brand).subscribe(res=>
+    this.addOrEdit();
+    this.database.UpdateBrand(this.brandActual).subscribe(res=>
       {
-        console.log(res);
+        if (res['resultado'] == 'success') {
+          alert(res['mensaje']);
+          this.ActualizarDatos(); 
+        }
       });
-      this.ActualizarDatos();
   }
 
   EliminarMarca(id:number)
