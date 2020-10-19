@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Brand } from '../models/brand';
+import { CustomDesign } from '../models/custom-design';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class DatabaseService {
   URI='https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api'; //Laravel
 
   url = 'https://veterinarialissette-vc170991-aa170621.000webhostapp.com/crud/'; //PHP 
+
+  URL = "http://veterinarialissette-vc170991-aa170621.000webhostapp.com/CustomDesigns/"; //CustomDesigns
 
   constructor(private http:HttpClient) { }
 
@@ -53,6 +56,32 @@ export class DatabaseService {
 //editar con php normal
 UpdateBrand(_Brand:Brand) {
   return this.http.post(`${this.url}editBrand.php`, JSON.stringify(_Brand));
+ }
+
+ //CRUD Tabla CustomDesign
+
+
+ GetCustomDesigns()
+ {
+  return this.http.get(`https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api/customDesigns`);
+ }
+
+ InsertCustomDesign(_customDesign:CustomDesign)
+ {
+  return this.http.post(`${this.URL}newCD.php`, JSON.stringify(_customDesign) );
+ 
+ }
+
+ UpdateCustomDesign(_customDesign:CustomDesign)
+ {
+   console.log("Esto se envia");
+   console.log(_customDesign);
+  return this.http.post(`${this.URL}editCD.php`, JSON.stringify(_customDesign) );
+ }
+
+ DeleteCustomDesign(_customDesign:CustomDesign)
+ {
+  return this.http.post(`${this.URL}deleteCD.php`, JSON.stringify(_customDesign) );
  }
 
 
