@@ -45,15 +45,15 @@
   <div *ngFor="let item of productos | paginate: {  itemsPerPage: 12,currentPage: page,totalItems: total}" class="col-lg-4 col-md-6 portfolio-item filter-app">
       <mat-card class="example-card">
   <mat-card-header >
-    <mat-card-title  ><h2>{{item.slug}}</h2></mat-card-title>
+    <mat-card-title  ><h2>{{item.product_type}}</h2></mat-card-title>
     <mat-card-subtitle ><h1 style="color:red">Antes: $<del>{{item.sales_price}}</del></h1>
     <strong><h1 >Ahora: ${{item.discount_price}}</h1> </strong></mat-card-subtitle>
   </mat-card-header>
  <div class="portfolio-wrap">
-              <img src="{{item.url_img}}" class="img-fluid" alt="">
+              <img src="{{item.url_img}}" class="img-fluid" alt="" style="border-radius: 2%;">
               <div class="portfolio-info">
-                <h4>App 1</h4>
-                <p>App</p>
+                <!-- <h4>App 1</h4>
+                <p>App</p> -->
                 <div class="portfolio-links">
                   <a href="{{item.url_img}}" data-gall="portfolioGallery" class="venobox" title="{{item.product_type}}"><i class="icofont-eye"></i></a>
                   <a  title="More Details"><i (click)="NavigateProducto(item.id_product)" class="icofont-external-link"></i></a>
@@ -61,9 +61,10 @@
               </div>
             </div>
   <mat-card-footer >
-    <h4 >
+   <!--  <h4 >
     {{item.description }}
-    </h4>
+    </h4> -->  
+    <br>
   </mat-card-footer>
   
 </mat-card>
