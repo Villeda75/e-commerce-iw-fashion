@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DatabaseService} from '../../services/database.service';
 import {Router,ActivatedRoute} from '@angular/router'
+import { AlertasService } from '../../alertas.service';
 
 @Component({
   selector: 'app-lista-productos',
@@ -16,7 +17,12 @@ export class ListaProductosComponent implements OnInit {
   page: number = 1;
   total:number;
 
-  constructor(private database:DatabaseService,private RouterActual:ActivatedRoute,private router:Router) {
+  constructor(
+    private database:DatabaseService,
+    private RouterActual:ActivatedRoute,
+    private router:Router,
+    private alerta: AlertasService) 
+    {
     
     this.RouterActual.snapshot.url.map(res=>{
       this.urlPartes.push(res.path);
@@ -30,7 +36,8 @@ this.RedireccionarURL();
    
     if(this.productos.length==0)
     {
-    alert('Ops por el momento no se encuentran resultados');
+    //alert('Ops por el momento no se encuentran resultados');
+    this.alerta.showErrorAlert('No existen productos registrados');
     }
     
   }
