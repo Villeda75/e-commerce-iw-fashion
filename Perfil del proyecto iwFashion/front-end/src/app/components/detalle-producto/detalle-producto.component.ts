@@ -10,12 +10,31 @@ import {DatabaseService} from '../../services/database.service';
 })
 export class DetalleProductoComponent implements OnInit {
   productoActual:any;
-  SlideOptions = { items: 1, dots: true, nav: true, loop: true,
+  SlideOptions = { items: 1, dots: true, nav: true, loop: true, 
     mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
     navSpeed: 1000,
-    navText: ['Anterior', 'Siguiente'], };  
+    navText: ['Anterior', 'Siguiente'],
+    responsive:    {   
+    0: {
+      items: 1.25,
+    },
+    576: {
+      items: 2.25,
+    },
+    768: {
+      items: 3,
+    },
+    1024: {
+      items: 4,
+    },
+    1280: {
+      items: 4,
+    },
+  },
+
+     };  
   constructor(    private router: Router, 
     private activatedRoute: ActivatedRoute,
     private database:DatabaseService) { 
