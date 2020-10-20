@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ActivatedRoute, Router } from '@angular/router';
 import {DatabaseService} from '../../services/database.service';
+import { AlertasService } from '../../alertas.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -37,7 +38,10 @@ export class DetalleProductoComponent implements OnInit {
      };  
   constructor(    private router: Router, 
     private activatedRoute: ActivatedRoute,
-    private database:DatabaseService) { 
+    private database:DatabaseService,
+    private alerta: AlertasService
+    )
+    { 
       const params = this.activatedRoute.snapshot.params;
       if (params.id) {
 
@@ -49,8 +53,7 @@ export class DetalleProductoComponent implements OnInit {
       }
       else {
         //alert('no encontrado');
-
-        alert('Cliente no encontrado');
+        this.alerta.showErrorAlert('Producto no encontrado');
       }
     }
 
