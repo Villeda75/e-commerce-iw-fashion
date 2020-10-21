@@ -35,6 +35,7 @@ import {ImageUploadModule} from 'angular2-image-upload';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { DesignCustomViewComponent } from './components/design-custom-view/design-custom-view.component';
 import { ToggleInformationComponent } from './components/toggle-information/toggle-information.component';
+import { BolsaComponent } from './components/bolsa/bolsa.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ToggleInformationComponent } from './components/toggle-information/togg
     CrudComponent,
     ContactFormComponent,
     DesignCustomViewComponent,
-    ToggleInformationComponent
+    ToggleInformationComponent,
+    BolsaComponent
     
    
   ],

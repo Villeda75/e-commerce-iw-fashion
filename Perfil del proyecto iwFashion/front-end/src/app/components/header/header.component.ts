@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   usuarioLoggeado:User;
  public Islogged:boolean;
+ public IsAdmin:boolean;
  NombreUsuario:string;
  Correo:string;
  foto:string;
@@ -27,11 +28,15 @@ export class HeaderComponent implements OnInit {
     {
 
     this.usuarioLoggeado=JSON.parse(localStorage.getItem('user'));
+    if(this.usuarioLoggeado.email=="admifashion4@gmail.com"){this.IsAdmin=true;}
+      else{this.IsAdmin=false;}
     this.emailVerified=this.usuarioLoggeado.emailVerified;
   }
   }
 
-  ngOnInit(): void {this.VerificarLoggin();
+  ngOnInit(): void {
+
+    this.VerificarLoggin();
     if(this.Islogged)
     {
     if(this.usuarioLoggeado.displayName)
@@ -42,6 +47,7 @@ export class HeaderComponent implements OnInit {
     else
     {
       this.NombreUsuario=this.usuarioLoggeado.email;
+      
     }
      this.foto=this.usuarioLoggeado.photoURL;
      this.Correo=this.usuarioLoggeado.email;

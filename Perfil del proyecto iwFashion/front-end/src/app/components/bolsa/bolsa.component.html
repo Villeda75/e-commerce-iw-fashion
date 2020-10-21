@@ -1,0 +1,70 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <!--Componenete header-->
+
+<div class="container">
+  
+
+   <!--Inicio del Carrito-->
+  
+  <!--Row Vaciar Bolsa-->
+    <div class="my-3 pt-3 px-5 d-flex">
+      <img  src="https://images.vexels.com/media/users/3/141185/isolated/preview/b2c7de1951d5d57e9305c96ca875e170-bolsas-de-compra-by-vexels.png" 
+          alt="Bolsa de compras" height="110px" width="auto"> 
+    <h4 class="mt-5">Mi Bolsa</h4>
+    </div>
+
+  <!--Inicio Tabla-->
+  <div class="d-flex  flex-row-reverse mb-3">
+    <button class="btn btn-dark">Vaciar</button>
+  </div>
+
+  <div id="tablaBolsa" class="table-responsive-sm">
+    <table class="table table-striped table-hover text-center">
+      <thead class="thead-dark">
+        <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th></th>
+        </tr>
+      </thead>
+     
+     <tbody>
+      <tr> <!--*ngFor="let product of products"-->
+        <td>Camiseta Polo</td>
+        <td><input type="number" placeholder="cantidad" step="1" min="1" max="20" value="1" required class="text-center"></td>
+        <td>$ 20.00</td>
+        <td> <button class="btn btn-dark">Eliminar</button> </td> <!--Boton eliminar con id-->
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  <!--Fin Tabla-->  
+
+  <!--Row botones finales-->
+  <div class="row justify-content-center">
+    <div class="my-3 py-3 w-75 text-center d-flex justify-content-between">
+      <button class="btn btn-dark mx-2" (click)="backClicked()" >Seguir Comprando</button>
+      <button class="btn btn-dark mx-2" (click)="FinalizarCompra()">Finalizar Compra</button>
+    </div>
+  </div>
+
+   <!--Fin del Carrito-->
+
+</div>
+<section class="w-100 pt-4 pb-2" style="background-color: #edf6f9;">
+  <div class="container">
+    <p class="text-center my-2 text-dark" style="font-size: 20px;">Nos sentimos solos cuando no nos
+      contactas. ¡Contáctanos hoy!</p>
+  </div>
+  <div class="form-group text-center">
+      <a href="/" class="btn btn-dark btn-lg my-3">Contáctanos</a>
+  </div>
+</section>
+

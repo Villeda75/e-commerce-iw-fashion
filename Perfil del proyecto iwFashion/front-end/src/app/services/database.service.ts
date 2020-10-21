@@ -15,6 +15,8 @@ export class DatabaseService {
 
   URL = "http://veterinarialissette-vc170991-aa170621.000webhostapp.com/CustomDesigns/"; //CustomDesigns
 
+
+
   constructor(private http:HttpClient) { }
 
 
@@ -22,7 +24,7 @@ export class DatabaseService {
   {
     if(genero.length>0 &&categoria.length==0)
     {
-      return this.http.get(this.URI+'/products/'+genero);
+      return this.http.get(this.URI+'/products-'+genero);
     }
   else if(genero.length>0 && categoria.length>0)
   {

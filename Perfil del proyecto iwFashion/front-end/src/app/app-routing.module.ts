@@ -7,6 +7,7 @@ import { DetalleProductoComponent } from './components/detalle-producto/detalle-
 import { CrudComponent } from './components/crud/crud.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { DesignCustomViewComponent } from './components/design-custom-view/design-custom-view.component';
+import { BolsaComponent } from './components/bolsa/bolsa.component';
 
 
 const routes: Routes = [
@@ -98,6 +99,10 @@ const routes: Routes = [
 , {   path: 'diseños',
   
   component:DesignCustomViewComponent
+},
+{   path: 'bolsa',
+  
+  component:BolsaComponent
 }
 ];
 
