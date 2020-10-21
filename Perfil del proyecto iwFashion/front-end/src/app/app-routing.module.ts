@@ -24,6 +24,9 @@ const routes: Routes = [
   //Producto detalle por ID
   {path:'productos/:id',component:DetalleProductoComponent},
 
+  //Ruta para Contactanos
+  {path:'contact',component:ContactFormComponent}, //<!--Acepten este cambio by Josue-->
+
   //RUTAS Para mostrar productos de mujeres
   {
     path: 'mujeres',

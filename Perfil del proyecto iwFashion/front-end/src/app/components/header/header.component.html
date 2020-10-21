@@ -47,7 +47,7 @@
           </ul>
         </li>
             <li *ngIf="!Islogged"><a (click)="OpenLogin()" >Login</a></li>
-        <li><a href="#contact">Contactanos</a></li>
+        <li><a [routerLink]="'contact'">Contactanos</a></li> <!--Acepten este cambio by Josue-->
          <li><a [routerLink]="'administrar'">Administrar</a></li>
           <li>
 
