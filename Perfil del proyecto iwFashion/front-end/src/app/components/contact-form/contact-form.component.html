@@ -1,0 +1,52 @@
+
+  <section class="container my-5">
+    <h2 class="text-center my-5">Contáctanos</h2>
+    <p class="text-center">Leemos y respondemos a cada pregunta de un cliente. ¡Realmente queremos escucharte!</p>
+  </section>
+  
+  <section class="container my-4 border border-1 pt-4 pb-5 px-5 shadow bg-white rounded">
+    <form [formGroup]="FormularioContact">
+      <h5 class="text-center mt-3 mb-5">Alegra nuestro día enviándonos tus comentarios, preguntas e inquietudes</h5>
+      <div class="form-group px-3">
+        <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" formControlName="nombre">
+        <!--Alerta de error-->
+            <div *ngIf="FormularioContact.controls.nombre.invalid" class="alert alert-danger">
+              <div *ngIf="FormularioContact.controls.nombre.errors.required">
+                Este campo es requerido
+              </div>
+            </div>
+      </div>
+      <div class="form-group px-3">
+        <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" formControlName="email">
+          <div *ngIf="FormularioContact.controls.email.invalid" class="alert alert-danger">
+              <div *ngIf="FormularioContact.controls.email.errors.required">
+                Este campo es requerido
+              </div>
+              
+            </div>
+      </div>
+      <div class="form-group px-3">
+        <input type="text" name="phone" id="phone" class="form-control" placeholder="Telefono (Opcional)" formControlName="telefono">
+      </div>
+      <div class="form-group px-3">
+        <textarea name="msj" id="msj" cols="30" class="form-control" rows="5" placeholder="Mensaje" formControlName="mensaje"></textarea>
+          <div *ngIf="FormularioContact.controls.mensaje.invalid" class="alert alert-danger">
+              <div *ngIf="FormularioContact.controls.mensaje.errors.required">
+                Este campo es requerido
+              </div>
+            </div>
+      </div>
+      <div class="form-group px-3">
+        <button class="btn btn-outline-dark btn-lg px-3" (click)=" EnviarFormulario()">Enviar</button>
+      </div>
+    </form>
+  </section>
+  <section style="margin-bottom:0px"class="w-100 my-5 py-5" style="background-color: #edf6f9;">
+    <div class="container">
+      <p class="text-center my-5 text-dark" style="font-size: 20px;">Nuestros clientes son muy importantes para nosotros, nos encanta responder a tus inquietudes</p>
+    </div>
+    <div class="form-group text-center">
+      <input type="button" (click)="NavigateHome()" value="Volver al Inicio" class="btn btn-dark btn-lg px-5">
+    </div>
+  </section>
+

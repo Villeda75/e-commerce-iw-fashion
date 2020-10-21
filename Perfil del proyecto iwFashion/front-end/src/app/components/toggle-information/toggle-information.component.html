@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{DialogData.designName}}</h2>
+<mat-dialog-content class="mat-typography">
+ <!-- Card -->
+<div class="card booking-card">
+
+  <!-- Card image -->
+  <div class="view overlay">
+    <img class="card-img-top" src="{{DialogData.base64textString}}" style="height=110px; width=auto"  alt="Card image cap">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+    <!-- Title -->
+    <h4 class="card-title font-weight-bold"><a>Descripción: </a></h4>
+    <!-- Data -->
+    <ul class="list-unstyled list-inline rating mb-0">
+      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"> </i></li>
+      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+      <li class="list-inline-item"><i class="fas fa-star-half-alt amber-text"></i></li>
+    </ul>
+    <!-- Text -->
+    <p class="card-text">{{DialogData.description}}</p>
+    
+    <!-- Button -->
+ 
+
+  </div>
+
+</div>
+<!-- Card -->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-outline-danger btn-lg px-3" mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
+
+
+
+
+
