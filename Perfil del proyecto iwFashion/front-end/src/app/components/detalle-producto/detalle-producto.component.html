@@ -6,60 +6,129 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfolio Details</h2>
+          <h2>Detalle Producto</h2>
           <ol>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li>Portfolio Details</li>
+            <li><a href="portfolio.html">Producto</a></li>
+            <li>Detalle Producto</li>
           </ol>
         </div>
 
       </div>
     </section><!-- Breadcrumbs Section -->
   
- <section class="portfolio-details">
-      <div class="container">
 
-  <div class="portfolio-details-container">
+<!-- Nuevo detalle -->
+<div class="container ">
 
-<div class="cotainer-carousel">
-  <owl-carousel-o [options]="SlideOptions" autoplay="true">
-    <ng-template carouselSlide>
-        <div class="slide">
-            <img src="{{productoActual.url_img}}">
-        </div>
-    </ng-template>
-   
-  
-</owl-carousel-o>  
-</div>
-         <div class="portfolio-info">
-            <h3>Detalle producto</h3>
-            <ul>
-              <li><strong>Precio Antes: </strong>: <del>{{productoActual.sales_price}}</del></li>
-              <li><strong>Precio Ahora: </strong>: {{productoActual.discount_price}}</li>
-              <li><strong>Categoria</strong>: {{productoActual.sub_category}}</li>
-              <li><strong>Tipo</strong>: {{productoActual.product_type}}</li>
-              <li><strong>Marca</strong>: {{productoActual.brand}}</li>
-               <li><strong>Genero</strong>: {{productoActual.gender}}</li>
-               <li><strong>Talla</strong>: {{productoActual.size}}</li>
-                 <li><strong>Stock</strong>: {{productoActual.stock}}</li>
-              <li><strong>Agregar al carritoL</strong>: <a href="#">ir</a></li>
-            </ul>
-          </div> 
-</div>
 
-  
- 
+  <section class="text-center">
+
+    <div class="row">
+      <div class="col-lg-6">
+
         
+        <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
+          
+            <owl-carousel-o [options]="SlideOptions" autoplay="true"  >
+              <ng-template carouselSlide>
+                  <div class="carouselSlide" style = "height: 500px; width:500px">
+                      <img  src="{{productoActual.url_img}}">
+                  </div>
+              </ng-template>
+             
+      
+          </owl-carousel-o>  
+          
+          
 
-        <div class="portfolio-description">
-          <h2>{{productoActual.slug}}</h2>
-          <h3>
-           {{productoActual.description}}</h3>
         </div>
+        
+        
       </div>
-    </section>
+
+      <div class="col-lg-5 text-center text-md-left">
+
+        <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">{{productoActual.slug}}</h2>
+        <!-- <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">bestseller</span> -->
+        <span class="badge badge-success product mb-4 ml-2">SALE</span>
+
+        <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
+          <span class="red-text font-weight-bold">
+            <strong>${{productoActual.discount_price}}</strong>
+          </span>
+          <span class="grey-text">
+            <small>
+              <s>${{productoActual.sales_price}}</s>
+            </small>
+          </span>
+        </h3>
+
+        <div class="font-weight-normal">
+          
+          <p class="ml-xl-0 ml-4">{{productoActual.description}}</p>
+
+          <p class="ml-xl-0 ml-4">
+            <strong>Categoria: </strong>{{productoActual.sub_category}}</p>
+          <p class="ml-xl-0 ml-4">
+            <strong>Tipo: </strong>{{productoActual.product_type}}</p>
+          <p class="ml-xl-0 ml-4">
+            <strong>Marca: </strong>{{productoActual.brand}}</p>
+          <p class="ml-xl-0 ml-4">
+            <strong>Genero: </strong>{{productoActual.gender}}</p>
+          <p class="ml-xl-0 ml-4">
+            <strong>Stock: </strong>{{productoActual.stock}}</p>
+          <p class="ml-xl-0 ml-4">
+            <strong>Talla: </strong>{{productoActual.size}}</p>
+
+          <div class="mt-5">
+           <!-- <p class="grey-text">Escoge tu talla:</p>
+             <div class="row text-center text-md-left">
+              <div class="col-md-2 col-12 ">
+                <div class="form-group">
+                  <input class="form-check-input" name="group100" type="radio" id="radio100" checked="checked">
+                  <label for="radio100" class="form-check-label dark-grey-text">S</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input class="form-check-input" name="group100" type="radio" id="radio101">
+                  <label for="radio101" class="form-check-label dark-grey-text">M</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input class="form-check-input" name="group100" type="radio" id="radio102">
+                  <label for="radio102" class="form-check-label dark-grey-text">L</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input class="form-check-input" name="group100" type="radio" id="radio103">
+                  <label for="radio103" class="form-check-label dark-grey-text">XL</label>
+                </div>
+              </div>
+            </div> -->
+            <div class="row mt-3 mb-4">
+              <div class="col-md-12 text-center text-md-left text-md-right">
+                <button class="btn btn-primary btn-rounded">
+                  <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+  
+
+
+</div>
+<!-- Nuevo detalle -->
+
 
 
 
