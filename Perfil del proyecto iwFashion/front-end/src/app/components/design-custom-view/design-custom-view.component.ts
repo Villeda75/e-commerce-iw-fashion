@@ -3,6 +3,7 @@ import {DatabaseService} from '../../services/database.service';
 import {CustomDesign} from '../../models/custom-design';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ToggleInformationComponent} from '../../components/toggle-information/toggle-information.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-design-custom-view',
@@ -11,9 +12,12 @@ import {ToggleInformationComponent} from '../../components/toggle-information/to
 })
 export class DesignCustomViewComponent implements OnInit {
   arrayCustomDesigns:CustomDesign[];
-  constructor(private database:DatabaseService,public dialog: MatDialog) { this.ActualizarDatosCustomDesigns() }
+  public Islogged: boolean;
+  
+  constructor(private database:DatabaseService, private autenticacion: AuthService, public dialog: MatDialog) { this.ActualizarDatosCustomDesigns() }
 
   ngOnInit(): void {
+    this.VerificarLoggin();
   }
 
   ActualizarDatosCustomDesigns()
@@ -43,6 +47,10 @@ export class DesignCustomViewComponent implements OnInit {
     this.dialog.open(ToggleInformationComponent, {
       data:_customDesign
     });
+  }
+
+  VerificarLoggin() {
+    this.Islogged = this.autenticacion.isLoggedIn;
   }
 }
 

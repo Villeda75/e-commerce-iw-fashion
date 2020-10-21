@@ -3,6 +3,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ActivatedRoute, Router } from '@angular/router';
 import {DatabaseService} from '../../services/database.service';
 import { AlertasService } from '../../alertas.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -10,6 +11,7 @@ import { AlertasService } from '../../alertas.service';
   styleUrls: ['./detalle-producto.component.css']
 })
 export class DetalleProductoComponent implements OnInit {
+  public Islogged: boolean;
   productoActual:any;
   SlideOptions = { items: 1, dots: true, nav: true, loop: true, 
     mouseDrag: true,
@@ -36,9 +38,11 @@ export class DetalleProductoComponent implements OnInit {
   },
 
      };  
-  constructor(    private router: Router, 
+  constructor(    
+    private router: Router, 
     private activatedRoute: ActivatedRoute,
     private database:DatabaseService,
+    private autenticacion: AuthService,
     private alerta: AlertasService
     )
     { 
@@ -58,7 +62,16 @@ export class DetalleProductoComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    
+    this.VerificarLoggin();
+  }
+
+  agregarBolsa(){
+    this.alerta.showSuccessAlert('¡Pronto agregaremos esta funcionalidad!');
+    this.router.navigate(['/bolsa']);
+  }
+
+  VerificarLoggin() {
+    this.Islogged = this.autenticacion.isLoggedIn;
   }
 
 }

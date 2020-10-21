@@ -1,18 +1,18 @@
-<h2 mat-dialog-title>{{DialogData.designName}}</h2>
+<h2 class="text-center" mat-dialog-title>{{DialogData.designName}}</h2>
 <mat-dialog-content class="mat-typography">
  <!-- Card -->
 <div class="card booking-card">
 
   <!-- Card image -->
   <div class="view overlay">
-    <img class="card-img-top" src="{{DialogData.base64textString}}" style="height=110px; width=auto"  alt="Card image cap">
+    <img class="card-img-top" src="{{DialogData.base64textString}}" style="height: 400px; width: auto;"  alt="Card image cap">
     <a href="#!">
       <div class="mask rgba-white-slight"></div>
     </a>
   </div>
 
   <!-- Card content -->
-  <div class="card-body">
+  <div class="card-body text-center">
     <!-- Title -->
     <h4 class="card-title font-weight-bold"><a>Descripción: </a></h4>
     <!-- Data -->
@@ -26,9 +26,6 @@
     <!-- Text -->
     <p class="card-text">{{DialogData.description}}</p>
     
-    <!-- Button -->
- 
-
   </div>
 
 </div>

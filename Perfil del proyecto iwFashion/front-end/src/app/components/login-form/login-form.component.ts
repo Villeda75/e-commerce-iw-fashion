@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import { User } from  'firebase';
 import { AlertasService } from '../../alertas.service';
+import {Router,ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -36,6 +37,8 @@ export class LoginFormComponent implements OnInit {
     private dialogRef: MatDialogRef<LoginFormComponent>, 
     @Inject(MAT_DIALOG_DATA) data,
     public autenticacion:AuthService,
+    private RouterActual:ActivatedRoute,
+    private router:Router,
     private alerta: AlertasService
     ) { 
     console.log(this.autenticacion.usuario);
@@ -47,6 +50,7 @@ export class LoginFormComponent implements OnInit {
   LogginGoogle()
   {
   this.autenticacion.loginWithGoogle();
+  this.router.navigate(['/']);
    
   }
 
@@ -54,8 +58,9 @@ export class LoginFormComponent implements OnInit {
   {
   this.autenticacion.SignUp(correo,password).then(res=>
     {
-      //alert('Todo correcto');
+      this.alerta.showSuccessAlert('Registro exitoso');
       this.showTemplate=true;
+      this.router.navigate(['/']);
     })
     .catch(err=>{
      // alert('Ha ocurrido un error');
@@ -85,7 +90,7 @@ export class LoginFormComponent implements OnInit {
   IngresarNormal(correo:string,pass:string)
   {
     this.autenticacion.SignIn(correo,pass).then(res=>{
-     
+      this.router.navigate(['/']);
     })
     .catch(err=>{
       //alert('Ha ocurrido un error revisar credenciales');

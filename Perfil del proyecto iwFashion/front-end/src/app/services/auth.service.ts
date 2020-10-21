@@ -60,8 +60,8 @@ export class AuthService {
       this.correo=this.usuario.email;
       //alert('Inicio de sesión exitoso!');
       this.alerta.showSuccessAlert('Inicio de sesión exitoso!');
-      window.location.reload();
-      //this.router.navigate(['/clientes']);
+      //window.location.reload();
+      this.router.navigate(['/']);
     });
   });
     
@@ -92,8 +92,8 @@ SignIn(email, password) {
     this.ngZone.run(() => {
       //alert('Inicio de sesión exitoso!');
       this.alerta.showSuccessAlert('Inicio de sesión exitoso!');
-      window.location.reload();
-      //this.router.navigate(['/clientes']);
+      //window.location.reload();
+      this.router.navigate(['/']);
     });
     if (result.user) {
       this.usuario = result.user;
@@ -125,7 +125,7 @@ SignUp(email, password) {
         this.usuario = result.user;
         localStorage.setItem('user', JSON.stringify(this.usuario));
         console.log(this.usuario);
-        //this.router.navigate(['/clientes']);
+        this.router.navigate(['/']);
         
       } else {
         localStorage.setItem('user', null);

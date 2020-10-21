@@ -1,86 +1,82 @@
+<div *ngIf="Islogged">
+  <br> <br> <br> <br>
+</div>
+<main id="main" style="margin-top:100px">
 
- <main id="main" style="margin-top:100px">
+  <!-- ======= Breadcrumbs Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
 
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Detalle Producto</h2>
-          <ol>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="portfolio.html">Producto</a></li>
-            <li>Detalle Producto</li>
-          </ol>
-        </div>
-
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Detalle Producto</h2>
+        <ol>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="portfolio.html">Producto</a></li>
+          <li>Detalle Producto</li>
+        </ol>
       </div>
-    </section><!-- Breadcrumbs Section -->
-  
 
-<!-- Nuevo detalle -->
-<div class="container ">
+    </div>
+  </section><!-- Breadcrumbs Section -->
 
 
-  <section class="text-center">
+  <!-- Nuevo detalle -->
+  <div class="container ">
 
-    <div class="row">
-      <div class="col-lg-6">
 
-        
-        <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
-          
-            <owl-carousel-o [options]="SlideOptions" autoplay="true"  >
+    <section class="text-center">
+
+      <div class="row">
+        <div class="col-6">
+
+          <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4"
+            data-ride="carousel">
+            <owl-carousel-o [options]="SlideOptions" autoplay="true">
               <ng-template carouselSlide>
-                  <div class="carouselSlide" style = "height: 500px; width:500px">
-                      <img  src="{{productoActual.url_img}}">
-                  </div>
+                <div class="carouselSlide" style="height: 400px; width:450px">
+                  <img src="{{productoActual.url_img}}">
+                </div>
               </ng-template>
-             
-      
-          </owl-carousel-o>  
-          
-          
-
+            </owl-carousel-o>
+          </div>
         </div>
-        
-        
-      </div>
 
-      <div class="col-lg-5 text-center text-md-left">
+        <div class="col-6 text-center text-md-left">
 
-        <h1 class="h1-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-2 ml-xl-0 ml-4">{{productoActual.product_type}} </h1>
-        <span class="badge badge-success product mb-4 ml-2">SALE</span>       
-        <h3 class="h3-responsive text-center text-md-left mb-2 ml-xl-0 ml-4">
-          <span class="red-text font-weight-bold">
-            <strong>${{productoActual.discount_price}}</strong>
-          </span>
-          <span class="grey-text">
-            <small>
-              <s>${{productoActual.sales_price}}</s>
-            </small>
-          </span>
-        </h3>
+          <h1
+            class="h1-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-2 ml-xl-0 ml-4">
+            {{productoActual.product_type}} </h1>
+          <span class="badge badge-success product mb-4 ml-2">SALE</span>
+          <h3 class="h3-responsive text-center text-md-left mb-2 ml-xl-0 ml-4">
+            <span class="red-text font-weight-bold">
+              <strong>${{productoActual.discount_price}}</strong>
+            </span>
+            <span class="grey-text">
+              <small>
+                <s>${{productoActual.sales_price}}</s>
+              </small>
+            </span>
+          </h3>
 
-        <div class="font-weight-normal">
-          
-          <p class="ml-xl-0 ml-4">{{productoActual.description}}</p>
+          <div class="font-weight-normal">
 
-          <p class="ml-xl-0 ml-4">
-            <strong>Categoria: </strong>{{productoActual.sub_category}}</p>
-          <p class="ml-xl-0 ml-4">
-            <strong>Tipo: </strong>{{productoActual.product_type}}</p>
-          <p class="ml-xl-0 ml-4">
-            <strong>Marca: </strong>{{productoActual.brand}}</p>
-          <p class="ml-xl-0 ml-4">
-            <strong>Genero: </strong>{{productoActual.gender}}</p>
-          <p class="ml-xl-0 ml-4">
-            <strong>Stock: </strong>{{productoActual.stock}}</p>
-          <p class="ml-xl-0 ml-4">
-            <strong>Talla: </strong>{{productoActual.size}}</p>
+            <p class="ml-xl-0 ml-4">{{productoActual.description}}</p>
 
-          <div class="mt-5">
-            <!-- <p class="grey-text">Escoge tu talla:</p>
+            <!-- <p class="ml-xl-0 ml-4">
+            <strong>Categoria: </strong>{{productoActual.sub_category}}</p> -->
+            <!-- <p class="ml-xl-0 ml-4">
+              <strong>Tipo: </strong>{{productoActual.product_type}}</p> -->
+            <p class="ml-xl-0 ml-4">
+              <strong>Marca: </strong>{{productoActual.brand}}</p>
+            <p class="ml-xl-0 ml-4">
+              <strong>Género: </strong>{{productoActual.gender}}</p>
+            <p class="ml-xl-0 ml-4">
+              <strong>Existencias: </strong>{{productoActual.stock}}</p>
+            <p class="ml-xl-0 ml-4">
+              <strong>Talla: </strong>{{productoActual.size}}</p>
+
+            <div class="mt-5">
+              <!-- <p class="grey-text">Escoge tu talla:</p>
              <div class="row text-center text-md-left">
               <div class="col-md-2 col-12 ">
                 <div class="form-group">
@@ -106,29 +102,28 @@
                   <label for="radio103" class="form-check-label dark-grey-text">XL</label>
                 </div>
               </div>
-            </div> --> 
-            <div class="row mt-3 mb-4">
-              <div class="col-md-12 text-center text-md-left text-md-right">
-                <button class="btn btn-primary btn-rounded">
-                  <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Agregar al carrito</button>
+            </div> -->
+              <div class="row mt-3 mb-4">
+                <div class="col-md-12 text-center text-md-left text-md-right">
+                  <button (click)="agregarBolsa()" class="btn btn-primary btn-rounded">
+                    <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Agregar al carrito</button>
+                </div>
               </div>
             </div>
+
           </div>
 
         </div>
-
       </div>
-    </div>
 
-  </section>
-  
-
-
-</div>
-<!-- Nuevo detalle -->
+    </section>
 
 
 
+  </div>
+  <!-- Nuevo detalle -->
 
-  </main><!-- End #main -->
 
+
+
+</main><!-- End #main -->

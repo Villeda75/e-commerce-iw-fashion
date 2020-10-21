@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DatabaseService} from '../../services/database.service';
-import {Router,ActivatedRoute} from '@angular/router'
+import {Router,ActivatedRoute} from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 import { AlertasService } from '../../alertas.service';
 
 @Component({
@@ -16,11 +17,13 @@ export class ListaProductosComponent implements OnInit {
   selected1:boolean;
   page: number = 1;
   total:number;
+  public Islogged: boolean;
 
   constructor(
     private database:DatabaseService,
     private RouterActual:ActivatedRoute,
     private router:Router,
+    private autenticacion: AuthService,
     private alerta: AlertasService) 
     {
     
@@ -33,6 +36,8 @@ this.RedireccionarURL();
    }
 
    ngOnInit(): void {
+
+    this.VerificarLoggin();
    
     if(this.productos.length==0)
     {
@@ -40,6 +45,10 @@ this.RedireccionarURL();
     this.alerta.showErrorAlert('No existen productos registrados');
     }
     
+  }
+
+  VerificarLoggin() {
+    this.Islogged = this.autenticacion.isLoggedIn;
   }
 
   RedireccionarURL()

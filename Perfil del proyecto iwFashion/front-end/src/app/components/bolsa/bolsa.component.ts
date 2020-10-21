@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {LoginFormComponent} from '../login-form/login-form.component';
-import {AuthService} from '../../services/auth.service';
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { LoginFormComponent } from '../login-form/login-form.component';
+import { AuthService } from '../../services/auth.service';
+import { AlertasService } from '../../alertas.service';
 
 @Component({
   selector: 'app-bolsa',
@@ -11,47 +12,43 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./bolsa.component.css']
 })
 export class BolsaComponent implements OnInit {
-   public Islogged:boolean;
+  public Islogged: boolean;
 
-  constructor(private _location: Location,private dialog: MatDialog,private autenticacion:AuthService) { }
+  constructor(private _location: Location, private dialog: MatDialog, private autenticacion: AuthService,private alerta: AlertasService) { }
 
   ngOnInit(): void {
   }
 
   backClicked() {
-           this._location.back();
-       }
+    this._location.back();
+  }
 
-       OpenLogin() {
+  OpenLogin() {
 
-        const dialogConfig = new MatDialogConfig();
-        /*dialogConfig.disableClose = false;
-        dialogConfig.autoFocus = true;*/
-         this.dialog.open(LoginFormComponent, dialogConfig);
-         this.VerificarLoggin();
+    const dialogConfig = new MatDialogConfig();
+    /*dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;*/
+    this.dialog.open(LoginFormComponent, dialogConfig);
+    this.VerificarLoggin();
+  }
+
+  VerificarLoggin() {
+    this.Islogged = this.autenticacion.isLoggedIn;
+  }
+
+  FinalizarCompra() {
+
+    this.VerificarLoggin();
+
+    if (this.Islogged == true) {
+      this.alerta.showSuccessAlert('¡Pronto agregaremos esta funcionalidad!');
+    }
+    else {
+      this.OpenLogin();
     }
 
-    VerificarLoggin()
-{
-  this.Islogged=this.autenticacion.isLoggedIn;
-}
 
-FinalizarCompra()
-{
-
-  this.VerificarLoggin();
-
-  if(this.Islogged==true)
-  {
-   alert('Compra finalizada con exito');
   }
-  else
-  {
-    this.OpenLogin();
-  }
-
-
-}
 
 }
 

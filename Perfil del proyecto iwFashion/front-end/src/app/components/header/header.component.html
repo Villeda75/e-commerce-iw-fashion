@@ -2,8 +2,8 @@
 <section id="topbar" class="d-none d-lg-block">
   <div class="container clearfix">
     <div class="contact-info float-left">
-      <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
-      <i class="icofont-phone"></i> +1 5589 55488 55
+      <i class="icofont-envelope"></i><a href="mailto:contact@example.com">admifashion4@gmail.com</a>
+      <i class="icofont-phone"></i> (+503) 2122-2222
     </div>
     <div class="social-links float-right">
       <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
@@ -14,61 +14,63 @@
     </div>
   </div>
 </section>
-  <div class="container">
-    
-    <div class="logo float-left">
-      <h1 class="text-light"><a href="index.html"><img src="/assets/img/logo.png" style="width:70px; height:70px" ><span class="m-2 text-dark" style="font-size: 18px;">IW Of Fashion</span></a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-    </div>
+<div class="container">
 
-    <nav class="nav-menu float-right d-none d-lg-block">
-      <ul>
-        <li class="active"><a [routerLink]="'home'">Inicio</a></li>
-        <li class="drop-down"><a [routerLink]="'hombres'">Hombres</a>
-          <ul>
-            <li><a [routerLink]="'hombres/ropa'">Ropa</a></li>
-            <li><a [routerLink]="'hombres/zapatos'">Zapatos</a></li>
-            <li><a [routerLink]="'hombres/accesorios'">Accesorios</a></li>
-          </ul>
-        </li>
-        <li class="drop-down"><a [routerLink]="'mujeres'">Mujeres</a>
-          <ul>
-            <li><a [routerLink]="'mujeres/ropa'">Ropa</a></li>
-            <li><a [routerLink]="'mujeres/zapatos'">Zapatos</a></li>
-            <li><a [routerLink]="'mujeres/accesorios'">Accesorios</a></li>
-          </ul>
-        </li>
-        <li class="drop-down"><a [routerLink]="'niños'">Niños</a>
-          <ul>
-            <li><a [routerLink]="'niños/ropa'">Ropa</a></li>
-            <li><a [routerLink]="'niños/zapatos'">Zapatos</a></li>
-            <li><a [routerLink]="'niños/accesorios'">Accesorios</a></li>
-          </ul>
-        </li>
-        <li ><a [routerLink]="'diseños'" >Diseños Personalizados</a></li>
-           <!-- <li *ngIf="!Islogged"><a (click)="OpenLogin()" >Login</a></li>-->
-        <li><a [routerLink]="'contactar'">Contactanos</a></li>
-         <li><a *ngIf="IsAdmin" [routerLink]="'administrar'">Administrar</a></li>
-         <li><a [routerLink]="'bolsa'"><i class="bx bxs-shopping-bag"></i></a></li>
-          <li>
-
-<mat-card class="example-card" *ngIf="Islogged" matBadge="{{simboloToolTip}}" matBadgeColor="warn"  matTooltip="{{MensajeToolTip}}" matTooltipClass="example-tooltip-red" matTooltipPosition="above">
-      
-      
-          <mat-card-header>
-  <div *ngIf="usuarioLoggeado.photoURL" mat-card-avatar style=" background-image: url({{foto}});
-  background-size: cover;"></div>
-  <mat-card-title sytle="text-align:center"> {{NombreUsuario}} </mat-card-title>
-  <mat-card-subtitle><p><li><button class="btn btn-outline-info" style="width:130px;height:30px;text-align:center;" *ngIf="Islogged" (click)="CerrarSesion()">Cerrar sesion</button></li>
-</p></mat-card-subtitle>
-        </mat-card-header>
-</mat-card>
-          
-          </li>
-      </ul>
-    </nav><!-- .nav-menu -->
-
+  <div class="logo float-left">
+    <h1 class="text-light"><a href="index.html"><img src="/assets/img/logo.png" style="width:70px; height:70px"><span
+          class="m-2 text-dark" style="font-size: 18px;">IW Of Fashion</span></a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
   </div>
-  
 
+  <nav class="nav-menu float-right d-none d-lg-block">
+    <ul>
+      <li class="active"><a [routerLink]="'home'">Inicio</a></li>
+      <li class="drop-down"><a [routerLink]="'hombres'">Hombres</a>
+        <ul>
+          <li><a [routerLink]="'hombres/ropa'">Ropa</a></li>
+          <li><a [routerLink]="'hombres/zapatos'">Zapatos</a></li>
+          <li><a [routerLink]="'hombres/accesorios'">Accesorios</a></li>
+        </ul>
+      </li>
+      <li class="drop-down"><a [routerLink]="'mujeres'">Mujeres</a>
+        <ul>
+          <li><a [routerLink]="'mujeres/ropa'">Ropa</a></li>
+          <li><a [routerLink]="'mujeres/zapatos'">Zapatos</a></li>
+          <li><a [routerLink]="'mujeres/accesorios'">Accesorios</a></li>
+        </ul>
+      </li>
+      <li class="drop-down"><a [routerLink]="'niños'">Niños</a>
+        <ul>
+          <li><a [routerLink]="'niños/ropa'">Ropa</a></li>
+          <li><a [routerLink]="'niños/zapatos'">Zapatos</a></li>
+          <li><a [routerLink]="'niños/accesorios'">Accesorios</a></li>
+        </ul>
+      </li>
+      <li><a [routerLink]="'diseños'">Diseños Personalizados</a></li>
+      <!-- <li *ngIf="!Islogged"><a (click)="OpenLogin()" >Login</a></li>-->
+      <li><a [routerLink]="'contactar'">Contáctanos</a></li>
+      <li><a *ngIf="IsAdmin" [routerLink]="'administrar'">Administrar</a></li>
+      <li><a [routerLink]="'bolsa'"><span class="material-icons">local_mall</span></a></li>
+      <li *ngIf="!Islogged"><a (click)="OpenLogin()"><span class="material-icons">account_circle</span></a></li>
+      
+      <li style="margin-top: -25px;">
+        <mat-card *ngIf="Islogged" matBadge="{{simboloToolTip}}" matBadgeColor="warn"
+          matTooltip="{{MensajeToolTip}}" matTooltipClass="example-tooltip-red" matTooltipPosition="above">
+          <mat-card-header>
+            <div mat-card-avatar style=" background-image: url({{foto}}); background-size: cover;"></div>
+            <mat-card-title class="text-secondary" style="font-size: 10pt;"> {{NombreUsuario}} </mat-card-title>
+              <mat-card-subtitle>
+                <p>
+                  <li>
+                    <button class="btn btn-outline-secondary mt-2 btn-sm" *ngIf="Islogged" (click)="CerrarSesion()">Cerrar sesión</button>
+                  </li>
+                </p>
+              </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </li>
+    </ul>
+  </nav><!-- .nav-menu -->
+
+</div>

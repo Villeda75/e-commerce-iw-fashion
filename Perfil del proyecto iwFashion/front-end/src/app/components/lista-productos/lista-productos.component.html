@@ -1,15 +1,20 @@
-  <section id="portfolio" class="portfolio section-bg">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+<br> <br> <br> <br> 
+<div *ngIf="Islogged">
+  <br> <br> <br> <br> <br>
+</div>
+<section id="portfolio" class="portfolio section-bg">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="section-title text-center" style="color:black">
-          <h2 style="color:black">La mejor calidad, la encuentras IW-Fashion</h2>
-          <p>Elige tu prenda favorita y sorprende a todos con tu nuevo look. </p>
-        </div>
 
-        <div class="row">
-          <div class="col-lg-12">
-            <ul id="portfolio-flters">
-            <!--
+    <div class="section-title text-center" style="color:black">
+      <h2 style="color:black">La mejor calidad, la encuentras en IW-Fashion</h2>
+      <p>¡Elige tu prenda favorita y sorprende a todos con tu nuevo look! </p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <ul id="portfolio-flters">
+          <!--
               <li>
               <mat-form-field appearance="fill">
               <mat-label style="font-size: 16px">Talla</mat-label>
@@ -32,53 +37,63 @@
               </mat-form-field>
               <p>You selected: {{selected1}}</p></li>
               -->
-            </ul>
-          </div>
-        </div>
+        </ul>
+      </div>
+    </div>
 
-<div class="row portfolio-container">
+    <div class="row portfolio-container">
 
 
 
- 
 
-  <div *ngFor="let item of productos | paginate: {  itemsPerPage: 12,currentPage: page,totalItems: total}" class="col-lg-4 col-md-6 portfolio-item filter-app">
-      <mat-card class="example-card">
-  <mat-card-header >
-    <mat-card-title  ><h2>{{item.product_type}}</h2></mat-card-title>
-    <mat-card-subtitle ><h1 style="color:red">Antes: $<del>{{item.sales_price}}</del></h1>
-    <strong><h1 >Ahora: ${{item.discount_price}}</h1> </strong></mat-card-subtitle>
-  </mat-card-header>
- <div class="portfolio-wrap">
-              <img src="{{item.url_img}}" class="img-fluid" alt="" style="border-radius: 2%;">
-              <div class="portfolio-info">
-                <!-- <h4>App 1</h4>
+
+      <div *ngFor="let item of productos | paginate: {  itemsPerPage: 12,currentPage: page,totalItems: total}"
+        class="col-lg-4 col-md-6 portfolio-item filter-app">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>
+              <h2>{{item.product_type}}</h2>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <h1 style="color:red">Antes: $<del>{{item.sales_price}}</del></h1>
+              <strong>
+                <h1>Ahora: ${{item.discount_price}}</h1>
+              </strong>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <div class="portfolio-wrap">
+            <img src="{{item.url_img}}" class="img-fluid" alt="" style="border-radius: 2%; height: 300px; width: 100%;">
+            <div class="portfolio-info">
+              <!-- <h4>App 1</h4>
                 <p>App</p> -->
-                <div class="portfolio-links">
-                  <a href="{{item.url_img}}" data-gall="portfolioGallery" class="venobox" title="{{item.product_type}}"><i class="icofont-eye"></i></a>
-                  <a  title="More Details"><i (click)="NavigateProducto(item.id_product)" class="icofont-external-link"></i></a>
-                </div>
+              <div class="portfolio-links">
+                <a href="{{item.url_img}}" data-gall="portfolioGallery" class="venobox" title="{{item.product_type}}"><i
+                    class="icofont-eye"></i></a>
+                <a title="More Details"><i (click)="NavigateProducto(item.id_product)"
+                    class="icofont-external-link"></i></a>
               </div>
             </div>
-  <mat-card-footer >
-   <!--  <h4 >
+          </div>
+          <mat-card-footer>
+            <!--  <h4 >
     {{item.description }}
-    </h4> -->  
-    <br>
-  </mat-card-footer>
-  
-</mat-card>
-</div>
+    </h4> -->
+            <br>
+          </mat-card-footer>
 
-</div>
+        </mat-card>
+      </div>
 
- 
- <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="page = $event"></pagination-controls>
- 
-   
-<!--Inicio seccio  productos-->
+    </div>
 
-<!--
+
+    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="page = $event">
+    </pagination-controls>
+
+
+    <!--Inicio seccio  productos-->
+
+    <!--
         <div class="row portfolio-container">
 
       <div class="col-lg-4 col-md-6 portfolio-item filter-app">
@@ -222,14 +237,14 @@
           </div>
         </div>
         -->
-        <!--Fin de seccion de productos-->
+    <!--Fin de seccion de productos-->
 
-      </div>
-    </section><!-- End Our Portfolio Section -->
+  </div>
+</section><!-- End Our Portfolio Section -->
 
 
 
-  <!-- 
+<!-- 
             <div class="portfolio-wrap">
               <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -241,4 +256,4 @@
                 </div>
               </div>
             </div>
-            --> 
+            -->
