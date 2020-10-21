@@ -32,6 +32,9 @@ import { FormsModule } from '@angular/forms';
 //image 2 ulpoad
 
 import {ImageUploadModule} from 'angular2-image-upload';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { DesignCustomViewComponent } from './components/design-custom-view/design-custom-view.component';
+import { ToggleInformationComponent } from './components/toggle-information/toggle-information.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import {ImageUploadModule} from 'angular2-image-upload';
     LoginFormComponent,
     ListaProductosComponent,
     DetalleProductoComponent,
-    CrudComponent
+    CrudComponent,
+    ContactFormComponent,
+    DesignCustomViewComponent,
+    ToggleInformationComponent
     
    
   ],

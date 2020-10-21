@@ -83,6 +83,7 @@ export class CrudComponent implements OnInit {
         if (res['resultado'] == 'success') {
           alert(res['mensaje']);
           this.ActualizarDatos(); 
+          this.FormularioBrands.reset();
         }
       });
       
@@ -100,6 +101,7 @@ export class CrudComponent implements OnInit {
           alert(res['mensaje']);
           this.ActualizarDatos(); 
           this.designActual={id_customDesign:0, designName:'',description:'',nombreArchivo:'',base64textString:'',type:''};
+          this.FormularioBrands.reset();
           }
       });
       
@@ -174,6 +176,8 @@ export class CrudComponent implements OnInit {
         if (res['resultado'] == 'success') {
           alert(res['mensaje']);
           this.ActualizarDatosCustomDesigns(); 
+          this.FormularioCustomD.reset();
+
         }
       });
       
@@ -189,6 +193,7 @@ export class CrudComponent implements OnInit {
       if (res['resultado'] == 'success') {
         alert(res['mensaje']);
         this.ActualizarDatosCustomDesigns(); 
+             this.FormularioCustomD.reset();
       }
     });
   }
@@ -206,6 +211,7 @@ export class CrudComponent implements OnInit {
           if (res['resultado'] == 'success') {
             alert(res['mensaje']);
             this.ActualizarDatosCustomDesigns(); 
+            this.FormularioCustomD.reset();
           }
         });
     }
