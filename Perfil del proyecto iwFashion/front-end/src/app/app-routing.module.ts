@@ -5,6 +5,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { ListaProductosComponent } from './components/lista-productos/lista-productos.component';
 import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
 import { CrudComponent } from './components/crud/crud.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
 
 const routes: Routes = [
@@ -83,9 +84,13 @@ const routes: Routes = [
     component:DetalleProductoComponent
   },
   {   path: 'administrar',
-    //ESTA LINEA MUESTRA EN PANTALLA EL COMPONENTE EL MUY OBJETO HTML
+    
     component:CrudComponent
   }
+  , {   path: 'contactar',
+  
+  component:ContactFormComponent
+}
 ];
 
 @NgModule({
