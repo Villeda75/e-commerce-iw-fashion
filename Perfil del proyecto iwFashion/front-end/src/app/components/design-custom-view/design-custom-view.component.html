@@ -1,5 +1,13 @@
 
-    <header class="w-100 bg-dark m-0 p-0"
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+   
+   <header class="w-100 bg-dark m-0 p-0"
         style="height: 400px; background-image: url(https://images.pexels.com/photos/581339/pexels-photo-581339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
         <div class="d-flex align-items-center justify-content-center h-100 m-0 p-0">
             <h2 class="text-center text-white py-3 px-2 m-0" style="background-color: black;">Diseños Personalizados
@@ -21,27 +29,7 @@
                         <img (click)="openDialog(item)" src="{{item.base64textString}}"
                             alt='foto' class='float-left img-fluid d-block border border rounded w-75 shadow'>
                     </a>
-                    <!-- Modal -->
-                    <div class='modal fade' id='exampleModal' tabindex='-1' role='dialog'
-                        aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                        <!-- id='exampleModal1' -->
-                        <div class='modal-dialog'>
-                            <div class='modal-content'>
-                                <div class='modal-header'>
-                                    <h5 class='modal-title text-center' id='exampleModalLabel'>{{item.designName}}</h5>
-                                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                        <span aria-hidden='true'>&times;</span>
-                                    </button>
-                                </div>
-                                <div class='modal-body'>
-                                    <img src="{{item.base64textString}}"
-                                        alt='Titulo' style='width: 200px;'
-                                        class='float-left img-fluid d-block rounded w-50'>
-                                    <p class="w-50 float-right text-center">{{item.description}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
 
             </div>

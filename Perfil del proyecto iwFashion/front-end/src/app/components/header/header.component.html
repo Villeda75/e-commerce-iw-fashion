@@ -46,8 +46,9 @@
             <li><a [routerLink]="'niños/accesorios'">Accesorios</a></li>
           </ul>
         </li>
+        <li ><a [routerLink]="'diseños'" >Diseños Personalizados</a></li>
             <li *ngIf="!Islogged"><a (click)="OpenLogin()" >Login</a></li>
-        <li><a href="#contact">Contactanos</a></li>
+        <li><a [routerLink]="'contactar'">Contactanos</a></li>
          <li><a [routerLink]="'administrar'">Administrar</a></li>
           <li>
 
