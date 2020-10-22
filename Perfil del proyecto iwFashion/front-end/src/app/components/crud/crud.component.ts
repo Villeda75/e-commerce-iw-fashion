@@ -111,7 +111,7 @@ export class CrudComponent implements OnInit {
   }
 
   ActualizarMarca() {
-    this.addOrEdit();
+    //this.addOrEdit();
 
     //nueva alerta
     Swal.fire({
@@ -123,6 +123,7 @@ export class CrudComponent implements OnInit {
       confirmButtonText: 'Si,deseo actualizar!'
     }).then((result) => {
       if (result.isConfirmed) {
+        this.addOrEdit();
         this.database.UpdateBrand(this.brandActual).subscribe(res => {
           if (res['resultado'] == 'success') {
             //alert(res['mensaje']);
