@@ -13,7 +13,7 @@ export class DatabaseService {
 
   url = 'https://veterinarialissette-vc170991-aa170621.000webhostapp.com/crud/'; //PHP 
 
-  URL = "http://veterinarialissette-vc170991-aa170621.000webhostapp.com/CustomDesigns/"; //CustomDesigns
+  URL = "https://veterinarialissette-vc170991-aa170621.000webhostapp.com/CustomDesigns/"; //CustomDesigns
 
 
 
@@ -48,7 +48,7 @@ export class DatabaseService {
  //CRUD Tabla Marcas
 
  GetBrands() {
-  return this.http.get(`https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api/brands`);
+  return this.http.get(this.URI+'/brands');
  }
 
  InsertBrand(newBrand:Brand) {
@@ -65,7 +65,7 @@ UpdateBrand(_Brand:Brand) {
 
  GetCustomDesigns()
  {
-  return this.http.get(`https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api/customDesigns`);
+  return this.http.get(this.URI+'/customDesigns');
  }
 
  InsertCustomDesign(_customDesign:CustomDesign)
@@ -76,8 +76,6 @@ UpdateBrand(_Brand:Brand) {
 
  UpdateCustomDesign(_customDesign:CustomDesign)
  {
-   console.log("Esto se envia");
-   console.log(_customDesign);
   return this.http.post(`${this.URL}editCD.php`, JSON.stringify(_customDesign) );
  }
 
