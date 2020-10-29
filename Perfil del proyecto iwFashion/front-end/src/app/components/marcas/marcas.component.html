@@ -1,0 +1,56 @@
+<h3 class="title text-center">MARCAS</h3> <hr> <br>
+
+<form [formGroup]="FormularioBrands">
+
+    <div class="form-group">
+
+        <div class="row">
+            <div class="col-6">
+                <input type="text" placeholder="Marca" class="form-control" formControlName="brand" />
+
+                <!--Alerta de error-->
+                <div *ngIf="FormularioBrands.controls.brand.invalid" class="alert alert-danger">
+                    <div *ngIf="FormularioBrands.controls.brand.errors.required">
+                        Este campo es requerido
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <button *ngIf="isSelected==false" class="btn btn-success" (click)="AgregarMarca()">Agregar</button>
+                <button *ngIf="isSelected" class="btn btn-warning ml-3"
+                    (click)=" ActualizarMarca();isSelected=false">Modificar</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
+<div class="table-responsive-sm">
+
+    <table class="table table-striped table-hover text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>Número</th>
+                <th>Marca</th>
+                <th>Editar</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of arrayBrands" [class.table-warning]="item == brandActual">
+                <th scope="row">{{item.id_brand}}</th>
+                <td>{{item.brand}}</td>
+                <td>
+                    <button mat-fab color="primary" (click)="openForEdit(item);isSelected=true"
+                        aria-label="Example icon button with a delete icon">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>

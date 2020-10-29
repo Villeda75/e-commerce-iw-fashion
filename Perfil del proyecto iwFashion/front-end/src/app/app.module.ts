@@ -36,6 +36,11 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { DesignCustomViewComponent } from './components/design-custom-view/design-custom-view.component';
 import { ToggleInformationComponent } from './components/toggle-information/toggle-information.component';
 import { BolsaComponent } from './components/bolsa/bolsa.component';
+import { AdministradorComponent } from './components/administrador/administrador.component';
+import { MarcasComponent } from './components/marcas/marcas.component';
+import { CustomDesignsComponent } from './components/custom-designs/custom-designs.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +55,12 @@ import { BolsaComponent } from './components/bolsa/bolsa.component';
     ContactFormComponent,
     DesignCustomViewComponent,
     ToggleInformationComponent,
-    BolsaComponent
+    BolsaComponent,
+    AdministradorComponent,
+    MarcasComponent,
+    CustomDesignsComponent,
+    DashboardComponent,
+    ProductsComponent
     
    
   ],
