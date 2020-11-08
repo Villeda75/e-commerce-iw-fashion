@@ -16,14 +16,114 @@
 </section>
 <div class="container">
 
-  <div class="logo float-left">
-    <h1 class="text-light"><a href="index.html"><img src="/assets/img/logo.png" style="width:70px; height:70px"><span
-          class="m-2 text-dark" style="font-size: 18px;">IW Of Fashion</span></a></h1>
-    <!-- Uncomment below if you prefer to use an image logo -->
-    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-  </div>
+  <nav class="navbar navbar-expand-sm navbar-light white">
 
-  <nav class="nav-menu float-right d-none d-lg-block">
+    <div class="container"> 
+  
+      <a class="navbar-brand" href="#">
+        <img src="/assets/img/logo.png" style="width:70px; height:70px" alt="mdb logo">
+        <span
+          class="m-2 text-dark" style="font-size: 18px;">IW Of Fashion</span>
+      </a>
+  
+      <!-- Collapse button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+              aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="basicExampleNav">
+  
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link waves-effect"  [routerLink]="'home'">Inicio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Hombres</a>
+            <div class="dropdown-menu dropdown-primary dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" [routerLink]="'hombres/ropa'">Ropa</a>
+              <a class="dropdown-item" [routerLink]="'hombres/zapatos'">Zapatos</a>
+              <a class="dropdown-item" [routerLink]="'hombres/accesorios'">Accesorios</a>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Mujeres</a>
+            <div class="dropdown-menu dropdown-primary dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" [routerLink]="'mujeres/ropa'">Ropa</a>
+              <a class="dropdown-item" [routerLink]="'mujeres/zapatos'">Zapatos</a>
+              <a class="dropdown-item" [routerLink]="'mujeres/accesorios'">Accesorios</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Niños</a>
+            <div class="dropdown-menu dropdown-primary dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" [routerLink]="'niños/ropa'">Ropa</a>
+              <a class="dropdown-item" [routerLink]="'niños/zapatos'">Zapatos</a>
+              <a class="dropdown-item" [routerLink]="'niños/accesorios'">Accesorios</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect"  [routerLink]="'diseños'">Diseños Personalizados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect"  [routerLink]="'contactar'">Contáctanos</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link waves-effect"  *ngIf="IsAdmin" [routerLink]="'administrar'">Administrar</a>
+          </li>
+
+          </ul>
+          
+          
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link waves-effect" [routerLink]="'bolsa'"><span class="material-icons">local_mall</span></a>
+          </li> 
+          <li class="nav-item" *ngIf="!Islogged">
+            <a class="nav-link waves-effect" (click)="OpenLogin()"><span class="material-icons">account_circle</span></a>
+          </li>
+          <li class="nav-item" style="margin-top: -5px;">
+            <mat-card *ngIf="Islogged" matBadge="{{simboloToolTip}}" matBadgeColor="warn"
+              matTooltip="{{MensajeToolTip}}" matTooltipClass="example-tooltip-red" matTooltipPosition="above">
+              <mat-card-header>
+                <div mat-card-avatar style=" background-image: url({{foto}}); background-size: cover;"></div>
+                <mat-card-title class="text-secondary" style="font-size: 10pt;"> {{NombreUsuario}} </mat-card-title>
+                  <mat-card-subtitle>
+                    <p>
+                      <li>
+                        <button class="btn btn-outline-secondary mt-1 btn-sm" *ngIf="Islogged" (click)="CerrarSesion()">Cerrar sesión</button>
+                      </li>
+                    </p>
+                  </mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+          </li>
+
+          
+        </ul>
+  
+      </div>
+  
+    </div>
+  
+  </nav>
+</div>
+
+
+
+
+  
+  <!-- 
+    <nav class="nav-menu float-right d-none d-lg-block">
     <ul>
       <li class="active"><a [routerLink]="'home'">Inicio</a></li>
       <li class="drop-down"><a [routerLink]="'hombres'">Hombres</a>
@@ -48,7 +148,6 @@
         </ul>
       </li>
       <li><a [routerLink]="'diseños'">Diseños Personalizados</a></li>
-      <!-- <li *ngIf="!Islogged"><a (click)="OpenLogin()" >Login</a></li>-->
       <li><a [routerLink]="'contactar'">Contáctanos</a></li>
       <li><a *ngIf="IsAdmin" [routerLink]="'administrar'">Administrar</a></li>
       <li><a [routerLink]="'bolsa'"><span class="material-icons">local_mall</span></a></li>
@@ -71,6 +170,5 @@
         </mat-card>
       </li>
     </ul>
-  </nav><!-- .nav-menu -->
+  </nav> --><!-- .nav-menu -->
 
-</div>
