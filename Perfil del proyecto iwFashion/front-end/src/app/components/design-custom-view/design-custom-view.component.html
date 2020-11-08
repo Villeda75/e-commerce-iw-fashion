@@ -25,7 +25,9 @@
                         <img (click)="openDialog(item)" src="{{item.base64textString}}"
                             alt='foto' class='float-left img-fluid d-block border border rounded w-75 shadow'>
                     </a>
-                    
+                    <div class="form-group text-center">
+            <button (click)="OpenDialogRequestSelectedDesign(item.id_customDesign,item.base64textString)" class="btn btn-dark btn-lg mt-3">Solicitar Este Diseño</button>
+        </div>
                 </div>
 
             </div>
@@ -38,6 +40,9 @@
         </div>
         <div class="form-group text-center">
             <a [routerLink]="'/contactar'" class="btn btn-dark btn-lg mt-3">Contáctanos</a>
+        </div>
+        <div class="form-group text-center">
+            <button (click)=" OpenDialogRequest()" class="btn btn-dark btn-lg mt-3">Solicitar Un Diseño Nuevo</button>
         </div>
       </section>
 

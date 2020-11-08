@@ -1,0 +1,86 @@
+
+
+
+
+
+<h1 mat-dialog-title style="text-align:right"><button  mat-dialog-close mat-mini-fab color="warn" >
+          <mat-icon>close</mat-icon>
+        </button></h1>
+<div mat-dialog-content>
+
+  <section class="container">
+ <div class="view overlay"  *ngIf="id>0">
+    <img class="card-img-top-center" src="{{imagen}}" style="height: 400px; width: auto;"  alt="Card image cap">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+    <h2 class="text-center mt-5">Solicitar diseño personalizado</h2> <hr>
+    <p class="text-center mt-5">En esta seccion puedes solicitar un diseño personalizado existente o solicitar uno nuevo</p>
+  </section>
+  
+  <section class="container border border-1 px-5 shadow bg-white rounded">
+    <form [formGroup]="FormularioContact">
+      <h5 class="text-center mb-4">Alegra nuestro día enviándonos tus comentarios, preguntas e inquietudes</h5>
+      <div class="form-group px-3">
+        <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" formControlName="nombre">
+        <!--Alerta de error-->
+            <div *ngIf="FormularioContact.controls.nombre.invalid" class="alert alert-danger">
+              <div *ngIf="FormularioContact.controls.nombre.errors.required">
+                Este campo es requerido
+              </div>
+            </div>
+      </div>
+        <!--Email-->
+      <div class="form-group px-3">
+        <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" formControlName="email">
+          <div *ngIf="FormularioContact.controls.email.invalid" class="alert alert-danger">
+              <div *ngIf="FormularioContact.controls.email.errors.required">
+                Este campo es requerido
+              </div>
+              
+            </div>
+      </div>
+      <!--telefono-->
+      <div class="form-group px-3">
+        <input type="text" name="phone" id="phone" class="form-control" placeholder="Telefono (Opcional)" formControlName="telefono">
+      </div>
+<!--Mensaje-->
+      <div class="form-group px-3">
+        <textarea name="msj" id="msj" cols="30" class="form-control" rows="5" placeholder="Mensaje" formControlName="mensaje"></textarea>
+          <div *ngIf="FormularioContact.controls.mensaje.invalid" class="alert alert-danger">
+              <div *ngIf="FormularioContact.controls.mensaje.errors.required">
+                Este campo es requerido
+              </div>
+            </div>
+      </div>
+
+<!--Imagen-->
+            <div class="col-6" *ngIf="id==0">
+              <image-upload buttonCaption="Seleccionar imagenes" dropBoxMessage="Elija o arrastre una imagen aquí"
+              clearButtonCaption="Borrar imagen" (uploadFinished)="subirImagen($event)" (removed)="onRemoved($event)"
+              class="customClass"></image-upload>
+              <!--Alerta de error-->
+            </div>
+
+
+      <div class="form-group px-3">
+        <button class="btn btn-outline-dark btn-lg px-3" (click)=" (id>0)?EnviarFormularioConId():EnviarFormulario()">Enviar</button>
+      </div>
+    </form>
+  </section>
+  <section style="margin-bottom:0px"class="w-100 my-5 py-5" style="background-color: #edf6f9;">
+    <div class="container">
+      <p class="text-center my-5 text-dark" style="font-size: 20px;">Nuestros clientes son muy importantes para nosotros, nos encanta responder a tus inquietudes</p>
+    </div>
+    <div class="form-group text-center">
+      <input type="button" (click)="NavigateHome()" value="Volver al Inicio" class="btn btn-dark btn-lg px-5">
+    </div>
+  </section>
+</div>
+<div mat-dialog-actions align="center">
+ <!-- <button mat-button mat-dialog-close>Cerrar</button>
+   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>-->
+</div>
+
+ 

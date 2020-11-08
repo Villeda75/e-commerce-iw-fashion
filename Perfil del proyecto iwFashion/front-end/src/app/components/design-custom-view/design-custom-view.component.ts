@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {DatabaseService} from '../../services/database.service';
 import {CustomDesign} from '../../models/custom-design';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog,MatDialogConfig } from '@angular/material/dialog';
+
+import {RequestCustomDesignFormComponent} from '../request-custom-design-form/request-custom-design-form.component';
+
 import {ToggleInformationComponent} from '../../components/toggle-information/toggle-information.component';
 import { AuthService } from '../../services/auth.service';
 
@@ -14,7 +17,13 @@ export class DesignCustomViewComponent implements OnInit {
   arrayCustomDesigns:CustomDesign[];
   public Islogged: boolean;
   
-  constructor(private database:DatabaseService, private autenticacion: AuthService, public dialog: MatDialog) { this.ActualizarDatosCustomDesigns() }
+  constructor(
+    private database:DatabaseService,
+     private autenticacion: AuthService,
+     public dialog: MatDialog)
+      { 
+       this.ActualizarDatosCustomDesigns() 
+      }
 
   ngOnInit(): void {
     this.VerificarLoggin();
@@ -52,6 +61,26 @@ export class DesignCustomViewComponent implements OnInit {
   VerificarLoggin() {
     this.Islogged = this.autenticacion.isLoggedIn;
   }
+
+  OpenDialogRequest() {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data={id:0};
+    /*dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;*/
+    this.dialog.open(RequestCustomDesignFormComponent, dialogConfig);
+  }
+
+  OpenDialogRequestSelectedDesign(_id:number,_img:string) {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data={id:_id,url_img:_img};
+    /*dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;*/
+    this.dialog.open(RequestCustomDesignFormComponent, dialogConfig);
+    
+  }
+
 }
 
 

@@ -110,6 +110,7 @@ export class CustomDesignsComponent implements OnInit {
             //alert(res['mensaje']);
             this.alerta.showSuccessAlert(res['mensaje']);
             this.ActualizarDatosCustomDesigns();
+             this.FormularioCustomD.reset();
           }
         });
 
@@ -160,6 +161,7 @@ export class CustomDesignsComponent implements OnInit {
             //alert(res['mensaje']);
             this.alerta.showSuccessAlert(res['mensaje']);
             this.ActualizarDatosCustomDesigns();
+            this.FormularioCustomD.reset();
           }
         });
       }

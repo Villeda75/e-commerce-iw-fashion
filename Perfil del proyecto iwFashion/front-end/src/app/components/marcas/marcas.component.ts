@@ -60,6 +60,7 @@ export class MarcasComponent implements OnInit {
         if (res['resultado'] == 'success') {
           this.alerta.showSuccessAlert(res['mensaje']);
           this.ActualizarDatos();
+          this.FormularioBrands.reset();
         }
         else {
           this.alerta.showErrorAlert('Ocurrió un error creando la marca');
@@ -87,6 +88,7 @@ export class MarcasComponent implements OnInit {
             
             this.alerta.showSuccessAlert(res['mensaje']);
             this.ActualizarDatos();
+            this.FormularioBrands.reset();
           }
         });
       }

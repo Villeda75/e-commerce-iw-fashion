@@ -41,6 +41,7 @@ import { MarcasComponent } from './components/marcas/marcas.component';
 import { CustomDesignsComponent } from './components/custom-designs/custom-designs.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
+import { RequestCustomDesignFormComponent } from './components/request-custom-design-form/request-custom-design-form.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ProductsComponent } from './components/products/products.component';
     MarcasComponent,
     CustomDesignsComponent,
     DashboardComponent,
-    ProductsComponent
+    ProductsComponent,
+    RequestCustomDesignFormComponent
     
    
   ],

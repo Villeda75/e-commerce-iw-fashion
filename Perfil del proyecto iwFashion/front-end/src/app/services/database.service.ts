@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Brand } from '../models/brand';
 import { CustomDesign } from '../models/custom-design';
+import {FormContact} from '../models/form-contact';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,13 @@ export class DatabaseService {
 
   URL = "https://veterinarialissette-vc170991-aa170621.000webhostapp.com/CustomDesigns/"; //CustomDesigns
 
+ urlContact="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/phpMailer/sendEmail.php" //Formulario de Contacto
 
+
+ urlRequestDesign="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/phpMailer/sendEmailDesignCustom.php";
+
+
+ urlRequestDesignCreated="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/phpMailer/sendEmailDesignCustomExits.php";
 
   constructor(private http:HttpClient) { }
 
@@ -83,6 +90,23 @@ UpdateBrand(_Brand:Brand) {
  {
   return this.http.post(`${this.URL}deleteCD.php`, JSON.stringify(_customDesign) );
  }
+
+
+//Formulario de contacto
+
+SendFormContact(_contactForm:FormContact)
+{
+  return this.http.post(`${this.urlContact}`, JSON.stringify(_contactForm));
+}
+
+SendRequestDesign(_requestDesign:any)
+{
+  return this.http.post(`${this.urlRequestDesign}`,JSON.stringify(_requestDesign));
+}
+SendRequestDesignCreated(_requestDesign:any)
+{
+  return this.http.post(`${this.urlRequestDesignCreated}`,JSON.stringify(_requestDesign));
+}
 
 
 }

@@ -102,6 +102,7 @@ export class CrudComponent implements OnInit {
 
 
           this.ActualizarDatos();
+          this.FormularioBrands.reset();
         }
         else {
           this.alerta.showErrorAlert('Ocurrió un error creando la marca');
@@ -131,7 +132,8 @@ export class CrudComponent implements OnInit {
             
             this.alerta.showSuccessAlert(res['mensaje']);
             this.ActualizarDatos();
-            this.designActual = { id_customDesign: 0, designName: '', description: '', nombreArchivo: '', base64textString: '', type: '' };
+            this.FormularioBrands.reset();
+           
           }
         });
       }
@@ -210,6 +212,7 @@ export class CrudComponent implements OnInit {
             //alert(res['mensaje']);
             this.alerta.showSuccessAlert(res['mensaje']);
             this.ActualizarDatosCustomDesigns();
+            this.FormularioCustomD.reset();
           }
         });
        
@@ -257,6 +260,7 @@ export class CrudComponent implements OnInit {
           //alert(res['mensaje']);
           this.alerta.showSuccessAlert(res['mensaje']);
           this.ActualizarDatosCustomDesigns();
+          this.FormularioCustomD.reset();
         }
       });
       }
