@@ -2,119 +2,85 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Brand } from '../models/brand';
 import { CustomDesign } from '../models/custom-design';
-import {FormContact} from '../models/form-contact';
+import { FormContact } from '../models/form-contact';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
 
+  url_base = 'https://veterinarialissette-vc170991-aa170621.000webhostapp.com/'; //URL base del servidor
 
-  URI='https://veterinarialissette-vc170991-aa170621.000webhostapp.com/api'; //Laravel
+  constructor(private http: HttpClient) { }
 
-  url = 'https://veterinarialissette-vc170991-aa170621.000webhostapp.com/crud/'; //PHP 
-
-  URL = "https://veterinarialissette-vc170991-aa170621.000webhostapp.com/CustomDesigns/"; //CustomDesigns
-
- urlContact="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/phpMailer/sendEmail.php" //Formulario de Contacto
-
-
- urlRequestDesign="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/phpMailer/sendEmailDesignCustom.php";
-
-
- urlRequestDesignCreated="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/phpMailer/sendEmailDesignCustomExits.php";
-
- urlRegisterUser="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/Users/register.php";
-
-  constructor(private http:HttpClient) { }
-
-
-  GetAllProductos(genero?:string,categoria?:string)
-  {
-    if(genero.length>0 &&categoria.length==0)
-    {
-      return this.http.get(this.URI+'/products-'+genero);
+  GetAllProductos(genero?: string, categoria?: string) {
+    if (genero.length > 0 && categoria.length == 0) {
+      return this.http.get(this.url_base + 'api/products-' + genero);
     }
-  else if(genero.length>0 && categoria.length>0)
-  {
-    return this.http.get(this.URI+'/'+categoria+'/'+genero);
+    else if (genero.length > 0 && categoria.length > 0) {
+      return this.http.get(this.url_base + 'api/' + categoria + '/' + genero);
+    }
+    else {
+      return this.http.get(this.url_base + 'api/products');
+    }
   }
-  else
-  {
-    return this.http.get(this.URI+'/products');
+
+  GetProductById(id: number) {
+    return this.http.get(`${this.url_base}api/products/${id}`);
   }
- }
-
- GetProductById(id:number)
- {
-
-   //http://veterinarialissette-vc170991-aa170621.000webhostapp.com/api/products/5
-   return this.http.get(`${this.URI}/products/${id}`);
-
- }
 
 
- //CRUD Tabla Marcas
+  //CRUD Tabla Marcas
 
- GetBrands() {
-  return this.http.get(this.URI+'/brands');
- }
+  GetBrands() {
+    return this.http.get(this.url_base + 'api/brands');
+  }
 
- InsertBrand(newBrand:Brand) {
-  return this.http.post(`${this.url}newBrand.php`, JSON.stringify(newBrand));
-}
+  InsertBrand(newBrand: Brand) {
+    return this.http.post(`${this.url_base}crud/newBrand.php`, JSON.stringify(newBrand));
+  }
 
-//editar con php normal
-UpdateBrand(_Brand:Brand) {
-  return this.http.post(`${this.url}editBrand.php`, JSON.stringify(_Brand));
- }
+  //editar con php normal
+  UpdateBrand(_Brand: Brand) {
+    return this.http.post(`${this.url_base}crud/editBrand.php`, JSON.stringify(_Brand));
+  }
 
- //CRUD Tabla CustomDesign
+  //CRUD Tabla CustomDesign
 
+  GetCustomDesigns() {
+    return this.http.get(this.url_base + 'api/customDesigns');
+  }
 
- GetCustomDesigns()
- {
-  return this.http.get(this.URI+'/customDesigns');
- }
+  InsertCustomDesign(_customDesign: CustomDesign) {
+    return this.http.post(`${this.url_base}CustomDesigns/newCD.php`, JSON.stringify(_customDesign));
 
- InsertCustomDesign(_customDesign:CustomDesign)
- {
-  return this.http.post(`${this.URL}newCD.php`, JSON.stringify(_customDesign) );
- 
- }
+  }
 
- UpdateCustomDesign(_customDesign:CustomDesign)
- {
-  return this.http.post(`${this.URL}editCD.php`, JSON.stringify(_customDesign) );
- }
+  UpdateCustomDesign(_customDesign: CustomDesign) {
+    return this.http.post(`${this.url_base}CustomDesigns/editCD.php`, JSON.stringify(_customDesign));
+  }
 
- DeleteCustomDesign(_customDesign:CustomDesign)
- {
-  return this.http.post(`${this.URL}deleteCD.php`, JSON.stringify(_customDesign) );
- }
+  DeleteCustomDesign(_customDesign: CustomDesign) {
+    return this.http.post(`${this.url_base}CustomDesigns/deleteCD.php`, JSON.stringify(_customDesign));
+  }
 
 
-//Formulario de contacto
+  //Formulario de contacto
 
-SendFormContact(_contactForm:FormContact)
-{
-  return this.http.post(`${this.urlContact}`, JSON.stringify(_contactForm));
-}
+  SendFormContact(_contactForm: FormContact) {
+    return this.http.post(`${this.url_base}phpMailer/sendEmail.php`, JSON.stringify(_contactForm));
+  }
 
-SendRequestDesign(_requestDesign:any)
-{
-  return this.http.post(`${this.urlRequestDesign}`,JSON.stringify(_requestDesign));
-}
-SendRequestDesignCreated(_requestDesign:any)
-{
-  return this.http.post(`${this.urlRequestDesignCreated}`,JSON.stringify(_requestDesign));
-}
+  SendRequestDesign(_requestDesign: any) {
+    return this.http.post(`${this.url_base}phpMailer/sendEmailDesignCustom.php`, JSON.stringify(_requestDesign));
+  }
+  SendRequestDesignCreated(_requestDesign: any) {
+    return this.http.post(`${this.url_base}phpMailer/sendEmailDesignCustomExits.php`, JSON.stringify(_requestDesign));
+  }
 
-RegisterUser(_User:any)
-{
-  alert(_User.email);
-  alert(_User.name);
-  return this.http.post(`${this.RegisterUser}`,JSON.stringify(_User));
-}
+  RegisterUser(_UserRegister: any) {
+    //console.log( JSON.stringify(_UserRegister)) ; //verificar Json que se envía
+    return this.http.post(`${this.url_base}Users/register.php`, JSON.stringify(_UserRegister));
+  }
 
 }

@@ -6,7 +6,7 @@ import { User } from 'firebase';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertasService } from '../alertas.service';
 import Swal from 'sweetalert2';
-import {DatabaseService} from './database.service'; 
+import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class AuthService {
   FotoPerfil: string;
   correo: string;
   isAdmi: boolean = false;
-  
+
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -41,11 +41,17 @@ export class AuthService {
 
   loginWithGoogle() {
     return this.afAuth.signInWithPopup(new auth.GoogleAuthProvider()).then(res => {
+
+      let registrarUser = { name: res.user.displayName, email: res.user.email };
+      this.database.RegisterUser(registrarUser).subscribe(res=>
+        {
+          console.log(res['mensaje']);
+        });
+
       this.ngZone.run(() => {
 
         this.alerta.showSuccessAlert('Inicio de sesión exitoso!');
-       
-      
+
         //Tiempo de espera para mostrar el alert y después redirigir a inicio
         //setTimeout(() => { window.location.href = 'https://login-iwfashion.web.app/'; }, 1700);
         setTimeout(() => { window.location.href = 'http://localhost:4200/'; }, 1700);
@@ -53,14 +59,6 @@ export class AuthService {
         this.NombreUsuario = this.usuario.displayName;
         this.FotoPerfil = this.usuario.photoURL;
         this.correo = this.usuario.email;
-        
-        let usuario={"name":this.usuario.displayName,"email":this.usuario.email};
-        console.log(usuario);
-        this.database.RegisterUser(usuario).subscribe(res=>
-          {
-            console.log(res);
-          });
-        
       });
     });
 
@@ -110,6 +108,7 @@ export class AuthService {
         this.FotoPerfil = this.usuario.photoURL;
         this.correo = this.usuario.email;
         //console.log(this.usuario);
+
       } else {
         localStorage.setItem('user', null);
       }
@@ -132,8 +131,13 @@ export class AuthService {
           this.alerta.showSuccessAlert('Registro exitoso!');
           this.usuario = result.user;
           localStorage.setItem('user', JSON.stringify(this.usuario));
-          console.log(this.usuario);
-          //this.router.navigate(['/']);
+
+          let registrarUser = { name: "", email: this.usuario.email };
+
+          this.database.RegisterUser(registrarUser).subscribe(res=>
+            {
+              console.log(res['mensaje']);
+            });;
 
         } else {
           localStorage.setItem('user', null);
