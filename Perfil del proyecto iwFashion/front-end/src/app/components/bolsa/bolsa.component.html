@@ -2,7 +2,6 @@
   <!--Componenete header-->
 <br> <br> <br> <br>
 <div class="container">
-  
 
    <!--Inicio del Carrito-->
   
@@ -15,7 +14,7 @@
 
   <!--Inicio Tabla-->
   <div class="d-flex  flex-row-reverse mb-3">
-    <button class="btn btn-dark">Vaciar</button>
+    <button class="btn btn-dark" (click)="ClearCart()">Vaciar</button>
   </div>
 
   <div id="tablaBolsa" class="table-responsive-sm">
@@ -24,17 +23,23 @@
         <tr>
         <th>Producto</th>
         <th>Cantidad</th>
+        <th>Imagen</th>
         <th>Precio</th>
+        <th>Acciones</th>
+        <th></th>
         <th></th>
         </tr>
       </thead>
      
      <tbody>
-      <tr> <!--*ngFor="let product of products"-->
-        <td>Camiseta Polo</td>
-        <td><input type="number" placeholder="cantidad" step="1" min="1" max="20" value="1" required class="text-center"></td>
-        <td>$ 20.00</td>
-        <td> <button class="btn btn-dark">Eliminar</button> </td> <!--Boton eliminar con id-->
+      <tr *ngFor="let item of items"> <!--*ngFor="let product of products"-->
+        <td>{{item.product_type}}</td>
+        <td>{{item.quantity}}</td>
+        <td> <img src="{{item.url_img}}" class="img-fluid" alt="" style="border-radius: 2%; height: 120px; width: 40%;"></td>
+        <td>{{item.discount_price}}</td>
+        <td> <button class="btn btn-dark" (click)="remove(item)">Eliminar</button> </td> <!--Boton eliminar con id-->
+        <td> <button class="btn btn-dark" (click)="decrease(item)">Restar</button> </td> <!--Boton eliminar con id-->
+              <td> <button class="btn btn-dark" (click)="increase(item)">Sumar</button> </td> <!--Boton eliminar con id-->
       </tr>
      </tbody>
     </table>

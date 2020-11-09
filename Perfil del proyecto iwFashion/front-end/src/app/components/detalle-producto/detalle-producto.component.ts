@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {DatabaseService} from '../../services/database.service';
 import { AlertasService } from '../../alertas.service';
 import { AuthService } from '../../services/auth.service';
+import { CartPruebaService } from '../../services/cart-prueba.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -43,7 +44,8 @@ export class DetalleProductoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private database:DatabaseService,
     private autenticacion: AuthService,
-    private alerta: AlertasService
+    private alerta: AlertasService,
+    private _cartService:CartPruebaService
     )
     { 
       const params = this.activatedRoute.snapshot.params;
@@ -64,14 +66,21 @@ export class DetalleProductoComponent implements OnInit {
   ngOnInit(): void {
     this.VerificarLoggin();
   }
-
-  agregarBolsa(){
+ //Metodo Para agregar al carrito
+  agregarBolsa(product:any){
     this.alerta.showSuccessAlert('¡Pronto agregaremos esta funcionalidad!');
+  
+    let newProduct=Object.assign(product,{"quantity":1});
+    console.log(newProduct);
+    this._cartService.changeCart(newProduct);
     this.router.navigate(['/bolsa']);
   }
 
   VerificarLoggin() {
     this.Islogged = this.autenticacion.isLoggedIn;
   }
+
+  
+  
 
 }

@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { User } from 'firebase';
 import { AlertasService } from '../../alertas.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {DatabaseService} from '../../services/database.service';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class LoginFormComponent implements OnInit {
     public autenticacion: AuthService,
     private RouterActual: ActivatedRoute,
     private router: Router,
-    private alerta: AlertasService
+    private alerta: AlertasService,
+    private database:DatabaseService
   ) {
     console.log(this.autenticacion.usuario);
   }
@@ -55,6 +57,14 @@ export class LoginFormComponent implements OnInit {
     this.autenticacion.SignUp(correo, password).then(res => {
       this.showTemplate = true;
       this.alerta.showSuccessAlert('Registro exitoso');
+      let usuario={"email":correo};
+      this.database.RegisterUser(usuario).subscribe(
+        res=>
+        {
+          console.log(res);
+        }
+      );
+      
     })
       .catch(err => {
         // alert('Ha ocurrido un error');

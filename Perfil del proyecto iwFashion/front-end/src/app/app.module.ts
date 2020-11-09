@@ -42,6 +42,8 @@ import { CustomDesignsComponent } from './components/custom-designs/custom-desig
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
 import { RequestCustomDesignFormComponent } from './components/request-custom-design-form/request-custom-design-form.component';
+import { CartPruebaComponent } from './components/cart-prueba/cart-prueba.component';
+import { ProductsPruebaComponent } from './components/products-prueba/products-prueba.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { RequestCustomDesignFormComponent } from './components/request-custom-de
     CustomDesignsComponent,
     DashboardComponent,
     ProductsComponent,
-    RequestCustomDesignFormComponent
+    RequestCustomDesignFormComponent,
+    CartPruebaComponent,
+    ProductsPruebaComponent
     
    
   ],

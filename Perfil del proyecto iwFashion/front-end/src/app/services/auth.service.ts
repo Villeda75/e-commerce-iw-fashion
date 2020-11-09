@@ -6,6 +6,7 @@ import { User } from 'firebase';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertasService } from '../alertas.service';
 import Swal from 'sweetalert2';
+import {DatabaseService} from './database.service'; 
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +19,15 @@ export class AuthService {
   FotoPerfil: string;
   correo: string;
   isAdmi: boolean = false;
+  
 
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone,
     private http: HttpClient,
-    private alerta: AlertasService) {
+    private alerta: AlertasService,
+    private database: DatabaseService) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.usuario = user;
@@ -41,6 +44,8 @@ export class AuthService {
       this.ngZone.run(() => {
 
         this.alerta.showSuccessAlert('Inicio de sesión exitoso!');
+       
+      
         //Tiempo de espera para mostrar el alert y después redirigir a inicio
         //setTimeout(() => { window.location.href = 'https://login-iwfashion.web.app/'; }, 1700);
         setTimeout(() => { window.location.href = 'http://localhost:4200/'; }, 1700);
@@ -48,6 +53,14 @@ export class AuthService {
         this.NombreUsuario = this.usuario.displayName;
         this.FotoPerfil = this.usuario.photoURL;
         this.correo = this.usuario.email;
+        
+        let usuario={"name":this.usuario.displayName,"email":this.usuario.email};
+        console.log(usuario);
+        this.database.RegisterUser(usuario).subscribe(res=>
+          {
+            console.log(res);
+          });
+        
       });
     });
 

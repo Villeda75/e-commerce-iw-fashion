@@ -24,6 +24,8 @@ export class DatabaseService {
 
  urlRequestDesignCreated="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/phpMailer/sendEmailDesignCustomExits.php";
 
+ urlRegisterUser="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/Users/register.php";
+
   constructor(private http:HttpClient) { }
 
 
@@ -108,5 +110,11 @@ SendRequestDesignCreated(_requestDesign:any)
   return this.http.post(`${this.urlRequestDesignCreated}`,JSON.stringify(_requestDesign));
 }
 
+RegisterUser(_User:any)
+{
+  alert(_User.email);
+  alert(_User.name);
+  return this.http.post(`${this.RegisterUser}`,JSON.stringify(_User));
+}
 
 }
