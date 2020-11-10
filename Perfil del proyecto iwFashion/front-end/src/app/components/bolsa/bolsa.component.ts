@@ -29,7 +29,7 @@ export class BolsaComponent implements OnInit {
       {
         this.items = x;
         this.totalQuantity = x.length;
-        this.totalPrice = x.reduce((sum, current) => sum + (current.price * current.quantity), 0);
+        this.totalPrice = x.reduce((sum, current) => sum + (current.discount_price * current.quantity), 0);
       }
     })
   }

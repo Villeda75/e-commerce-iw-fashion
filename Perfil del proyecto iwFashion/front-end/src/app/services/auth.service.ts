@@ -66,6 +66,7 @@ export class AuthService {
   async logout() {
     await this.afAuth.signOut();
     localStorage.removeItem('user');
+    localStorage.removeItem('carrito');
     this.alerta.showSuccessAlert('Sesión cerrada exitosamente!');
     this.ClearUser();
 

@@ -21,7 +21,7 @@ export class CartPruebaComponent implements OnInit {
       {
         this.items = x;
         this.totalQuantity = x.length;
-        this.totalPrice = x.reduce((sum, current) => sum + (current.price * current.quantity), 0);
+        this.totalPrice = x.reduce((sum, current) => sum + (current.sales_price * current.quantity), 0);
       }
     })
   }
