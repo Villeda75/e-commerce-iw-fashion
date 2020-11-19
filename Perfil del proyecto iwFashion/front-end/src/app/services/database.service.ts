@@ -11,6 +11,10 @@ export class DatabaseService {
 
   url_base = 'https://veterinarialissette-vc170991-aa170621.000webhostapp.com/'; //URL base del servidor
 
+  urlProduct = "https://veterinarialissette-vc170991-aa170621.000webhostapp.com/Products/newProduct.php";
+
+  urlPurchase=" https://veterinarialissette-vc170991-aa170621.000webhostapp.com/Compras/comprar.php";
+
   constructor(private http: HttpClient) { }
 
   GetAllProductos(genero?: string, categoria?: string) {
@@ -82,5 +86,40 @@ export class DatabaseService {
     //console.log( JSON.stringify(_UserRegister)) ; //verificar Json que se envía
     return this.http.post(`${this.url_base}Users/register.php`, JSON.stringify(_UserRegister));
   }
+
+
+  //
+  GetSizes() {
+    return this.http.get(this.url_base + 'api/sizes');
+  }
+
+  //
+   GetGenders() {
+    return this.http.get(this.url_base + 'api/genders');
+  }
+
+  //
+   GetSubCategories() {
+    return this.http.get(this.url_base + 'api/subCategories');
+  }
+  GetColors() {
+    return this.http.get(this.url_base + 'api/colors');
+  }
+
+
+ InsertProduct(_product:any)
+  {
+   return this.http.post(`${this.urlProduct}`, JSON.stringify(_product));
+  }
+
+GetAllProductsWithNoCategorie()
+{
+  return this.http.get(this.url_base + 'api/products');
+}
+
+FinishShopping(listItems:any)
+{
+  return this.http.post(`${this.urlPurchase}`, JSON.stringify(listItems));
+}
 
 }

@@ -11,7 +11,7 @@ import { AlertasService } from '../../alertas.service';
 })
 
 export class ListaProductosComponent implements OnInit {
-  productos:any[];
+  productos:any[]=[];
   urlPartes:string[]=[];
   selected:boolean;
   selected1:boolean;

@@ -44,6 +44,9 @@ import { ProductsComponent } from './components/products/products.component';
 import { RequestCustomDesignFormComponent } from './components/request-custom-design-form/request-custom-design-form.component';
 import { CartPruebaComponent } from './components/cart-prueba/cart-prueba.component';
 import { ProductsPruebaComponent } from './components/products-prueba/products-prueba.component';
+import { FormProductComponent } from './components/form-product/form-product.component';
+
+import {ListProductsAdminComponent} from './components/list-products-admin/list-products-admin.component';
 
 @NgModule({
   declarations: [
@@ -66,8 +69,9 @@ import { ProductsPruebaComponent } from './components/products-prueba/products-p
     ProductsComponent,
     RequestCustomDesignFormComponent,
     CartPruebaComponent,
-    ProductsPruebaComponent
-    
+    ProductsPruebaComponent,
+    FormProductComponent,
+    ListProductsAdminComponent
    
   ],
   imports: [

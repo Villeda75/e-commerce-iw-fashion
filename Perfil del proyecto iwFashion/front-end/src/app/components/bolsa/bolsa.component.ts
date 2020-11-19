@@ -8,6 +8,8 @@ import { AlertasService } from '../../alertas.service';
 
 import {CartPruebaService} from '../../services/cart-prueba.service';
 
+import { DatabaseService } from '../../services/database.service';
+
 @Component({
   selector: 'app-bolsa',
   templateUrl: './bolsa.component.html',
@@ -16,11 +18,15 @@ import {CartPruebaService} from '../../services/cart-prueba.service';
 export class BolsaComponent implements OnInit {
   public Islogged: boolean;
 
+
    public items: Array<any>
   public totalPrice:number = 0;
   public totalQuantity:number = 0;
+  usuarioLoggeado:any={};
 
-  constructor(private _location: Location, private dialog: MatDialog, private autenticacion: AuthService,private alerta: AlertasService,private _cartService:CartPruebaService) { }
+  constructor(private _location: Location, private dialog: MatDialog, private autenticacion: AuthService,private alerta: AlertasService,private _cartService:CartPruebaService, private database: DatabaseService) { 
+    this.usuarioLoggeado = JSON.parse(localStorage.getItem('user'));
+  }
 
   ngOnInit(): void {
     
@@ -56,7 +62,22 @@ export class BolsaComponent implements OnInit {
     this.VerificarLoggin();
 
     if (this.Islogged == true) {
-      this.alerta.showSuccessAlert('¡Pronto agregaremos esta funcionalidad!');
+      
+      const itemsCart=this.items.map(item=>
+        {
+        return {"id":item.id_product,"cant":item.quantity}
+        });
+       
+      const Shopping={"items":itemsCart,"userEmail":this.usuarioLoggeado.email,"total":this.totalPrice}
+      console.log(Shopping);
+      this.database.FinishShopping(Shopping).subscribe(res=>
+        {
+          if (res['resultado'] == 'success') {
+            //alert(res['mensaje']);
+            this.alerta.showSuccessAlert(res['mensaje']);
+            this.ClearCart();
+          }
+        })
     }
     else {
       this.OpenLogin();

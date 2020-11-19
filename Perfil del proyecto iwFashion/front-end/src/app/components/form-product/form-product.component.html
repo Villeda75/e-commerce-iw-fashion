@@ -1,0 +1,194 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Primera Parte</ng-template>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm">
+        <mat-form-field>
+        <mat-label>Tipo de producto</mat-label>
+        <input matInput placeholder="Camisa Polo" formControlName="product_type" required>
+      </mat-form-field>
+      
+    </div>
+
+    <div class="col-sm">
+     <mat-form-field class="example-full-width">
+    <mat-label>Descripcion</mat-label>
+    <textarea matInput formControlName="description" placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field>
+      
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field class="example-full-width">
+    <mat-label>Precio Normal</mat-label>
+    <span matPrefix>$ &nbsp;</span>
+    <input type="number" matInput placeholder="10.00" formControlName="price">
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+      
+    </div>
+
+  </div>
+
+
+  <!--segunda fila-->
+
+  <div class="row">
+    <div class="col-sm">
+     
+        <mat-form-field class="example-full-width">
+    <mat-label>Precio Descuento</mat-label>
+    <span matPrefix>$ &nbsp;</span>
+    <input type="number" matInput placeholder="7.99" formControlName="discount_price">
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+      
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+  <mat-label>Color</mat-label>
+  <mat-select [(value)]="idColor">
+    <mat-option *ngFor="let color of colores" [value]="color.id_color">
+      {{color.color}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+      
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field>
+        <mat-label>Slug</mat-label>
+        <input matInput placeholder="Camisa casual tipo polo" formControlName="slug" required>
+      </mat-form-field>
+      
+    </div>
+
+  </div>
+
+        <div>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+
+</div> 
+</form>
+</mat-step>
+ <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Segunda Parte</ng-template>
+        
+<div class="container">
+<br>
+<br>
+  <div class="row">
+    <div class="col-sm">
+        <mat-form-field>
+        <mat-label>Stock</mat-label>
+        <input type="number" matInput placeholder="100" formControlName="stock" required>
+      </mat-form-field>
+      
+    </div>
+<!---->
+    <div class="col-sm">
+          <mat-checkbox class="example-margin" color="primary"[(ngModel)]="isVisible" [ngModelOptions]="{standalone: true}">Visible</mat-checkbox>
+    
+      
+    </div>
+
+   <div class="col-sm">
+      <mat-form-field appearance="fill">
+  <mat-label>Sub Categoria</mat-label>
+  <mat-select [(value)]="idSubCategorie">
+    <mat-option *ngFor="let subcategorie of subcategories" [value]="subcategorie.id_sub_category">
+      {{subcategorie.sub_category}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+      
+    </div>
+  </div>
+
+<br>
+<br>
+<br>
+  <!--segunda fila-->
+
+  <div class="row">
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+  <mat-label>Tamaños</mat-label>
+  <mat-select [(value)]="idSize">
+    <mat-option *ngFor="let size of sizes" [value]="size.id_size">
+      {{size.size}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+      
+    </div>
+
+ 
+      <div class="col-sm">
+      <mat-form-field appearance="fill">
+  <mat-label>Genero</mat-label>
+  <mat-select [(value)]="idGender">
+    <mat-option *ngFor="let gender of genders" [value]="gender.id_gender">
+      {{gender.gender}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+  <mat-label>Marca</mat-label>
+  <mat-select [(value)]="idBrand">
+    <mat-option *ngFor="let brand of brands" [value]="brand.id_brand">
+      {{brand.brand}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+    </div>
+
+  </div>
+   <div>
+         <div>
+        <button mat-button matStepperPrevious>Regresar</button>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+      </div>
+      <br>
+<br>
+<br>
+</div> 
+
+
+     
+    </form>
+  </mat-step>
+
+  <!--Tercera pestaña-->
+  <mat-step>
+    <ng-template matStepLabel>Tercera Parte</ng-template>
+    <div class="container">
+
+     <div class="col-6" >
+              <image-upload buttonCaption="Seleccionar imagenes" dropBoxMessage="Elija o arrastre una imagen aquí"
+              clearButtonCaption="Borrar imagen" (uploadFinished)="subirImagen($event)" (removed)="onRemoved($event)"
+              class="customClass"></image-upload>
+              <!--Alerta de error-->
+            </div>
+
+
+
+    <div>
+      <button mat-button matStepperPrevious>Regresar</button>
+      <button mat-button (click)="EnviarProduct();stepper.reset()">Enviar</button>
+    </div>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

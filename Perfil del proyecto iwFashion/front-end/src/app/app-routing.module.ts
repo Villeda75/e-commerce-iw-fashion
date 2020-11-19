@@ -7,6 +7,8 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { DesignCustomViewComponent } from './components/design-custom-view/design-custom-view.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
 import { BolsaComponent } from './components/bolsa/bolsa.component';
+import { FormProductComponent } from './components/form-product/form-product.component';
+import { ListProductsAdminComponent } from './components/list-products-admin/list-products-admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -29,8 +31,10 @@ const routes: Routes = [
   { path: 'administrar', component: AdministradorComponent },
   { path: 'contactar', component: ContactFormComponent }, 
   { path: 'diseños', component: DesignCustomViewComponent },
-  { path: 'bolsa', component: BolsaComponent }
-
+  { path: 'bolsa', component: BolsaComponent },
+  { path: 'addProduct/:id', component: FormProductComponent },
+  { path: 'addProduct', component: FormProductComponent },
+   { path: 'ListProduct', component: ListProductsAdminComponent }
 ];
 
 @NgModule({
