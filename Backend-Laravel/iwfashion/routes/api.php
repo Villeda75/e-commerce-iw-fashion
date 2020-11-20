@@ -14,7 +14,7 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\ColorController;
-
+use App\Http\Controllers\OrderItemsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -77,6 +77,18 @@ Route::get('/sizes', [SizeController::class, 'Sizes']); //All
 
 //ColorController
 Route::get('/colors', [ColorController::class, 'Colors']); //All
+
+//ProductoMasVendido
+Route::get('/TopSelling', [OrderItemsController::class, 'ProductoMasVendido']);
+
+//ColorController
+Route::get('/LeastSelling', [OrderItemsController::class, 'ProductoMenosVendido']); 
+
+//ColorController
+Route::get('/TopSellingBrands', [OrderItemsController::class, 'MarcaMasVendida']);
+
+//ColorController
+Route::get('/LeastSellingBrands', [OrderItemsController::class, 'MarcaMenosVendida']); 
 
 //Rutas protegidas, tiene que estar logeado para acceder mediante el token 
 Route::middleware('auth:api')->group(function() {
