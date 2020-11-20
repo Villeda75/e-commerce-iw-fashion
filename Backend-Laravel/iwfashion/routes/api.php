@@ -10,6 +10,10 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CustomDesignController;
+use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\GenderController;
+use App\Http\Controllers\SizeController;
+use App\Http\Controllers\ColorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +65,18 @@ Route::post('/brands-delete/{id}', [BrandController::class, 'destroy']); //Delet
 
 //CustomDesign
 Route::get('/customDesigns', [CustomDesignController::class, 'Designs']); //All
+
+//Genders
+Route::get('/genders', [GenderController::class, 'Genders']); //All
+
+//SubCategory
+Route::get('/subCategories', [SubCategoryController::class, 'SubCategory']); //All
+
+//Sizes
+Route::get('/sizes', [SizeController::class, 'Sizes']); //All
+
+//ColorController
+Route::get('/colors', [ColorController::class, 'Colors']); //All
 
 //Rutas protegidas, tiene que estar logeado para acceder mediante el token 
 Route::middleware('auth:api')->group(function() {
