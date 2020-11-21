@@ -47,6 +47,7 @@
               <a class="dropdown-item" [routerLink]="'hombres/ropa'">Ropa</a>
               <a class="dropdown-item" [routerLink]="'hombres/zapatos'">Zapatos</a>
               <a class="dropdown-item" [routerLink]="'hombres/accesorios'">Accesorios</a>
+              <a class="dropdown-item" [routerLink]="'hombres'">Todo</a>
             </div>
           </li>
           
@@ -57,6 +58,7 @@
               <a class="dropdown-item" [routerLink]="'mujeres/ropa'">Ropa</a>
               <a class="dropdown-item" [routerLink]="'mujeres/zapatos'">Zapatos</a>
               <a class="dropdown-item" [routerLink]="'mujeres/accesorios'">Accesorios</a>
+              <a class="dropdown-item" [routerLink]="'mujeres'">Todo</a>
             </div>
           </li>
 
@@ -67,6 +69,7 @@
               <a class="dropdown-item" [routerLink]="'niños/ropa'">Ropa</a>
               <a class="dropdown-item" [routerLink]="'niños/zapatos'">Zapatos</a>
               <a class="dropdown-item" [routerLink]="'niños/accesorios'">Accesorios</a>
+              <a class="dropdown-item" [routerLink]="'niños'">Todo</a>
             </div>
           </li>
           <li class="nav-item">
@@ -76,28 +79,34 @@
             <a class="nav-link waves-effect"  [routerLink]="'contactar'">Contáctanos</a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item mr-5">
             <a class="nav-link waves-effect"  *ngIf="IsAdmin" [routerLink]="'administrar'">Administrar</a>
           </li>
 
-           <li class="nav-item">
+           <!-- 
+          <li class="nav-item">
             <a class="nav-link waves-effect" [routerLink]="'addProduct'">Add Product</a>
           </li>
-   <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link waves-effect" [routerLink]="'ListProduct'">List Product</a>
-          </li>
+          </li> 
+          -->
+          </ul>
+
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item">
+              <a class="nav-link waves-effect" [routerLink]="'bolsa'"><span class="material-icons">local_mall</span></a>
+            </li>
+  
+            <li class="nav-item" *ngIf="!Islogged">
+              <a class="nav-link waves-effect" (click)="OpenLogin()"><span class="material-icons">account_circle</span></a>
+            </li>
           </ul>
           
           
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a class="nav-link waves-effect" [routerLink]="'bolsa'"><span class="material-icons">local_mall</span></a>
-          </li> 
-          <li class="nav-item" *ngIf="!Islogged">
-            <a class="nav-link waves-effect" (click)="OpenLogin()"><span class="material-icons">account_circle</span></a>
-          </li>
-          <li class="nav-item" style="margin-top: -5px;">
+          <li class="nav-item ml-3" style="margin-top: -5px;">
             <mat-card *ngIf="Islogged" matBadge="{{simboloToolTip}}" matBadgeColor="warn"
               matTooltip="{{MensajeToolTip}}" matTooltipClass="example-tooltip-red" matTooltipPosition="above">
               <mat-card-header>
