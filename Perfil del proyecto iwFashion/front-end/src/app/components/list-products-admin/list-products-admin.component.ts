@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
 import {DatabaseService} from '../../services/database.service';
+import { AlertasService } from '../../alertas.service';
 
 @Component({
   selector: 'app-list-products-admin',
@@ -24,7 +25,8 @@ export class ListProductsAdminComponent implements OnInit {
   constructor(
     private database:DatabaseService,
     private RouterActual:ActivatedRoute,
-    private router:Router) { 
+    private router:Router,
+    private alerta: AlertasService) { 
      
     }
 
@@ -50,7 +52,7 @@ export class ListProductsAdminComponent implements OnInit {
       {
         this.productos=res.results;
         this.productos.sort(function(a, b){return a.id_product - b.id_product})
-        console.log(this.productos);
+       
         this.productosInitial=this.productos;
         this.total=this.productos.length;
       }
@@ -104,15 +106,35 @@ _subcategorie=this.subCategorie;
 
   }
 
-  EliminarProducto(id:number)
+  OcultarMostrarProducto(id:number)
   {
-  alert('Se eliminó: '+id);
+this.database.ShowOrHideProduct(id).subscribe(res=>
+  {
+    if (res['resultado'] == 'success') {
+      //alert(res['mensaje']);
+      this.alerta.showSuccessAlert(res['mensaje']);
+      this.ShowAllProducts();
+     
+    }
+  }
+  )
   }
   ModificarProducto(id:number)
   {
-  alert('Se modificó: '+id);
+  
   this.router.navigate(['/addProduct/' + id]);
   }
- 
 
+  VisibilidadProducto(visible:number):boolean
+  {
+  if(visible==1)
+  {
+  return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+ 
 }

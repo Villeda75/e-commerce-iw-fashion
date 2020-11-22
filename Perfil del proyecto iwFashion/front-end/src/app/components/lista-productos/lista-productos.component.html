@@ -5,6 +5,40 @@
 <section id="portfolio" name="portfolio" class="portfolio section-bg">
   <div class="container" data-aos="fade-up" data-aos-delay="100">
 
+<!--Filtro Marca-->
+ <div class="col-sm">
+    <mat-form-field appearance="fill">
+  <mat-label>Marca</mat-label>
+  <mat-select [(value)]="brand">
+   <mat-option [value]="">No buscar</mat-option>
+    <mat-option *ngFor="let brand of brands" [value]="brand.brand">
+      {{brand.brand}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+    </div>
+
+<!--FIN-->
+
+<!--Filtro Tamaño-->
+ <div class="col-sm">
+    <mat-form-field appearance="fill">
+  <mat-label>Tamaño</mat-label>
+  <mat-select [(value)]="size">
+   <mat-option [value]="">No buscar</mat-option>
+    <mat-option *ngFor="let size of sizes" [value]="size.size">
+      {{size.size}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+    </div>
+
+<!--FIN-->
+ <div class="col-sm">
+<button (click)="BuscarProducts()" class="btn btn-dark btn-large">Buscar</button>
+<button (click)=" MostrarTodo()" class="btn btn-dark btn-large">Mostrar todo</button>
+ </div>
+
 
     <div class="section-title text-center" style="color:black">
       <h2 style="color:black">La mejor calidad, la encuentras en IW-Fashion</h2>

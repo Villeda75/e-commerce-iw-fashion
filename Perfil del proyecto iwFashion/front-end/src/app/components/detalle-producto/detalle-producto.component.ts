@@ -68,8 +68,7 @@ export class DetalleProductoComponent implements OnInit {
   }
  //Metodo Para agregar al carrito
   agregarBolsa(product:any){
-    this.alerta.showSuccessAlert('¡Pronto agregaremos esta funcionalidad!');
-  
+   
     let newProduct=Object.assign(product,{"quantity":1});
     console.log(newProduct);
     this._cartService.changeCart(newProduct);

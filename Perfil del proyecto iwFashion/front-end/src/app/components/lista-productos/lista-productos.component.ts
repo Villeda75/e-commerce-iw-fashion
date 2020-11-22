@@ -12,11 +12,17 @@ import { AlertasService } from '../../alertas.service';
 
 export class ListaProductosComponent implements OnInit {
   productos:any[]=[];
+  Initialproductos:any[]=[];
   urlPartes:string[]=[];
   selected:boolean;
   selected1:boolean;
   page: number = 1;
   total:number;
+  brand:string='';
+  size:string='';
+
+  brands: any[] = [];
+  sizes:any[]=[];
   public Islogged: boolean;
 
   constructor(
@@ -30,20 +36,23 @@ export class ListaProductosComponent implements OnInit {
     this.RouterActual.snapshot.url.map(res=>{
       this.urlPartes.push(res.path);
     });
-this.RedireccionarURL();
-
+    
+    this.RedireccionarURL();
 
    }
 
    ngOnInit(): void {
-
+    
     this.VerificarLoggin();
-   
-    if(this.productos.length==0)
+    this.database.GetBrands().subscribe((res:any)=>
     {
-    //alert('Ops por el momento no se encuentran resultados');
-    this.alerta.showErrorAlert('No existen productos registrados');
-    }
+      this.brands=res.results;
+    });
+    this.database.GetSizes().subscribe((res:any)=>
+      {
+        this.sizes=res.results;
+      });
+    
     
   }
 
@@ -81,6 +90,7 @@ this.RedireccionarURL();
     {
       console.log(res);
       this.productos=res.results;
+      this.Initialproductos=this.productos;
       this.total=this.productos.length;
     });
   }
@@ -89,5 +99,59 @@ this.RedireccionarURL();
   {
     this.router.navigate(['/productos/' + id]);
   }
+
+
+  
+ BuscarProducts()
+ {
+
+let _brand='';
+if(this.brand)
+{
+_brand=this.brand;
+}
+
+ 
+let _size='';
+if(this.size)
+{
+ _size=this.size;
+}
+
+
+   //marca y tamaño
+  
+ if(_brand.length>0 && _size.length>0)
+ {
+  
+      this.productos=this.Initialproductos.filter(item =>  item.brand==_brand && item.size==_size);
+     this.total=this.productos.length;
+ }
+ //solo marca
+ else if(_brand.length>0 && _size.length==0)
+ {
+
+   this.productos=this.Initialproductos.filter(item =>  item.brand==_brand );
+   this.total=this.productos.length;
+ }
+ //solo tamaño
+ else if(_brand.length==0 && _size.length>0)
+ {
+ 
+   this.productos=this.Initialproductos.filter(item =>item.size==_size);
+     this.total=this.productos.length;
+ }
+ else
+ {
+ 
+ }
+
+ }
+
+ MostrarTodo()
+ {
+   this.productos=this.Initialproductos;
+    this.total=this.productos.length;
+ }
 
 }

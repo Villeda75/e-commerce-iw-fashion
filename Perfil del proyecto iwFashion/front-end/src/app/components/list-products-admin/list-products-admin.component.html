@@ -56,7 +56,7 @@
       <th scope="col">Precio descuento</th>
       <th scope="col">Imagen</th>
       <th scope="col">Editar</th>
-      <th scope="col">Eliminar</th>
+      <th scope="col">Visibilidad</th>
     </tr>
   </thead>
   <tbody>
@@ -76,9 +76,9 @@
                     </button>
                 </td>
                 <td>
-                    <button (click)="EliminarProducto(producto.id_product)" mat-fab color="warn"
+                    <button (click)="OcultarMostrarProducto(producto.id_product)" mat-fab color="accent"
                         aria-label="Example icon button with a delete icon">
-                        <mat-icon>delete</mat-icon>
+                        <mat-icon> {{ VisibilidadProducto(producto.visible) ? 'visibility' : 'visibility_off'}} </mat-icon>
                     </button>
 
                 </td>

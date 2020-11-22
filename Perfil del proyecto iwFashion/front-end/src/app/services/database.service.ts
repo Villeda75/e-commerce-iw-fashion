@@ -15,6 +15,8 @@ export class DatabaseService {
 
   urlPurchase=" https://veterinarialissette-vc170991-aa170621.000webhostapp.com/Compras/comprar.php";
 
+  urlHideOrShowProduct="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/Products/ProductVisible.php";
+
   constructor(private http: HttpClient) { }
 
   GetAllProductos(genero?: string, categoria?: string) {
@@ -120,6 +122,11 @@ GetAllProductsWithNoCategorie()
 FinishShopping(listItems:any)
 {
   return this.http.post(`${this.urlPurchase}`, JSON.stringify(listItems));
+}
+
+ShowOrHideProduct(id:number)
+{
+  return this.http.post(`${this.urlHideOrShowProduct}`, JSON.stringify({"id_product":id}));
 }
 
 }

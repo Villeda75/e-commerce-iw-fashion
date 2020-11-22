@@ -26,7 +26,7 @@
       <mat-form-field class="example-full-width">
     <mat-label>Precio Normal</mat-label>
     <span matPrefix>$ &nbsp;</span>
-    <input type="number" matInput placeholder="10.00" formControlName="price">
+    <input type="number" min="1" matInput placeholder="10.00" formControlName="price">
     <mat-icon matSuffix>mode_edit</mat-icon>
   </mat-form-field>
       
@@ -43,7 +43,7 @@
         <mat-form-field class="example-full-width">
     <mat-label>Precio Descuento</mat-label>
     <span matPrefix>$ &nbsp;</span>
-    <input type="number" matInput placeholder="7.99" formControlName="discount_price">
+    <input type="number" min="1" matInput placeholder="7.99" formControlName="discount_price">
     <mat-icon matSuffix>mode_edit</mat-icon>
   </mat-form-field>
       
@@ -89,7 +89,7 @@
     <div class="col-sm">
         <mat-form-field>
         <mat-label>Stock</mat-label>
-        <input type="number" matInput placeholder="100" formControlName="stock" required>
+        <input type="number" min="1" matInput placeholder="100" formControlName="stock" required>
       </mat-form-field>
       
     </div>
@@ -182,12 +182,16 @@
               class="customClass"></image-upload>
               <!--Alerta de error-->
             </div>
-
+             <div *ngIf="isLoadedImg==false" class="col-6" >
+             <h1>Imagen Actual</h1>
+            <img src="{{productoActual.url_img}}" style="height: 120px; width: auto;">
+     </div>
 
 
     <div>
       <button mat-button matStepperPrevious>Regresar</button>
-      <button mat-button (click)="EnviarProduct();stepper.reset()">Enviar</button>
+      <button *ngIf="!Update" mat-button (click)="EnviarProduct();stepper.reset()">Agregar</button>
+        <button *ngIf="Update" mat-button (click)="ModificarProduct();stepper.reset()">Modificar</button>
     </div>
     </div>
   </mat-step>

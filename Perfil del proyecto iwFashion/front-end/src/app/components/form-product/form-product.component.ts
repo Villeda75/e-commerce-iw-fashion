@@ -17,6 +17,8 @@ import { ActivatedRoute } from '@angular/router';
 
 })
 export class FormProductComponent implements OnInit {
+
+  Update:boolean=false;
   productoActual:any={};
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -28,8 +30,9 @@ export class FormProductComponent implements OnInit {
   genders: any[] = [];
   brands: any[] = [];
 
+  isLoadedImg:boolean=false;
     idColor:number=0;
-    isVisible:boolean=false;
+    isVisible:boolean;
     idSubCategorie:number=0;
     idSize:number=0;
     idGender:number=0;
@@ -44,52 +47,75 @@ export class FormProductComponent implements OnInit {
 
       this.database.GetProductById(params.id).subscribe((res:any)=>
           {
+            
             this.productoActual=res.results[0];
             console.log(this.productoActual);
+           this.Update=true;
+            
+  if(this.productoActual.visible==1)
+  {
+   this.isVisible=true;
+  
+  }
+  else
+  {
+    this.isVisible=false;
+   
+  }
+
             this.LoadData(params.id);
           });
       }
       else {
         //alert('no encontrado');
-        this.alerta.showErrorAlert('Producto no encontrado');
+        
       }}
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
       product_type: ['', Validators.required],
       description: ['', Validators.required],
-      price: [0, Validators.required],
+      price: [0, [Validators.required]],
       discount_price:[0, Validators.required],
       /*id_color:['', Validators.required],*/
-      slug:['', Validators.required],
+      slug:['', Validators.required]
 
     });
     this.secondFormGroup = this._formBuilder.group({
-      stock: ['', Validators.required],
+      stock: ['', [Validators.required]],
   
     });
     this.database.GetBrands().subscribe((res:any)=>
-      {
-        this.brands=res.results;
-      });
+            {
+              this.brands=res.results;
+              this.idBrand=this.brands.findIndex(x=>x.brand==this.productoActual.brand);
+              this.idBrand=this.idBrand+1;
+              
+            });
       this.database.GetSizes().subscribe((res:any)=>
       {
         this.sizes=res.results;
+        this.idSize=this.sizes.findIndex(x=>x.size===this.productoActual.size);
+        this.idSize=this.idSize+1;
       });
       this.database.GetGenders().subscribe((res:any)=>
       {
         this.genders=res.results;
+        this.idGender=this.genders.findIndex(x=>x.gender===this.productoActual.gender);
+        this.idGender=this.idGender+1;
       });
       this.database.GetSubCategories().subscribe((res:any)=>
       {
         this.subcategories=res.results;
+        this.idSubCategorie=this.subcategories.findIndex(x=>x.sub_category===this.productoActual.sub_category);
+        this.idSubCategorie=this.idSubCategorie+1;
       });
       this.database.GetColors().subscribe((res:any)=>
       {
         this.colores=res.results;
       });
 
-      this.SetInitialValuesSelect();
+      
   }
 
 LoadData(id:number)
@@ -101,7 +127,7 @@ LoadData(id:number)
     //
     this.firstFormGroup.controls['description'].setValue(this.productoActual.description);
     //
-    this.firstFormGroup.controls['price'].setValue(this.productoActual.price);
+    this.firstFormGroup.controls['price'].setValue(this.productoActual.sales_price);
 
     this.firstFormGroup.controls['discount_price'].setValue(this.productoActual.discount_price);
 
@@ -120,28 +146,6 @@ LoadData(id:number)
 
 }
 
-SetInitialValuesSelect()
-{
-  
-
-  this.idBrand=this.brands.findIndex(x=>x.brand==this.productoActual.brand);
-
- 
- this.idSubCategorie=this.subcategories.findIndex(x=>x.sub_category===this.productoActual.sub_category);
-
-  this.idSize=this.sizes.findIndex(x=>x.size===this.productoActual.size);
-
-  this.idGender=this.genders.findIndex(x=>x.gender===this.productoActual.gender);
-  if(this.productoActual.visible==1)
-  {
-   this.isVisible==true;
-  }
-  else
-  {
-    this.isVisible==false;
-  }
-
-}
 
   subirImagen(imagen: FileHolder) {
     //event es un elemento de tipo fileholder que contiene la informacion de la imagen
@@ -151,7 +155,7 @@ SetInitialValuesSelect()
     this.designActual.type = imagen.file.type;
     var array: string[] = this.designActual.base64textString.split(',');
     this.designActual.base64textString = array[1];
-    console.log(this.designActual.base64textString);
+    this.isLoadedImg=true;
   }
 
   
@@ -162,6 +166,7 @@ SetInitialValuesSelect()
     this.designActual.base64textString = '';
     this.designActual.nombreArchivo = '';
     this.designActual.type = '';
+    this.isLoadedImg=false;
   }
 
   async EnviarProduct()
@@ -204,6 +209,54 @@ let thirdPart={"id_color":this.idColor,"visible":isVisible, "id_sub_category":th
       this.alerta.showErrorAlert('Ocurrió un error');
     }
   });
+  }
+
+ ModificarProduct()
+  {
+ 
+ delete this.designActual.description;
+ delete this.designActual.designName;
+ delete this.designActual.id_customDesign;
+ delete this.designActual.type;
+ let isVisible:number;
+if(this.isVisible)
+{
+isVisible=1;
+}
+else
+{
+  isVisible=2;
+}
+
+let thirdPart={"id_color":this.idColor,"visible":isVisible, "id_sub_category":this.idSubCategorie,"id_size":this.idSize,"id_gender":this.idGender,"id_brand":this.idBrand};
+
+ let Producto=Object.assign(this.firstFormGroup.value,this.secondFormGroup.value);
+
+ 
+ let Producto2=Object.assign(Producto,thirdPart);
+ 
+ let FinalProducto=Object.assign(Producto2,this.designActual);
+ this.alerta.showSuccessAlert('Producto Modificado!');
+ console.log(FinalProducto);
+ /*await this.database.InsertProduct(FinalProducto).subscribe(res=>
+  {
+    if (res['resultado'] == 'success') {
+      //alert(res['mensaje']);
+      location.reload();
+     
+      this.alerta.showSuccessAlert(res['mensaje']);
+      
+    }
+    else {
+      this.alerta.showErrorAlert('Ocurrió un error');
+    }
+  });
+  */
+  }
+
+  VerificarValor(nombre:string)
+  {
+    this.alerta.showErrorAlert('Ocurrió un error');
   }
 
 }
