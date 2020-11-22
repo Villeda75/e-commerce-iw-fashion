@@ -49,7 +49,7 @@
 
       <div *ngFor="let item of productos | paginate: {  itemsPerPage: 12,currentPage: page,totalItems: total}"
         class="col-lg-4 col-md-6 portfolio-item filter-app">
-        <mat-card class="example-card">
+        <mat-card class="example-card h-100">
           <mat-card-header>
             <mat-card-title>
               <h2>{{item.product_type}}</h2>
