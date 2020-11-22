@@ -29,6 +29,26 @@ export class DatabaseService {
     return this.http.get(`${this.url_base}api/products/${id}`);
   }
 
+  //METODOS GET PARA REPORTES
+  //
+  GetTopSellingBrands() {
+    return this.http.get(this.url_base + 'api/TopSellingBrands');
+  }
+
+  //
+  GetLeastSellingBrands() {
+    return this.http.get(this.url_base + 'api/LeastSellingBrands');
+  }
+
+  //
+  GetTopSelling() {
+    return this.http.get(this.url_base + 'api/TopSelling');
+  }
+
+  //
+  GetLeastSelling() {
+    return this.http.get(this.url_base + 'api/LeastSelling');
+  }
 
   //CRUD Tabla Marcas
 

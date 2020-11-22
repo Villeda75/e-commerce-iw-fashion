@@ -1,22 +1,32 @@
 <br> <br> <br>
-<br> <br> <br>
-<br> <br> <br>
 
 <div class="container" id="administrador">
     <div class="container-fluid p-0">
         <div class="row m-0 p-0">
-            <div class="col-3 bg-dark p-0" style="border-radius: 15px; position: static; height: 470px;">
-                <div class="d-flex align-items-center flex-column text-white" style="font-size: 1em;">
-                    <img src="../../../assets/img/logo-admi.png" class="img-fluid w-50 my-4">
-                    <!-- Redirección a los Componentes que se mostrarán al dar click en sus respectivos links -->
-                    <a (click)="redireccionar('dashboard')" class="badge badge-dark py-2 px-2 my-2 text-center">Estadísticas</a>
-                    <a (click)="redireccionar('products')" class="badge badge-dark py-2 px-2 my-2 text-center">Productos</a>
-                    <a (click)="redireccionar('brands')" class="badge badge-dark py-2 px-2 my-3 text-center">Marcas</a>
-                    <a (click)="redireccionar('customDesigns')" class="badge badge-dark py-2 mt-3 text-center">Diseños <br> Personalizados</a>
-                </div>
-
+            <div class="col-1 p-0" style="border-radius: 15px; position: static; height: 150px;">
             </div>
-            <div class="col-9 my-3 px-5"> 
+            <div class="col-2 p-0 d-flex justify-content-center align-items-center" style="border-radius: 15px; position: static; height: 150px;">
+                <a (click)="redireccionar('products')" class="badge badge-light py-2 px-2 my-4 text-center" style="font-size: 16px;">Productos</a>
+            </div>
+            <div class="col-2 p-0 d-flex justify-content-center align-items-center" style="border-radius: 15px; position: static; height: 150px;">
+                <a (click)="redireccionar('brands')" class="badge badge-light py-2 px-2 my-4 text-center" style="font-size: 16px;">Marcas</a>
+            </div>
+            <div class="col-2 p-0 d-flex justify-content-center align-items-center" style="border-radius: 15px; position: static; height: 150px;">
+                <img src="../../../assets/img/logo.png" class="img-fluid w-75 h-100">
+            </div>
+            <div class="col-2 p-0 d-flex justify-content-center align-items-center" style="border-radius: 15px; position: static; height: 150px;">
+                <a (click)="redireccionar('customDesigns')" class="badge badge-light py-2 my-4 text-center" style="font-size: 16px;">Diseños <br> Personalizados</a>
+            </div>
+            <div class="col-2 p-0 d-flex justify-content-center align-items-center" style="border-radius: 15px; position: static; height: 150px;">
+                <a (click)="redireccionar('dashboard')" class="badge badge-light py-2 px-2 my-4 text-center" style="font-size: 16px;">Estadísticas</a>
+            </div>
+            <div class="col-1 p-0" style="border-radius: 15px; position: static; height: 150px;">
+            </div>
+        </div>
+                    <!-- Redirección a los Componentes que se mostrarán al dar click en sus respectivos links -->
+
+        <div class="row m-0 p-0">
+            <div class="col-12 my-3"> 
                 <!-- Componentes que se mostrarán al dar click en sus respectivos links -->
                 <div *ngIf="isSelected == 'dashboard'"><app-dashboard></app-dashboard></div>
                 <div *ngIf="isSelected == 'brands'"><app-marcas></app-marcas></div>
@@ -24,6 +34,7 @@
                 <div *ngIf="isSelected == 'products'"><app-products></app-products></div>
             </div>
         </div>
+        
     </div>
 
 </div>
