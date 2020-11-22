@@ -192,7 +192,7 @@ export class FormProductComponent implements OnInit {
 
       }
       else {
-        this.alerta.showErrorAlert('Ocurrió un error');
+        this.alerta.showErrorAlert(res['mensaje']);
       }
     });
   }
@@ -222,14 +222,12 @@ export class FormProductComponent implements OnInit {
 
     await this.database.EditProduct(FinalProducto).subscribe(res => {
       if (res['resultado'] == 'success') {
-        //corregir
-        location.reload();
-
+      
         this.alerta.showSuccessAlert(res['mensaje']);
 
       }
       else {
-        this.alerta.showErrorAlert('Ocurrió un error');
+        this.alerta.showErrorAlert(res['mensaje']);
       }
     });
 

@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-sm">
        <mat-form-field appearance="fill">
-  <mat-label>Sub Categoria</mat-label>
+  <mat-label>Sub Categoría</mat-label>
   <mat-select [(value)]="subCategorie">
    <mat-option [value]="">No buscar</mat-option>
     <mat-option *ngFor="let subcategorie of subcategories" [value]="subcategorie.sub_category">
@@ -15,7 +15,7 @@
     </div>
     <div class="col-sm">
          <mat-form-field appearance="fill">
-  <mat-label>Genero</mat-label>
+  <mat-label>Género</mat-label>
   <mat-select [(value)]="gender">
    <mat-option [value]="">No buscar</mat-option>
     <mat-option *ngFor="let gender of genders" [value]="gender.gender">
@@ -37,10 +37,10 @@
 </mat-form-field>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
 <div class="container">
  <button class="btn btn-dark"(click)="BuscarProducts()" >Buscar</button>
- <button class="btn btn-primary" (click)="ShowAllProducts()">Mostrar todo</button>
+ <button class="ml-3 btn btn-primary" (click)="ShowAllProducts()">Mostrar todo</button>
  </div>
 </div>
 <div class="row">
@@ -48,8 +48,8 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">slug</th>
-      <th scope="col">stock</th>
+      <th scope="col">Slug</th>
+      <th scope="col">Cantidad</th>
       <th scope="col">Tamaño</th>
       <th scope="col">Marca</th>
       <th scope="col">Precio normal</th>
