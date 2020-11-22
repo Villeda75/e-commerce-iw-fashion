@@ -11,12 +11,6 @@ export class DatabaseService {
 
   url_base = 'https://veterinarialissette-vc170991-aa170621.000webhostapp.com/'; //URL base del servidor
 
-  urlProduct = "https://veterinarialissette-vc170991-aa170621.000webhostapp.com/Products/newProduct.php";
-
-  urlPurchase=" https://veterinarialissette-vc170991-aa170621.000webhostapp.com/Compras/comprar.php";
-
-  urlHideOrShowProduct="https://veterinarialissette-vc170991-aa170621.000webhostapp.com/Products/ProductVisible.php";
-
   constructor(private http: HttpClient) { }
 
   GetAllProductos(genero?: string, categoria?: string) {
@@ -96,12 +90,12 @@ export class DatabaseService {
   }
 
   //
-   GetGenders() {
+  GetGenders() {
     return this.http.get(this.url_base + 'api/genders');
   }
 
   //
-   GetSubCategories() {
+  GetSubCategories() {
     return this.http.get(this.url_base + 'api/subCategories');
   }
   GetColors() {
@@ -109,24 +103,24 @@ export class DatabaseService {
   }
 
 
- InsertProduct(_product:any)
-  {
-   return this.http.post(`${this.urlProduct}`, JSON.stringify(_product));
+  InsertProduct(_product: any) {
+    return this.http.post(`${this.url_base}Products/newProduct.php`, JSON.stringify(_product));
   }
 
-GetAllProductsWithNoCategorie()
-{
-  return this.http.get(this.url_base + 'api/products');
-}
+  EditProduct(_product: any) {
+    return this.http.post(`${this.url_base}Products/editarproducto.php`, JSON.stringify(_product));
+  }
 
-FinishShopping(listItems:any)
-{
-  return this.http.post(`${this.urlPurchase}`, JSON.stringify(listItems));
-}
+  GetAllProductsWithNoCategorie() {
+    return this.http.get(this.url_base + 'api/products');
+  }
 
-ShowOrHideProduct(id:number)
-{
-  return this.http.post(`${this.urlHideOrShowProduct}`, JSON.stringify({"id_product":id}));
-}
+  FinishShopping(listItems: any) {
+    return this.http.post(`${this.url_base}Compras/comprar.php`, JSON.stringify(listItems));
+  }
+
+  ShowOrHideProduct(id: number) {
+    return this.http.post(`${this.url_base}Products/ProductVisible.php`, JSON.stringify({ "id_product": id }));
+  }
 
 }
