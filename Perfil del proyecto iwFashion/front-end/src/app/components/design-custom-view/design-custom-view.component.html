@@ -3,46 +3,46 @@
 <div *ngIf="Islogged">
 <br> <br> <br> <br>
 </div> -->
-   
-   <header class="w-100 bg-dark m-0 p-0"
-        style="height: 290px; background-image: url(https://images.pexels.com/photos/581339/pexels-photo-581339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
-        <div class="d-flex align-items-center justify-content-center h-100 m-0 p-0">
-            <h2 class="text-center text-white py-3 px-2 m-0" style="background-color: black;">Diseños Personalizados
-            </h2>
-        </div>
-    </header>
-    <section class="page-section bg-white py-3 pb-2 justify-content-center" id="contact">
-        <div class="container w-100">
-            <p class="text-center pb-3"><b>"La vida es demasiado corta para llevar ropa aburrida"</b></p>
-        </div>
-        <div class="container">
-            <div class="row row-cols-2 ml-2">
 
-                <div *ngFor="let item of arrayCustomDesigns;let indice=index " class='col-xs-6 col-md-3 col-lg-3 justify-content-center  text-center p-2'>
-                    <!-- el valor de "data-target" corresponde al id del modal que se mandara a llamar -->
-                    <a href="/" data-toggle='modal' data-target="#exampleModal1">
-                        <!-- data-target='#exampleModal1' -->
-                        <img (click)="openDialog(item)" src="{{item.base64textString}}"
-                            alt='foto' class='float-left img-fluid d-block border border rounded w-75 shadow'>
-                    </a>
-                    <div class="form-group text-center">
-            <button (click)="OpenDialogRequestSelectedDesign(item.id_customDesign,item.base64textString)" class="btn btn-dark btn-lg mt-3">Solicitar Este Diseño</button>
-        </div>
-                </div>
+<header class="w-100 bg-dark m-0 p-0"
+    style="height: 290px; background-image: url(https://images.pexels.com/photos/581339/pexels-photo-581339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
+    <div class="d-flex align-items-center justify-content-center h-100 m-0 p-0">
+        <h2 class="text-center text-white py-3 px-2 m-0" style="background-color: black;">Diseños Personalizados
+        </h2>
+    </div>
+</header>
+<section class="page-section bg-white py-3 pb-2 justify-content-center" id="contact">
+    <div class="container w-100">
+        <p class="text-center pb-3"><b>"La vida es demasiado corta para llevar ropa aburrida"</b></p>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center ml-2">
 
+            <div *ngFor="let item of arrayCustomDesigns;let indice=index"
+                class='col-xs-6 col-md-3 col-lg-3 text-center p-2'>
+                <!-- el valor de "data-target" corresponde al id del modal que se mandara a llamar -->
+                <a href="/" data-toggle='modal' data-target="#exampleModal1">
+                    <!-- data-target='#exampleModal1' -->
+                    <img (click)="openDialog(item)" src="{{item.base64textString}}" alt='foto'
+                        class='mx-auto img-fluid border border rounded shadow' style="height: 200px; width: auto;">
+                </a>
+                <br>
+                <button (click)="OpenDialogRequestSelectedDesign(item.id_customDesign,item.base64textString)"
+                        class="btn btn-dark btn-md my-3">Solicitar</button>
             </div>
-        </div>
-    </section>
-    <section class="w-100 py-5" style="background-color: #edf6f9;">
-        <div class="container">
-          <p class="text-center my-3 text-dark" style="font-size: 20px;">Nos sentimos solos cuando no nos
-            contactas. ¡Contáctanos hoy!</p>
-        </div>
-        <div class="form-group text-center">
-            <a [routerLink]="'/contactar'" class="btn btn-dark btn-lg mt-3">Contáctanos</a>
-        </div>
-        <div class="form-group text-center">
-            <button (click)=" OpenDialogRequest()" class="btn btn-dark btn-lg mt-3">Solicitar Un Diseño Nuevo</button>
-        </div>
-      </section>
 
+        </div>
+    </div>
+</section>
+<section class="w-100 py-5" style="background-color: #edf6f9;">
+    <div class="container">
+        <p class="text-center my-3 text-dark" style="font-size: 20px;">Nos sentimos solos cuando no nos
+            contactas. ¡Contáctanos hoy!</p>
+    </div>
+    <div class="form-group text-center">
+        <a [routerLink]="'/contactar'" class="btn btn-dark btn-lg mt-3">Contáctanos</a>
+    </div>
+    <div class="form-group text-center">
+        <button (click)=" OpenDialogRequest()" class="btn btn-dark btn-lg mt-3">Solicitar Un Diseño Nuevo</button>
+    </div>
+</section>

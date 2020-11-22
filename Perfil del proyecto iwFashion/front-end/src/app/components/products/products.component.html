@@ -1,1 +1,30 @@
-<h3 class="title text-center" >PRODUCTOS</h3> <hr>
+<h3 class="title text-center">PRODUCTOS</h3>
+<hr>
+
+<div class="container-fluid p-0 text-center text-white">
+    <div class="row m-0 p-0">
+        <div class="col-sm p-0 d-flex justify-content-center align-items-center"
+            style="border-radius: 15px; position: static; height: 150px;">
+            <a (click)="redireccionar('nuevo-producto')" class="btn btn-md btn-dark py-2 px-2 my-4 text-center"
+                style="font-size: 16px;">Nuevo Producto</a>
+        </div>
+        <div class="col-sm p-0 d-flex justify-content-center align-items-center"
+            style="border-radius: 15px; position: static; height: 150px;">
+            <a (click)="redireccionar('gestionar-products')" class="btn btn-md btn-dark py-2 px-2 my-4 text-center"
+                style="font-size: 16px;">Gestionar Productos</a>
+        </div>
+    </div>
+</div>
+
+<!-- Redirección a los Componentes que se mostrarán al dar click en sus respectivos links -->
+
+<div class="container-fluid p-0">
+    <div class="row m-0 p-0">
+        <div class="col-12 my-3"> 
+            <!-- Componentes que se mostrarán al dar click en sus respectivos links -->
+            <div *ngIf="isSelected == 'nuevo-producto'"><app-form-product></app-form-product></div>
+            <div *ngIf="isSelected == 'gestionar-products'"><app-list-products-admin></app-list-products-admin></div>
+        </div>
+    </div>
+    
+</div>

@@ -88,8 +88,14 @@ export class ListaProductosComponent implements OnInit {
   {
    await this.database.GetAllProductos(_genero,_categoria).subscribe((res:any)=>
     {
-      console.log(res);
-      this.productos=res.results;
+      /* res.results.forEach(item => {
+        if(item.visible == 1){
+          this.productos.push(item);
+        }
+      }); */
+
+      this.productos = res.results.filter(item =>  item.visible == 1);
+      //this.productos=res.results;
       this.Initialproductos=this.productos;
       this.total=this.productos.length;
     });

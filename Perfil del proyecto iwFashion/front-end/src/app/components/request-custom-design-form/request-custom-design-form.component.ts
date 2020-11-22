@@ -119,7 +119,7 @@ export class RequestCustomDesignFormComponent implements OnInit {
           this.FormularioContact.reset();
         }
         else {
-          this.alerta.showErrorAlert('Ocurrió un error');
+          this.alerta.showErrorAlert(res['mensaje']);
         }
       })
   }
