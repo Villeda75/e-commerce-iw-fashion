@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ActivatedRoute, Router } from '@angular/router';
-import {DatabaseService} from '../../services/database.service';
+import { DatabaseService } from '../../services/database.service';
 import { AlertasService } from '../../alertas.service';
 import { AuthService } from '../../services/auth.service';
 import { CartPruebaService } from '../../services/cart-prueba.service';
@@ -13,63 +13,62 @@ import { CartPruebaService } from '../../services/cart-prueba.service';
 })
 export class DetalleProductoComponent implements OnInit {
   public Islogged: boolean;
-  productoActual:any;
-  SlideOptions = { items: 1, dots: true, nav: true, loop: true, 
+  productoActual: any;
+  SlideOptions = {
+    items: 1, dots: true, nav: true, loop: true,
     mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
     navSpeed: 1000,
     navText: ['Anterior', 'Siguiente'],
-    responsive:    {   
-    0: {
-      items: 1.25,
+    responsive: {
+      0: {
+        items: 1.25,
+      },
+      576: {
+        items: 2.25,
+      },
+      768: {
+        items: 3,
+      },
+      1024: {
+        items: 4,
+      },
+      1280: {
+        items: 4,
+      },
     },
-    576: {
-      items: 2.25,
-    },
-    768: {
-      items: 3,
-    },
-    1024: {
-      items: 4,
-    },
-    1280: {
-      items: 4,
-    },
-  },
 
-     };  
-  constructor(    
-    private router: Router, 
+  };
+  constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
-    private database:DatabaseService,
+    private database: DatabaseService,
     private autenticacion: AuthService,
     private alerta: AlertasService,
-    private _cartService:CartPruebaService
-    )
-    { 
-      const params = this.activatedRoute.snapshot.params;
-      if (params.id) {
+    private _cartService: CartPruebaService
+  ) {
+    const params = this.activatedRoute.snapshot.params;
+    if (params.id) {
 
-      this.database.GetProductById(params.id).subscribe((res:any)=>
-          {
-            this.productoActual=res.results[0];
-            console.log(this.productoActual);
-          });
-      }
-      else {
-        //alert('no encontrado');
-        this.alerta.showErrorAlert('Producto no encontrado');
-      }
+      this.database.GetProductById(params.id).subscribe((res: any) => {
+        this.productoActual = res.results[0];
+        console.log(this.productoActual);
+      });
     }
+    else {
+      //alert('no encontrado');
+      this.alerta.showErrorAlert('Producto no encontrado');
+    }
+  }
 
   ngOnInit(): void {
     this.VerificarLoggin();
   }
- //Metodo Para agregar al carrito
-  agregarBolsa(product:any){
-   
-    let newProduct=Object.assign(product,{"quantity":1});
+  //Metodo Para agregar al carrito
+  agregarBolsa(product: any) {
+
+    let newProduct = Object.assign(product, { "quantity": 1 });
     console.log(newProduct);
     this._cartService.changeCart(newProduct);
     this.router.navigate(['/bolsa']);
@@ -79,7 +78,7 @@ export class DetalleProductoComponent implements OnInit {
     this.Islogged = this.autenticacion.isLoggedIn;
   }
 
-  
-  
+
+
 
 }

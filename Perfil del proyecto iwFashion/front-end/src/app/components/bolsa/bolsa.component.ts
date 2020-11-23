@@ -6,7 +6,7 @@ import { LoginFormComponent } from '../login-form/login-form.component';
 import { AuthService } from '../../services/auth.service';
 import { AlertasService } from '../../alertas.service';
 
-import {CartPruebaService} from '../../services/cart-prueba.service';
+import { CartPruebaService } from '../../services/cart-prueba.service';
 
 import { DatabaseService } from '../../services/database.service';
 
@@ -19,24 +19,41 @@ export class BolsaComponent implements OnInit {
   public Islogged: boolean;
 
 
-   public items: Array<any>
-  public totalPrice:number = 0;
-  public totalQuantity:number = 0;
-  usuarioLoggeado:any={};
+  public items: Array<any>
+  public totalPrice: number = 0;
+  public totalQuantity: number = 0;
+  usuarioLoggeado: any = {};
 
-  constructor(private _location: Location, private dialog: MatDialog, private autenticacion: AuthService,private alerta: AlertasService,private _cartService:CartPruebaService, private database: DatabaseService) { 
-    this.usuarioLoggeado = JSON.parse(localStorage.getItem('user'));
-  }
+  constructor(private _location: Location, 
+    private dialog: MatDialog, 
+    private autenticacion: AuthService, 
+    private alerta: AlertasService, 
+    private _cartService: CartPruebaService, 
+    private database: DatabaseService) 
+    {
+      this.usuarioLoggeado = JSON.parse(localStorage.getItem('user'));
+    }
 
   ngOnInit(): void {
-    
-    this._cartService.currentDataCart$.subscribe(x=>{
-      if(x)
-      {
+
+    this._cartService.currentDataCart$.subscribe(x => {
+      if (x) {
         this.items = x;
+        console.log(x);
         this.totalQuantity = x.length;
-        this.totalPrice = x.reduce((sum, current) => sum + (current.discount_price * current.quantity), 0);
-        this.totalPrice=Number(this.totalPrice.toFixed(2));
+        //this.totalPrice = x.reduce((sum, current) => sum + (current.discount_price * current.quantity), 0);
+        this.totalPrice = 0;
+
+        //calculamos el total dependiendo si el producto está en descuento o no
+        this.items.forEach(item => {
+          if (item.discount_price > 0) {
+            this.totalPrice = this.totalPrice + item.discount_price * item.quantity;
+          } else {
+            this.totalPrice = this.totalPrice + item.sales_price * item.quantity;
+          } 
+        });
+      
+        this.totalPrice = Number(this.totalPrice.toFixed(2));
       }
     })
   }
@@ -63,24 +80,22 @@ export class BolsaComponent implements OnInit {
     this.VerificarLoggin();
 
     if (this.Islogged == true) {
-      
-      const itemsCart=this.items.map(item=>
-        {
-        return {"id":item.id_product,"cant":item.quantity}
-        });
-       
-      const Shopping={"items":itemsCart,"userEmail":this.usuarioLoggeado.email,"total":this.totalPrice}
+
+      const itemsCart = this.items.map(item => {
+        return { "id": item.id_product, "cant": item.quantity }
+      });
+
+      const Shopping = { "items": itemsCart, "userEmail": this.usuarioLoggeado.email, "total": this.totalPrice }
       console.log(Shopping);
-      this.database.FinishShopping(Shopping).subscribe(res=>
-        {
-          if (res['resultado'] == 'success') {
-            //alert(res['mensaje']);
-            this.alerta.showSuccessAlert(res['mensaje']);
-            this.ClearCart();
-          } else {
-            this.alerta.showErrorAlert(res['mensaje']);
-          }
-        })
+      this.database.FinishShopping(Shopping).subscribe(res => {
+        if (res['resultado'] == 'success') {
+          //alert(res['mensaje']);
+          this.alerta.showSuccessAlert(res['mensaje']);
+          this.ClearCart();
+        } else {
+          this.alerta.showErrorAlert(res['mensaje']);
+        }
+      })
     }
     else {
       this.OpenLogin();
@@ -91,23 +106,19 @@ export class BolsaComponent implements OnInit {
   }
 
   //eliminar completamente un item
-  public remove(producto:any)
-  {
-   this._cartService.removeElementCart(producto);
+  public remove(producto: any) {
+    this._cartService.removeElementCart(producto);
   }
 
   //restar a cantidad
-  public decrease(producto:any)
-  {
+  public decrease(producto: any) {
     this._cartService.DecreaseQuantity(producto);
   }
 
-  public increase(producto:any)
-  {
+  public increase(producto: any) {
     this._cartService.IncreaseQuantity(producto);
   }
-  public ClearCart()
-  {
+  public ClearCart() {
     this._cartService.ClearCart();
   }
 
