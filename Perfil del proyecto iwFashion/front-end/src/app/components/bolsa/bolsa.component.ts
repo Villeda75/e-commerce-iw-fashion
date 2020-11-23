@@ -77,6 +77,8 @@ export class BolsaComponent implements OnInit {
             //alert(res['mensaje']);
             this.alerta.showSuccessAlert(res['mensaje']);
             this.ClearCart();
+          } else {
+            this.alerta.showErrorAlert(res['mensaje']);
           }
         })
     }

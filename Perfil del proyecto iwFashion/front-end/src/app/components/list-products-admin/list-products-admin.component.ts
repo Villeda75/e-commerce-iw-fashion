@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router,ActivatedRoute} from '@angular/router';
-import {DatabaseService} from '../../services/database.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DatabaseService } from '../../services/database.service';
 import { AlertasService } from '../../alertas.service';
 
 @Component({
@@ -9,132 +9,136 @@ import { AlertasService } from '../../alertas.service';
   styleUrls: ['./list-products-admin.component.css']
 })
 export class ListProductsAdminComponent implements OnInit {
- 
-  productos:any[]=[];
-   productosInitial:any[]=[];
+
+  productos: any[] = [];
+  productosInitial: any[] = [];
   subcategories: any[] = [];
   genders: any[] = [];
   brands: any[] = [];
   //
-  page:number=1;
-  subCategorie:string='';
-  gender:string='';
-  brand:string='';
+  page: number = 1;
+  subCategorie: string = '';
+  gender: string = '';
+  brand: string = '';
 
-  total:number;
+  total: number;
   constructor(
-    private database:DatabaseService,
-    private RouterActual:ActivatedRoute,
-    private router:Router,
-    private alerta: AlertasService) { 
-     
-    }
+    private database: DatabaseService,
+    private RouterActual: ActivatedRoute,
+    private router: Router,
+    private alerta: AlertasService) {
+
+  }
 
   ngOnInit(): void {
     this.ShowAllProducts();
-    this.database.GetBrands().subscribe((res:any)=>
-    {
-      this.brands=res.results;
+    this.database.GetBrands().subscribe((res: any) => {
+      this.brands = res.results;
     });
-    this.database.GetGenders().subscribe((res:any)=>
-    {
-      this.genders=res.results;
+    this.database.GetGenders().subscribe((res: any) => {
+      this.genders = res.results;
     });
-    this.database.GetSubCategories().subscribe((res:any)=>
-    {
-      this.subcategories=res.results;
+    this.database.GetSubCategories().subscribe((res: any) => {
+      this.subcategories = res.results;
     });
   }
 
-  ShowAllProducts()
-  {
-    this.database.GetAllProductsWithNoCategorie().subscribe((res:any)=>
-      {
-        this.productos=res.results;
-        this.productos.sort(function(a, b){return a.id_product - b.id_product})
-       
-        this.productosInitial=this.productos;
-        this.total=this.productos.length;
-      }
-      );
+  ShowAllProducts() {
+    this.database.GetAllProductsWithNoCategorie().subscribe((res: any) => {
+      this.productos = res.results;
+      this.productos.sort(function (a, b) { return a.id_product - b.id_product })
+
+      this.productosInitial = this.productos;
+      this.total = this.productos.length;
+    }
+    );
   }
 
- BuscarProducts()
-  {
-   
-let _brand='';
-if(this.brand)
-{
-_brand=this.brand;
-}
-let _gender='';
-if(this.gender)
-{
-  _gender=this.gender;
-}
+  BuscarProducts() {
 
-let _subcategorie='';
-if(this.subCategorie)
-{
-_subcategorie=this.subCategorie;
-}
+    let _brand = '';
+    if (this.brand) {
+      _brand = this.brand;
+    }
+    let _gender = '';
+    if (this.gender) {
+      _gender = this.gender;
+    }
+
+    let _subcategorie = '';
+    if (this.subCategorie) {
+      _subcategorie = this.subCategorie;
+    }
 
     //marca y subcategoria
-   
-  if(_brand.length>0 && _gender.length>0)
-  {
-   
-       this.productos=this.productosInitial.filter(item =>  item.brand==_brand && item.gender==_gender);
-      this.total=this.productos.length;
-  }
-  else if(_brand.length>0 && _gender.length==0)
-  {
+    if (_gender.length > 0 && _subcategorie.length > 0 && _brand.length > 0) {
 
-    this.productos=this.productosInitial.filter(item =>  item.brand==_brand );
-    this.total=this.productos.length;
-  }
-  else if(_brand.length==0 && _gender.length>0)
-  {
-  
-    this.productos=this.productosInitial.filter(item =>item.gender==_gender);
-      this.total=this.productos.length;
-  }
-  else
-  {
-  
-  }
+      this.productos = this.productosInitial.filter(item => item.sub_category == _subcategorie && item.gender == _gender && item.brand == _brand);
+
+      this.total = this.productos.length;
+
+    }
+    else if (_brand.length > 0 && _gender.length > 0) {
+
+      this.productos = this.productosInitial.filter(item => item.brand == _brand && item.gender == _gender);
+      this.total = this.productos.length;
+    }
+    else if (_brand.length > 0 && _gender.length == 0) {
+
+      this.productos = this.productosInitial.filter(item => item.brand == _brand);
+      this.total = this.productos.length;
+    }
+    else if (_subcategorie.length > 0 && _brand.length == 0 && _gender.length == 0) {
+
+      this.productos = this.productosInitial.filter(item => item.sub_category == _subcategorie);
+      this.total = this.productos.length;
+    }
+    else if (_brand.length == 0 && _gender.length > 0) {
+
+      this.productos = this.productosInitial.filter(item => item.gender == _gender);
+      this.total = this.productos.length;
+    }
+
+    //
+    /* else if (_gender.length > 0 && _subcategorie.length > 0) {
+      
+        alert(_subcategorie);
+        this.productos = this.productosInitial.filter(item => item.sub_category == _subcategorie && item.gender == _gender);
+        //this.productos = this.productos.filter(item => item.sub_category == _subcategorie);
+        console.log(this.productos);
+        this.total = this.productos.length;
+      
+    } */
+    //
+    else {
+
+    }
 
   }
 
-  OcultarMostrarProducto(id:number)
-  {
-this.database.ShowOrHideProduct(id).subscribe(res=>
-  {
-    if (res['resultado'] == 'success') {
-      //alert(res['mensaje']);
-      this.alerta.showSuccessAlert(res['mensaje']);
-      this.ShowAllProducts();
-     
+  OcultarMostrarProducto(id: number) {
+    this.database.ShowOrHideProduct(id).subscribe(res => {
+      if (res['resultado'] == 'success') {
+        //alert(res['mensaje']);
+        this.alerta.showSuccessAlert(res['mensaje']);
+        this.ShowAllProducts();
+
+      }
+    }
+    )
+  }
+  ModificarProducto(id: number) {
+
+    this.router.navigate(['/addProduct/' + id]);
+  }
+
+  VisibilidadProducto(visible: number): boolean {
+    if (visible == 1) {
+      return true;
+    }
+    else {
+      return false;
     }
   }
-  )
-  }
-  ModificarProducto(id:number)
-  {
-  
-  this.router.navigate(['/addProduct/' + id]);
-  }
 
-  VisibilidadProducto(visible:number):boolean
-  {
-  if(visible==1)
-  {
-  return true;
-  }
-  else
-  {
-    return false;
-  }
-}
- 
 }

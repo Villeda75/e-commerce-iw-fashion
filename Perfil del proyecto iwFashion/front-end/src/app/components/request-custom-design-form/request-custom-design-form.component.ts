@@ -81,21 +81,20 @@ export class RequestCustomDesignFormComponent implements OnInit {
     //esto sirve para unir los json
     let RequestDesign=Object.assign(this.ContactoActual,this.designActual);
     console.log(RequestDesign);
-  /*  this.database.SendRequestDesign(RequestDesign).subscribe(res=>
+    this.database.SendRequestDesign(RequestDesign).subscribe(res=>
       {
 
         if (res['resultado'] == 'success') {
-          //alert(res['mensaje']);
-
           this.alerta.showSuccessAlert(res['mensaje']);
+
           this.ContactoActual={name:'',email:'',tel:'',message:''};
           this.FormularioContact.reset();
-        }
-        else {
-          this.alerta.showErrorAlert('Ocurrió un error');
+
+        } else {
+          this.alerta.showErrorAlert(res['mensaje']);
         }
       })
-      */
+      
   }
   }
 
@@ -117,6 +116,7 @@ export class RequestCustomDesignFormComponent implements OnInit {
           this.alerta.showSuccessAlert(res['mensaje']);
           this.ContactoActual={name:'',email:'',tel:'',message:''};
           this.FormularioContact.reset();
+          
         }
         else {
           this.alerta.showErrorAlert(res['mensaje']);
@@ -134,8 +134,6 @@ export class RequestCustomDesignFormComponent implements OnInit {
     this.designActual.base64textString = array[1];
     console.log(this.designActual.base64textString);
   }
-
-  
 
   //Eliminar imagen
   onRemoved(file: FileHolder) {

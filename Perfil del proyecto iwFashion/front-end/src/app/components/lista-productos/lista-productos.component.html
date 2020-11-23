@@ -1,43 +1,42 @@
-
 <div *ngIf="Islogged">
-  
+
 </div>
 <section id="portfolio" name="portfolio" class="portfolio section-bg">
   <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-<!--Filtro Marca-->
- <div class="col-sm">
-    <mat-form-field appearance="fill">
-  <mat-label>Marca</mat-label>
-  <mat-select [(value)]="brand">
-   <mat-option [value]="">No buscar</mat-option>
-    <mat-option *ngFor="let brand of brands" [value]="brand.brand">
-      {{brand.brand}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+    <!--Filtro Marca-->
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+        <mat-label>Marca</mat-label>
+        <mat-select [(value)]="brand">
+          <mat-option [value]="">No buscar</mat-option>
+          <mat-option *ngFor="let brand of brands" [value]="brand.brand">
+            {{brand.brand}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
-<!--FIN-->
+    <!--FIN-->
 
-<!--Filtro Tamaño-->
- <div class="col-sm">
-    <mat-form-field appearance="fill">
-  <mat-label>Tamaño</mat-label>
-  <mat-select [(value)]="size">
-   <mat-option [value]="">No buscar</mat-option>
-    <mat-option *ngFor="let size of sizes" [value]="size.size">
-      {{size.size}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+    <!--Filtro Tamaño-->
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+        <mat-label>Tamaño</mat-label>
+        <mat-select [(value)]="size">
+          <mat-option [value]="">No buscar</mat-option>
+          <mat-option *ngFor="let size of sizes" [value]="size.size">
+            {{size.size}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
-<!--FIN-->
- <div class="col-sm">
-<button (click)="BuscarProducts()" class="btn btn-dark btn-large">Buscar</button>
-<button (click)=" MostrarTodo()" class="ml-3  btn btn-dark btn-large">Mostrar todo</button>
- </div>
+    <!--FIN-->
+    <div class="col-sm">
+      <button (click)="BuscarProducts()" class="btn btn-dark btn-large">Buscar</button>
+      <button (click)=" MostrarTodo()" class="ml-3  btn btn-dark btn-large">Mostrar todo</button>
+    </div>
 
 
     <div class="mt-1 section-title text-center" style="color:black">
@@ -88,12 +87,24 @@
             <mat-card-title>
               <h2>{{item.product_type}}</h2>
             </mat-card-title>
-            <mat-card-subtitle>
+
+            <!--Producto con descuento-->
+            <mat-card-subtitle *ngIf="item.discount_price > 0; else SinDescuento">
               <h1 style="color:red">Antes: $<del>{{item.sales_price}}</del></h1>
               <strong>
                 <h1>Ahora: ${{item.discount_price}}</h1>
               </strong>
             </mat-card-subtitle>
+            <!-- Fin Producto con descuento-->
+
+            <!--Div precio sin descuento-->
+            <ng-template #SinDescuento>
+              <mat-card-subtitle>
+                <h1 class="text-white mt-4 mb-5">Precio: ${{item.sales_price}}</h1>
+              </mat-card-subtitle>
+            </ng-template>
+            <!--Div precio sin descuento-->
+
           </mat-card-header>
           <div class="portfolio-wrap">
             <img src="{{item.url_img}}" class="img-fluid" alt="" style="border-radius: 2%; height: 300px; width: 100%;">

@@ -1,7 +1,7 @@
 <!-- <div *ngIf="Islogged">
   <br> <br> <br> <br>
 </div> -->
-<main id="main" >
+<main id="main">
 
   <!-- ======= Breadcrumbs Section ======= -->
   <section class="breadcrumbs">
@@ -43,20 +43,30 @@
 
         <div class="col-6 text-center text-md-left">
 
+          <!--*ngIf="productoActual.discount_price > 0"-->
           <h1
             class="h1-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-2 ml-xl-0 ml-4">
             {{productoActual.product_type}} </h1>
-          <span class="badge badge-success product mb-4 ml-2">SALE</span>
-          <h3 class="h3-responsive text-center text-md-left mb-2 ml-xl-0 ml-4">
-            <span class="red-text font-weight-bold">
-              <strong>${{productoActual.discount_price}}</strong>
-            </span>
-            <span class="grey-text">
-              <small>
-                <s>${{productoActual.sales_price}}</s>
-              </small>
-            </span>
-          </h3>
+
+          <div *ngIf="productoActual.discount_price > 0; else SinDescuento">
+            <span class="badge badge-success product mb-4 ml-2">SALE</span>
+            <h3 class="h3-responsive text-center text-md-left mb-2 ml-xl-0 ml-4">
+              <span class="red-text font-weight-bold">
+                <strong>${{productoActual.discount_price}}</strong>
+              </span>
+              <span class="grey-text">
+                <small>
+                  <s>${{productoActual.sales_price}}</s>
+                </small>
+              </span>
+            </h3>
+          </div>
+
+          <!--Div precio sin descuento-->
+          <ng-template #SinDescuento>
+            <p class="ml-xl-0 ml-4 mt-3" style="font-size: 12pt;"><strong>Precio: ${{productoActual.sales_price}} </strong></p>
+          </ng-template>
+          <!--Div precio sin descuento-->
 
           <div class="font-weight-normal">
 
@@ -74,6 +84,8 @@
               <strong>Existencias: </strong>{{productoActual.stock}}</p>
             <p class="ml-xl-0 ml-4">
               <strong>Talla: </strong>{{productoActual.size}}</p>
+            <p class="ml-xl-0 ml-4">
+              <strong>Color: </strong>{{productoActual.color}}</p>
 
             <div class="mt-5">
               <!-- <p class="grey-text">Escoge tu talla:</p>

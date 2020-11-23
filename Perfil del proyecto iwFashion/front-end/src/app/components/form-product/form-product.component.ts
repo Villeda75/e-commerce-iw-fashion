@@ -106,6 +106,8 @@ export class FormProductComponent implements OnInit {
     });
     this.database.GetColors().subscribe((res: any) => {
       this.colores = res.results;
+      this.idColor = this.colores.findIndex(x => x.color === this.productoActual.color);
+      this.idColor = this.idColor + 1;
     });
 
 
@@ -123,6 +125,7 @@ export class FormProductComponent implements OnInit {
       this.firstFormGroup.controls['discount_price'].setValue(this.productoActual.discount_price);
 
       this.firstFormGroup.controls['slug'].setValue(this.productoActual.slug);
+
 
       this.secondFormGroup.controls['stock'].setValue(this.productoActual.stock)
 
@@ -211,6 +214,11 @@ export class FormProductComponent implements OnInit {
       isVisible = 2;
     }
 
+    //Validar campo de descuento vacio
+    if(this.firstFormGroup.controls['discount_price'].value == "" || this.firstFormGroup.controls['discount_price'].value == null){
+      this.firstFormGroup.controls['discount_price'].setValue(0);
+    }
+
     let thirdPart = { "id_product": this.productoActual.id_product, "id_color": this.idColor, "visible": isVisible, "id_sub_category": this.idSubCategorie, "id_size": this.idSize, "id_gender": this.idGender, "id_brand": this.idBrand };
 
     let Producto = Object.assign(this.firstFormGroup.value, this.secondFormGroup.value);
@@ -220,6 +228,7 @@ export class FormProductComponent implements OnInit {
 
     let FinalProducto = Object.assign(Producto2, this.designActual);
 
+    
     await this.database.EditProduct(FinalProducto).subscribe(res => {
       if (res['resultado'] == 'success') {
       

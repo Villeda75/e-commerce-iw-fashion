@@ -10,7 +10,7 @@ import { MarcasComponent } from '../marcas/marcas.component';
 export class AdministradorComponent implements OnInit {
 
   //variables que guarda la selección del componente a mostrar
-  isSelected: string = 'dashboard';
+  isSelected: string = 'products';
 
   constructor() { }
 
