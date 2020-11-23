@@ -36,7 +36,7 @@ export class MarcasComponent implements OnInit {
   }
   
   addOrEdit(): void { //Pasar datos del formulario reactivo de brand al objeto
-    //Esto sirve para pasar el imput a la variable local 
+    //Esto sirve para pasar el input a la variable local 
     this.brandActual.brand = this.FormularioBrands.controls['brand'].value;
   }
 
@@ -49,7 +49,7 @@ export class MarcasComponent implements OnInit {
   AgregarMarca() {
     this.addOrEdit();
 
-    if (this.brandActual.brand == null || this.brandActual.brand == "") {
+    if (this.brandActual.brand == null || this.brandActual.brand.trim() == "") {
       this.alerta.showErrorAlert('Ingrese una marca.');
     }
     else {

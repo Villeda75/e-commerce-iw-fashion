@@ -73,14 +73,14 @@ export class FormProductComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       product_type: ['', Validators.required],
       description: ['', Validators.required],
-      price: [0, [Validators.required]],
-      discount_price: [0, Validators.required],
+      price: [0, [Validators.required, Validators.min(1)]],
+       discount_price: [0, Validators.min(0)],
       /*id_color:['', Validators.required],*/
       slug: ['', Validators.required]
 
     });
     this.secondFormGroup = this._formBuilder.group({
-      stock: ['', [Validators.required]],
+      stock: ['', [Validators.required, Validators.min(1)]],
 
     });
     this.database.GetBrands().subscribe((res: any) => {
