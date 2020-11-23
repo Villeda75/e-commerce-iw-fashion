@@ -10,6 +10,9 @@ import { BolsaComponent } from './components/bolsa/bolsa.component';
 import { FormProductComponent } from './components/form-product/form-product.component';
 import { ListProductsAdminComponent } from './components/list-products-admin/list-products-admin.component';
 
+//guard
+import {GuardServiceService} from './services/guard-service.service';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -28,13 +31,13 @@ const routes: Routes = [
   { path: 'niños/zapatos', component: ListaProductosComponent },
   { path: 'niños/accesorios', component: ListaProductosComponent },
   { path: 'detalle', component: DetalleProductoComponent },
-  { path: 'administrar', component: AdministradorComponent },
+  { path: 'administrar', component: AdministradorComponent ,canActivate: [GuardServiceService]},
   { path: 'contactar', component: ContactFormComponent }, 
   { path: 'diseños', component: DesignCustomViewComponent },
   { path: 'bolsa', component: BolsaComponent },
-  { path: 'addProduct/:id', component: FormProductComponent },
-  { path: 'addProduct', component: FormProductComponent },
-   { path: 'ListProduct', component: ListProductsAdminComponent }
+  { path: 'addProduct/:id', component: FormProductComponent,canActivate: [GuardServiceService] },
+  { path: 'addProduct', component: FormProductComponent,canActivate: [GuardServiceService] },
+   { path: 'ListProduct', component: ListProductsAdminComponent,canActivate: [GuardServiceService]}
 ];
 
 @NgModule({
